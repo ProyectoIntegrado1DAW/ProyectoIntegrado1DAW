@@ -163,7 +163,7 @@ public class VentRegistro {
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
 		button.setBackground(Color.BLACK);
-		button.setBounds(86, 464, 282, 52);
+		button.setBounds(209, 463, 282, 52);
 		frame.getContentPane().add(button);
 
 		textContraseña = new JPasswordField();
