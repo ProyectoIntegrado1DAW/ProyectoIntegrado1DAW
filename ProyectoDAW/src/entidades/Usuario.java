@@ -11,6 +11,7 @@ public class Usuario {
 	private String pais;
 	private String telefono;
 	private String email;
+	private String usuario;
 	private String password;
 	private String DNI;
 
@@ -18,7 +19,7 @@ public class Usuario {
 	
 	public Usuario(String nombre, String apellido, String direccion,
 			String poblacion, String provincia, String CP, String pais,
-			String telefono, String email, String password, String DNI) {
+			String telefono, String email, String usuario, String password, String DNI) {
 		
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -29,6 +30,7 @@ public class Usuario {
 		this.pais = pais;
 		this.telefono = telefono;
 		this.email = email;
+		this.usuario = usuario;
 		this.password = password;
 		this.DNI = DNI;
 
