@@ -21,7 +21,7 @@ public class VentRegistro {
 	private JTextField textTlf;
 	private JTextField textEdad;
 	private JTextField textUsuario;
-	private JPasswordField textContraseña;
+	private JPasswordField textContrasenya;
 	private JTextField textDNI;
 	private JTextField textDireccion;
 	private JTextField textPais;
@@ -64,8 +64,7 @@ public class VentRegistro {
 
 		JLabel lblLogoHere = new JLabel("");
 		lblLogoHere
-				.setIcon(new ImageIcon(
-						"C:\\Users\\dai\\git\\ProyectoIntegrado1DAW(1)\\ProyectoDAW\\LogoSmall.png"));
+				.setIcon(new ImageIcon("C:\\Users\\hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
 		lblLogoHere.setBounds(292, 38, 111, 38);
 		frame.getContentPane().add(lblLogoHere);
 
@@ -95,11 +94,11 @@ public class VentRegistro {
 		label_2.setBounds(10, 206, 127, 38);
 		frame.getContentPane().add(label_2);
 
-		JLabel label_3 = new JLabel("Tel\u00E9fono");
-		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_3.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		label_3.setBounds(20, 255, 127, 38);
-		frame.getContentPane().add(label_3);
+		JLabel lblTelfono = new JLabel("Tel\u00E9fono");
+		lblTelfono.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTelfono.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
+		lblTelfono.setBounds(20, 255, 127, 38);
+		frame.getContentPane().add(lblTelfono);
 
 		JLabel label_4 = new JLabel("Edad");
 		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -113,7 +112,7 @@ public class VentRegistro {
 		label_5.setBounds(20, 353, 127, 38);
 		frame.getContentPane().add(label_5);
 
-		JLabel label_6 = new JLabel("Contrase\u00F1a");
+		JLabel label_6 = new JLabel("Contraseña");
 		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_6.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		label_6.setBounds(0, 394, 155, 38);
@@ -166,12 +165,12 @@ public class VentRegistro {
 		button.setBounds(209, 463, 282, 52);
 		frame.getContentPane().add(button);
 
-		textContraseña = new JPasswordField();
-		textContraseña.setForeground(Color.WHITE);
-		textContraseña.setBackground(Color.DARK_GRAY);
-		textContraseña.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		textContraseña.setBounds(163, 402, 200, 28);
-		frame.getContentPane().add(textContraseña);
+		textContrasenya = new JPasswordField();
+		textContrasenya.setForeground(Color.WHITE);
+		textContrasenya.setBackground(Color.DARK_GRAY);
+		textContrasenya.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		textContrasenya.setBounds(163, 402, 200, 28);
+		frame.getContentPane().add(textContrasenya);
 
 		JLabel lblDni = new JLabel("DNI");
 		lblDni.setHorizontalAlignment(SwingConstants.RIGHT);

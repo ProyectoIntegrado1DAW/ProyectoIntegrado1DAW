@@ -104,7 +104,7 @@ public class VentLogin {
 		frame.getContentPane().add(button);
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\dai\\Desktop\\Workspace - Proyecto\\ProyectoDAW\\LogoBig.png"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoBig.png"));
 		lblNewLabel.setBounds(106, 11, 209, 116);
 		frame.getContentPane().add(lblNewLabel);
 	}
