@@ -23,7 +23,8 @@ public class GestorUsuario {
 				+ ", " + usuario.getUsuario() + ", " + usuario.getPassword() + ", " + usuario.getPuntos() + ", "
 				+ usuario.getNombre() + ", " + usuario.getApellido() + ", " + usuario.getDireccion() + ", "
 				+ usuario.getPoblacion() + ", " + usuario.getProvincia() + ", " + usuario.getCP() + ", " + usuario.getPais() + ", "
-				+ usuario.getTelefono() + ", " + usuario.getEmail());
+ + usuario.getTelefono()
+					+ ", " + usuario.getEmail());
 		
 		}
 

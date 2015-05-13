@@ -21,10 +21,10 @@ public class Main {
 			 * resultado.getString("nombre"); System.out.println("nombre: " +
 			 * nombres); }
 			 */
-			Usuario usuario = new Usuario("Miquel", "Miquel", "Miquel",
-					"Miquel", "Miquel", "Miquel", "Miquel", 0, "Miquel",
-					"Miquel", "Miquel", "Miquel", "Miquel");
-			
+			Usuario usuario = new Usuario("Miquel", "Miquel", "Miquel", 0,
+					"Miquel", "Miquel", "Miquel", "Miquel", "Miquel", "Miquel",
+					"Miquel", "Miquel", "Miquel");
+
 			GestorUsuario.altaUsuario(usuario);
 
 		} catch (SQLException e) {

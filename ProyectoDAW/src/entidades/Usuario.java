@@ -16,16 +16,18 @@ public class Usuario {
 	private String DNI;
 	private int puntos;
 
-	public Usuario(){}
-	
-	public Usuario(String nombre, String apellido, String direccion,
-			String poblacion, String provincia, String CP, String pais,int puntos,
-			String telefono, String email, String usuario, String password, String DNI) {
-		
+	public Usuario() {
+	}
+
+	public Usuario(String DNI, String usuario, String password, int puntos,
+			String nombre, String apellido, String direccion, String poblacion,
+			String provincia, String CP, String pais, String telefono,
+			String email) {
+
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.direccion = direccion;
-		this.poblacion=poblacion;
+		this.poblacion = poblacion;
 		this.provincia = provincia;
 		this.CP = CP;
 		this.pais = pais;
