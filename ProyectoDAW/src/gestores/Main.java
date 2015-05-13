@@ -3,7 +3,7 @@ package gestores;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import entidades.Usuario;
+import entidades.Cliente;
 
 public class Main {
 
@@ -21,11 +21,11 @@ public class Main {
 			 * resultado.getString("nombre"); System.out.println("nombre: " +
 			 * nombres); }
 			 */
-			Usuario usuario = new Usuario("Miquel", "Miquel", "Miquel", 0,
+			Cliente cliente = new Cliente("Hector", "Miquel", "Miquel", 0,
 					"Miquel", "Miquel", "Miquel", "Miquel", "Miquel", "Miquel",
 					"Miquel", "Miquel", "Miquel");
 
-			GestorUsuario.altaUsuario(usuario);
+			GestorUsuario.altaUsuario(cliente);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
