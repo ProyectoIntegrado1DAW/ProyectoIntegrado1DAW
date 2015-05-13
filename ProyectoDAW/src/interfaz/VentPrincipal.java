@@ -61,6 +61,10 @@ public class VentPrincipal {
 		frame.getContentPane().add(button_entrar);
 		
 		JButton button_login = new JButton("LOGIN");
+		button_login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		button_login.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
 		button_login.setForeground(Color.WHITE);
 		button_login.setBackground(Color.BLACK);
