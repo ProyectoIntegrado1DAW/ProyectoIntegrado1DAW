@@ -14,11 +14,12 @@ public class Usuario {
 	private String usuario;
 	private String password;
 	private String DNI;
+	private int puntos;
 
 	public Usuario(){}
 	
 	public Usuario(String nombre, String apellido, String direccion,
-			String poblacion, String provincia, String CP, String pais,
+			String poblacion, String provincia, String CP, String pais,int puntos,
 			String telefono, String email, String usuario, String password, String DNI) {
 		
 		this.nombre = nombre;
@@ -30,9 +31,10 @@ public class Usuario {
 		this.pais = pais;
 		this.telefono = telefono;
 		this.email = email;
-		this.usuario = usuario;
+		this.setUsuario(usuario);
 		this.password = password;
 		this.DNI = DNI;
+		this.setPuntos(0);
 
 	}
 
@@ -122,6 +124,22 @@ public class Usuario {
 
 	public void setDNI(String dNI) {
 		DNI = dNI;
+	}
+
+	public int getPuntos() {
+		return puntos;
+	}
+
+	public void setPuntos(int puntos) {
+		this.puntos = puntos;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 }
