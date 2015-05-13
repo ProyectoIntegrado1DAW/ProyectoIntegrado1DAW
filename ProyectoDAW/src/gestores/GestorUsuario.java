@@ -38,17 +38,21 @@ public class GestorUsuario {
 		ResultSet resultado;
 		String DNI;
 		ArrayList listaDni = new ArrayList();
+		 boolean existe = false;
+		 
+		resultado = conexion.getQuery("SELECT DNI FROM clickntick.clientes WHERE DNI = "+usuario.getDNI());
+		if (resultado.next()){
+			existe = true;
+		} 
 		
-		resultado = conexion.getQuery("SELECT DNI FROM clickntick.clientes");
-		
-		
-		 while (resultado.next()) {  
+		/* 
+		while (resultado.next()) {  
 			DNI = resultado.getString("DNI");
 			listaDni.add(DNI);
 		    }
 		 
 		 
-		 boolean existe = false;
+		
 		 int i = 0;
 		 while(resultado.next() && !existe) {
 			 
@@ -56,7 +60,7 @@ public class GestorUsuario {
 				 existe = true;
 			 }
 		 }
-		 
+		 */
 		 
 		 return existe;
 	}
