@@ -12,7 +12,7 @@ public class Main {
 		ResultSet resultado;
 		String nombres;
 
-		resultado = conexion.getQuery("select * from clickntick.clientes");
+		//resultado = conexion.getQuery("select * from clickntick.clientes");
 
 		try {
 

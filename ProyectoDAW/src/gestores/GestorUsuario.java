@@ -16,17 +16,18 @@ public class GestorUsuario {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 
-		boolean existe = comprobarExisteUsuario(usuario);
-		if( existe  = false) {
-		
-		conexion.setQuery("INSERT INTO clickntick.clientes VALUES (" + usuario.getDNI()
-				+ ", " + usuario.getUsuario() + ", " + usuario.getPassword() + ", " + usuario.getPuntos() + ", "
-				+ usuario.getNombre() + ", " + usuario.getApellido() + ", " + usuario.getDireccion() + ", "
-				+ usuario.getPoblacion() + ", " + usuario.getProvincia() + ", " + usuario.getCP() + ", " + usuario.getPais() + ", "
+		//boolean existe = comprobarExisteUsuario(usuario);
+		//if( existe  = false) {
+	
+		conexion.setQuery("INSERT INTO clickntick.clientes VALUES ('"+ usuario.getDNI()
+				+ "', '" + usuario.getUsuario() + "', '" + usuario.getPassword() + "', " + usuario.getPuntos() + ", '"
+				+ usuario.getNombre() + "', '" + usuario.getApellido() + "', '" + usuario.getDireccion() + "', '"
+				+ usuario.getPoblacion() + "', '" + usuario.getProvincia() + "', '" + usuario.getCP() + "', '" + usuario.getPais() + "', '"
  + usuario.getTelefono()
-					+ ", " + usuario.getEmail());
+					+ "', '" + usuario.getEmail()+"');");
 		
-		}
+		
+		//}
 
 	}
 
