@@ -4,7 +4,15 @@ public class GestorEvento {
 	
 	public static void altaEvento(){
 		
+		ConexionDB conexion = ConexionDB.getConexionDB();
+
+		//boolean existe = comprobarExisteUsuario(cliente);
+		//if( existe  = false) {
+	
+		conexion.setQuery("INSERT INTO clickntick.eventos VALUES ('','')");
 		
+		
+		//}
 		
 	}
 	
