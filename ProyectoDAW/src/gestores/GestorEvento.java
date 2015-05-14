@@ -17,7 +17,7 @@ public class GestorEvento {
 				+ evento.getLocales() + "','" + evento.getCiudad() + "',"
 				+ evento.getNumEntradas() + "," + evento.getEntrReservadas()
 				+ ",'" + evento.getDescripcion() + "'," + evento.getPrecio()
-				+ "," + evento.getFecha() + ",'" + evento.getDiaSemana()
+				+ ",'" + evento.getFecha() + "','" + evento.getDiaSemana()
 				+ "','" + evento.getHora() + "')");
 
 		// }

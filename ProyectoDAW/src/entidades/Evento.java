@@ -1,7 +1,7 @@
 package entidades;
 
 public class Evento {
-	private String IDEvento;
+	private int IDEvento;
 	private String DNIGestor;
 	private String nombre;
 	private String tipoEvento;
@@ -18,9 +18,9 @@ public class Evento {
 	private String DiaSemana;
 	private String hora;
 
-	public Evento(String IDEvento, String DNIGestor, String nombre,
-			String tipoEvento, int numEntradas, int entrReservadas,
-			String descripcion, String locales, String ciudad, int precio,
+	public Evento(int IDEvento, String DNIGestor, String nombre,
+			String tipoEvento, String locales, String ciudad,
+			int numEntradas, int entrReservadas, String descripcion, int precio,
 			String fecha, String DiaSemana, String hora) {
 
 		this.IDEvento = IDEvento;
@@ -40,11 +40,11 @@ public class Evento {
 		this.hora = hora;
 	}
 
-	public String getIDEvento() {
+	public int getIDEvento() {
 		return IDEvento;
 	}
 
-	public void setIDEvento(String iDEvento) {
+	public void setIDEvento(int iDEvento) {
 		IDEvento = iDEvento;
 	}
 
