@@ -12,7 +12,7 @@ public class Evento {
 	private String descripcion;
 	private String locales;
 	private String ciudad;
-
+	private String Fecha;
 	private int precio;
 	// private String Fecha;
 	private String DiaSemana;
@@ -21,13 +21,13 @@ public class Evento {
 	public Evento(String IDEvento, String DNIGestor, String nombre,
 			String tipoEvento, int numEntradas, int entrReservadas,
 			String descripcion, String locales, String ciudad, int precio,
-			String DiaSemana, String hora) {
+			String fecha, String DiaSemana, String hora) {
 
 		this.IDEvento = IDEvento;
 		this.DNIGestor = DNIGestor;
 		this.nombre = nombre;
 		this.tipoEvento = tipoEvento;
-
+		this.Fecha = fecha;
 		this.numEntradas = numEntradas;
 		this.entrReservadas = entrReservadas;
 
@@ -142,6 +142,14 @@ public class Evento {
 
 	public void setOra(String ora) {
 		this.hora = ora;
+	}
+
+	public String getFecha() {
+		return Fecha;
+	}
+
+	public void setFecha(String fecha) {
+		Fecha = fecha;
 	}
 
 }
