@@ -10,7 +10,7 @@ set search_path to 'clickntick';
 CREATE TABLE clientes (
 	DNI varchar(10) NOT NULL,
 	Usuario varchar(15) NOT NULL,
-	Contrasenya varchar(10) NOT NULL,
+	Password varchar(10) NOT NULL,
 	Puntos integer NOT NULL,
 	Nombre varchar(30) NOT NULL,
 	Apellido varchar(30) NOT NULL,

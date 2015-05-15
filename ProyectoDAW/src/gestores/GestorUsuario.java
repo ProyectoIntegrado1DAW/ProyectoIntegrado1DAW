@@ -17,8 +17,8 @@ public class GestorUsuario {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 
-		//boolean existe = comprobarExisteUsuario(cliente);
-		//if (existe = false) {
+		boolean existe = comprobarExisteUsuario(cliente);
+		if (existe = false) {
 
 			conexion.setQuery("INSERT INTO clickntick.clientes VALUES ('"
 					+ cliente.getDNI() + "', '" + cliente.getUsuario() + "', '"
@@ -31,7 +31,9 @@ public class GestorUsuario {
 					+ cliente.getTelefono() + "', '" + cliente.getEmail()
 					+ "');");
 
-		//}
+		} else {
+			System.out.println("YA EXISTE ");
+		}
 
 	}
 
@@ -41,14 +43,18 @@ public class GestorUsuario {
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet resultado;
 		boolean login = false;
-
+		String pas = "";
 		resultado = conexion
-				.getQuery("SELECT password FROM clickntick.clientes WHERE usuario = '"
+				.getQuery("SELECT Password FROM clickntick.clientes WHERE usuario = '"
 						+ usuario + "'");
 
 		if (resultado != null) {
 			System.out.println("Encuentra el usuario siii");
-			if (pass.equals(resultado.getString("password"))) {
+			while (resultado.next()){
+				pas = resultado.getString("Password");
+			}
+			
+			if (pass.equals(pas)) {
 				login = true;
 				System.out.println("Logeado siii");
 			}
@@ -58,6 +64,33 @@ public class GestorUsuario {
 
 	}
 
+	public static boolean logInGestor(String usuario, String pass)
+			throws SQLException {
+
+		ConexionDB conexion = ConexionDB.getConexionDB();
+		ResultSet resultado;
+		boolean login = false;
+		String pas = "";
+		resultado = conexion
+				.getQuery("SELECT Password FROM clickntick.gestores WHERE usuario = '"
+						+ usuario + "'");
+
+		if (resultado != null) {
+			System.out.println("Encuentra el usuario siii");
+			while (resultado.next()){
+				pas = resultado.getString("Password");
+			}
+			
+			if (pass.equals(pas)) {
+				login = true;
+				System.out.println("Logeado siii");
+			}
+		}
+
+		return login;
+
+	}
+	
 	private static boolean comprobarExisteUsuario(Cliente cliente)
 			throws SQLException {
 
@@ -68,8 +101,8 @@ public class GestorUsuario {
 		boolean existe = false;
 
 		resultado = conexion
-				.getQuery("SELECT DNI FROM clickntick.clientes WHERE DNI = "
-						+ cliente.getDNI());
+				.getQuery("SELECT DNI FROM clickntick.clientes WHERE DNI = '"
+						+ cliente.getDNI()+"';");
 		if (resultado.next()) {
 			existe = true;
 		}
