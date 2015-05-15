@@ -49,15 +49,17 @@ public class GestorEvento {
 	public static void buscarEvento(Evento evento) {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
-		conexion.getQuery("SELECT * from clickntick.eventos WHERE tipoevento ='"+evento.getTipoEvento()+"'");
-		
+		conexion.getQuery("SELECT * from clickntick.eventos WHERE tipoevento ='"
+				+ evento.getTipoEvento() + "'");
+
 	}
 
 	public static void buscarEventoPlus(Evento evento) {
-		
+
 		ConexionDB conexion = ConexionDB.getConexionDB();
 
-		conexion.getQuery("SELECT * from clickntick.eventos WHERE nombreevento ='"+evento.getNombre()+"'");
+		conexion.getQuery("SELECT * from clickntick.eventos WHERE nombreevento ='"
+				+ evento.getNombre() + "'");
 
 	}
 
