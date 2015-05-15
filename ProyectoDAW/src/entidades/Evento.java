@@ -14,7 +14,7 @@ public class Evento {
 	private String ciudad;
 	private String Fecha;
 	private int precio;
-	// private String Fecha;
+
 	private String DiaSemana;
 	private String hora;
 

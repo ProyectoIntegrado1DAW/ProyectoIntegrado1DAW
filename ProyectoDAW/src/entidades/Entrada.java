@@ -7,7 +7,7 @@ public class Entrada {
 	private String DNI;
 	private String nombreEvento;
 	private String informacion; // evento.toString();
-	private int tipoEntrada;
+	private String tipoEntrada;
 	private double Precio;
 	private String datosCliente; // cliente.tostring
 	
@@ -42,10 +42,10 @@ public class Entrada {
 	public void setInformacion(String informacion) {
 		this.informacion = informacion;
 	}
-	public int getTipoEntrada() {
+	public String getTipoEntrada() {
 		return tipoEntrada;
 	}
-	public void setTipoEntrada(int tipoEntrada) {
+	public void setTipoEntrada(String tipoEntrada) {
 		this.tipoEntrada = tipoEntrada;
 	}
 	public double getPrecio() {

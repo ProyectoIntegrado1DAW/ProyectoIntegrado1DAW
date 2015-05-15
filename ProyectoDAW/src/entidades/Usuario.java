@@ -7,9 +7,9 @@ public class Usuario {
 	private String direccion;
 	private String poblacion;
 	private String provincia;
-	private String CP;
+	private int CP;
 	private String pais;
-	private String telefono;
+	private int telefono;
 	private String email;
 	private String usuario;
 	private String password;
@@ -18,10 +18,19 @@ public class Usuario {
 
 	public Usuario() {
 	}
+	// usuario gestor
+	public Usuario(String DNI, String nombre, String usuario, String password) {
+		
+		this.DNI = DNI;
+		this.nombre = nombre;
+		this.usuario = usuario;
+		this.password = password;
+		
+	}
 
 	public Usuario(String DNI, String usuario, String password,
 			String nombre, String apellido, String direccion, String poblacion,
-			String provincia, String CP, String pais, String telefono,
+			String provincia, int CP, String pais, int telefono,
 			String email) {
 
 		this.nombre = nombre;
@@ -79,11 +88,11 @@ public class Usuario {
 		this.provincia = provincia;
 	}
 
-	public String getCP() {
+	public int getCP() {
 		return CP;
 	}
 
-	public void setCP(String cP) {
+	public void setCP(int cP) {
 		CP = cP;
 	}
 
@@ -95,11 +104,11 @@ public class Usuario {
 		this.pais = pais;
 	}
 
-	public String getTelefono() {
+	public int getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(String telefono) {
+	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
 
