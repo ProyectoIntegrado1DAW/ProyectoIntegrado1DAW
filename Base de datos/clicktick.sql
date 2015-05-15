@@ -33,7 +33,7 @@ CREATE TABLE gestores (
 );
 
 CREATE TABLE eventos (
-	IDEvento integer NOT NULL,
+	IDEvento SERIAL,
 	DNI varchar(10) NOT NULL,
 	NombreEvento varchar(30) NOT NULL,
 	TipoEvento varchar(20) NOT NULL,
