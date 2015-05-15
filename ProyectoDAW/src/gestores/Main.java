@@ -12,6 +12,7 @@ public class Main {
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet resultado;
 		String nombres;
+		Cliente cliente;
 
 		// resultado = conexion.getQuery("select * from clickntick.clientes");
 
@@ -25,10 +26,11 @@ public class Main {
 
 		GestorEvento.altaEvento(evento);
 
-		/*Cliente cliente = new Cliente("11d", "mmarin", "1234", "Miquel",
+		cliente = Cliente.getInstance("11d", "mmarin", "1234", "Miquel",
 				"Marin", "c/ valencia", "Suma", "Valencia", 23445, "Aspaña",
-				8457463, "Shurprim@gmail.com");*/
-		//GestorUsuario.altaUsuario(cliente);
+				8457463, "Shurprim@gmail.com");
+		
+		GestorUsuario.altaUsuario(cliente);
 		//GestorUsuario.logIn("mmarin", "1234");
 	}
 }

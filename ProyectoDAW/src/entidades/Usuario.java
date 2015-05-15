@@ -18,6 +18,8 @@ public class Usuario {
 
 	public Usuario() {
 	}
+	
+	
 	// usuario gestor
 	public Usuario(String DNI, String nombre, String usuario, String password) {
 		

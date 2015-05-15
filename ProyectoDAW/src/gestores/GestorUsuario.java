@@ -3,6 +3,7 @@ package gestores;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import entidades.Cliente;
 
 public class GestorUsuario {
@@ -13,6 +14,46 @@ public class GestorUsuario {
 	 * String email, String cliente, String password, String DNI
 	 */
 
+	private static void getCliente(String user) throws SQLException {
+		
+		ConexionDB conexion = ConexionDB.getConexionDB();
+		ResultSet resultado;
+		String nombre;
+		String apellido;
+		String direccion;
+		String poblacion;
+		String provincia;
+		int CP;
+		String pais;
+		int telefono;
+		String email;
+		String usuario;
+		String password;
+		String DNI;
+		
+		resultado = conexion.getQuery("SELECT * FROM clickntick.clientes WHERE DNI = '"+user+"';");
+		while (resultado.next()) {
+			
+			nombre = resultado.getString("Nombre");
+			apellido = resultado.getString("Apellido");
+			direccion = resultado.getString("Direccion");
+			poblacion = resultado.getString("Poblacion");
+			provincia = resultado.getString("Provincia");
+			CP = resultado.getInt("CodPostal");
+			pais = resultado.getString("Pais");
+			telefono = resultado.getInt("Telefono");
+			email = resultado.getString("Email");
+			usuario = resultado.getString("Usuario");
+			password = resultado.getString("Password");
+			DNI = resultado.getString("DNI");
+			
+			Cliente.getInstance(DNI, usuario, password, nombre, apellido, direccion, poblacion, provincia, CP, pais, telefono, email);
+		}
+		
+		
+	}
+	
+	
 	public static void altaUsuario(Cliente cliente) throws SQLException {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
@@ -56,9 +97,12 @@ public class GestorUsuario {
 			
 			if (pass.equals(pas)) {
 				login = true;
+				getCliente(usuario);
 				System.out.println("Logeado siii");
 			}
 		}
+		
+		
 
 		return login;
 
@@ -96,8 +140,8 @@ public class GestorUsuario {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet resultado;
-		String DNI;
-		ArrayList listaDni = new ArrayList();
+		//String DNI;
+		//ArrayList listaDni = new ArrayList();
 		boolean existe = false;
 
 		resultado = conexion
