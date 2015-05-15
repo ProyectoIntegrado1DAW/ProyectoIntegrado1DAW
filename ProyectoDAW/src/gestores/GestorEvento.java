@@ -37,19 +37,27 @@ public class GestorEvento {
 
 	}
 
-	public static void bajaEvento() {
+	public static void bajaEvento(Evento evento) {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 
-		conexion.setQuery("DELETE FROM clickntick.eventos where ");
+		conexion.setQuery("DELETE FROM clickntick.eventos where nombreevento = '"
+				+ evento.getNombre() + "'");
 
 	}
 
-	public static void buscarEvento() {
+	public static void buscarEvento(Evento evento) {
 
+		ConexionDB conexion = ConexionDB.getConexionDB();
+		conexion.getQuery("SELECT * from clickntick.eventos WHERE tipoevento ='"+evento.getTipoEvento()+"'");
+		
 	}
 
-	public static void buscarEventoPlus() {
+	public static void buscarEventoPlus(Evento evento) {
+		
+		ConexionDB conexion = ConexionDB.getConexionDB();
+
+		conexion.getQuery("SELECT * from clickntick.eventos WHERE nombreevento ='"+evento.getNombre()+"'");
 
 	}
 
