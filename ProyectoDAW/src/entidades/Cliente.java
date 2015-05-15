@@ -27,13 +27,13 @@ public class Cliente extends Usuario {
 			return instance;
 
 	}
-	
-	public static Cliente getInstance(){
-		
+
+	public static Cliente getInstance() {
+
 		return instance;
 	}
-	
-	public static void setInstance(){
+
+	public static void setInstance() { // cerrar sesion
 		instance = null;
 	}
 

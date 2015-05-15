@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entidades.Cliente;
+import entidades.Gestor;
 
 public class GestorUsuario {
 
@@ -15,7 +16,7 @@ public class GestorUsuario {
 	 */
 
 	private static void getCliente(String user) throws SQLException {
-		
+
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet resultado;
 		String nombre;
@@ -30,10 +31,12 @@ public class GestorUsuario {
 		String usuario;
 		String password;
 		String DNI;
-		
-		resultado = conexion.getQuery("SELECT * FROM clickntick.clientes WHERE DNI = '"+user+"';");
+
+		resultado = conexion
+				.getQuery("SELECT * FROM clickntick.clientes WHERE DNI = '"
+						+ user + "';");
 		while (resultado.next()) {
-			
+
 			nombre = resultado.getString("Nombre");
 			apellido = resultado.getString("Apellido");
 			direccion = resultado.getString("Direccion");
@@ -46,14 +49,38 @@ public class GestorUsuario {
 			usuario = resultado.getString("Usuario");
 			password = resultado.getString("Password");
 			DNI = resultado.getString("DNI");
-			
-			Cliente.getInstance(DNI, usuario, password, nombre, apellido, direccion, poblacion, provincia, CP, pais, telefono, email);
+
+			Cliente.getInstance(DNI, usuario, password, nombre, apellido,
+					direccion, poblacion, provincia, CP, pais, telefono, email);
 		}
-		
-		
+
 	}
-	
-	
+
+	private static void getGestor(String user) throws SQLException {
+
+		ConexionDB conexion = ConexionDB.getConexionDB();
+		ResultSet resultado;
+		String nombre;
+		String usuario;
+		String password;
+		String DNI;
+
+		resultado = conexion
+				.getQuery("SELECT * FROM clickntick.gestores WHERE DNI = '"
+						+ user + "';");
+		while (resultado.next()) {
+
+			nombre = resultado.getString("Nombre");
+
+			usuario = resultado.getString("Usuario");
+			password = resultado.getString("Password");
+			DNI = resultado.getString("DNI");
+
+			Gestor.getInstance(DNI, nombre, usuario, password);
+		}
+
+	}
+
 	public static void altaUsuario(Cliente cliente) throws SQLException {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
@@ -91,18 +118,16 @@ public class GestorUsuario {
 
 		if (resultado != null) {
 			System.out.println("Encuentra el usuario siii");
-			while (resultado.next()){
+			while (resultado.next()) {
 				pas = resultado.getString("Password");
 			}
-			
+
 			if (pass.equals(pas)) {
 				login = true;
 				getCliente(usuario);
 				System.out.println("Logeado siii");
 			}
 		}
-		
-		
 
 		return login;
 
@@ -121,12 +146,13 @@ public class GestorUsuario {
 
 		if (resultado != null) {
 			System.out.println("Encuentra el usuario siii");
-			while (resultado.next()){
+			while (resultado.next()) {
 				pas = resultado.getString("Password");
 			}
-			
+
 			if (pass.equals(pas)) {
 				login = true;
+				getGestor(usuario);
 				System.out.println("Logeado siii");
 			}
 		}
@@ -134,19 +160,19 @@ public class GestorUsuario {
 		return login;
 
 	}
-	
+
 	private static boolean comprobarExisteUsuario(Cliente cliente)
 			throws SQLException {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet resultado;
-		//String DNI;
-		//ArrayList listaDni = new ArrayList();
+		// String DNI;
+		// ArrayList listaDni = new ArrayList();
 		boolean existe = false;
 
 		resultado = conexion
 				.getQuery("SELECT DNI FROM clickntick.clientes WHERE DNI = '"
-						+ cliente.getDNI()+"';");
+						+ cliente.getDNI() + "';");
 		if (resultado.next()) {
 			existe = true;
 		}
