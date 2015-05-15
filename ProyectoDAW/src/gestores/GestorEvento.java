@@ -11,13 +11,26 @@ public class GestorEvento {
 		// boolean existe = comprobarExisteUsuario(cliente);
 		// if( existe = false) {
 
-		conexion.setQuery("INSERT INTO clickntick.eventos VALUES ("
-				+ evento.getIDEvento() + ",'" + evento.getDNIGestor() + "','"
-				+ evento.getNombre() + "','" + evento.getTipoEvento() + "','"
-				+ evento.getLocales() + "','" + evento.getCiudad() + "',"
-				+ evento.getNumEntradas() + "," + evento.getEntrReservadas()
-				+ ",'" + evento.getDescripcion() + "'," + evento.getPrecio()
-				+ ",'" + evento.getFecha() + "','" + evento.getDiaSemana()
+		conexion.setQuery("INSERT INTO clickntick.eventos (nombreevento, tipoevento, locales, ciudad, numentradas, entradasreservadas, descripcion, precio, fecha, diasemana, hora) VALUES ('"
+				+ evento.getNombre()
+				+ "','"
+				+ evento.getTipoEvento()
+				+ "','"
+				+ evento.getLocales()
+				+ "','"
+				+ evento.getCiudad()
+				+ "',"
+				+ evento.getNumEntradas()
+				+ ","
+				+ evento.getEntrReservadas()
+				+ ",'"
+				+ evento.getDescripcion()
+				+ "',"
+				+ evento.getPrecio()
+				+ ",'"
+				+ evento.getFecha()
+				+ "','"
+				+ evento.getDiaSemana()
 				+ "','" + evento.getHora() + "')");
 
 		// }
@@ -25,6 +38,10 @@ public class GestorEvento {
 	}
 
 	public static void bajaEvento() {
+
+		ConexionDB conexion = ConexionDB.getConexionDB();
+
+		conexion.setQuery("DELETE FROM clickntick.eventos where ");
 
 	}
 

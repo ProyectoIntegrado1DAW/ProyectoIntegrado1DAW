@@ -19,16 +19,16 @@ public class Main {
 		 * while (resultado.next()) { nombres = resultado.getString("nombre");
 		 * System.out.println("nombre: " + nombres); }
 		 */
-		/*Evento evento = new Evento(1, "23452D", "MuerteMachin",
+		Evento evento = new Evento("MuerteMachin",
 				"Festival del mal", "Muchos", "Lepe", 666, 0, "Sangre", 20,
-				"2016-6-6", "Sabado", "6:06");*/
+				"2016-6-6", "Sabado", "6:06");
 
-		// GestorEvento.altaEvento(evento);
+		GestorEvento.altaEvento(evento);
 
-		Cliente cliente = new Cliente("11d", "mmarin", "1234", "Miquel",
+		/*Cliente cliente = new Cliente("11d", "mmarin", "1234", "Miquel",
 				"Marin", "c/ valencia", "Suma", "Valencia", 23445, "Aspaña",
-				8457463, "Shurprim@gmail.com");
-		GestorUsuario.altaUsuario(cliente);
+				8457463, "Shurprim@gmail.com");*/
+		//GestorUsuario.altaUsuario(cliente);
 		//GestorUsuario.logIn("mmarin", "1234");
 	}
 }

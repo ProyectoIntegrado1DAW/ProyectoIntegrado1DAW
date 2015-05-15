@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class ConexionDB {
 
 	private String _usuario = "postgres";
-	private String _pwd = "1234";
+	private String _pwd = "123";
 	private static String _bd = "clickntick";
 	static String _url = "jdbc:postgresql://localhost:5433/" + _bd;
 	private Connection conn = null;

@@ -34,7 +34,6 @@ CREATE TABLE gestores (
 
 CREATE TABLE eventos (
 	IDEvento SERIAL,
-	DNI varchar(10) NOT NULL,
 	NombreEvento varchar(30) NOT NULL,
 	TipoEvento varchar(20) NOT NULL,
 	Locales varchar(20) NOT NULL,
@@ -47,7 +46,6 @@ CREATE TABLE eventos (
 	DiaSemana varchar(15) NOT NULL,
 	Hora varchar(20) NOT NULL,
 	PRIMARY KEY (IDEvento),
-	CONSTRAINT eventos_DNI_FK FOREIGN KEY (DNI) REFERENCES gestores (DNI)
 );
 
 CREATE TABLE entrada (
