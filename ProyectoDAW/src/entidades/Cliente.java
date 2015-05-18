@@ -33,7 +33,7 @@ public class Cliente extends Usuario {
 		return instance;
 	}
 
-	public static void setInstance() { // cerrar sesion
+	public static void setInstanceOff() { // cerrar sesion
 		instance = null;
 	}
 

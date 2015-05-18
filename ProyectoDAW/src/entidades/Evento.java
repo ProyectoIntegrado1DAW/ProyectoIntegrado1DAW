@@ -133,5 +133,13 @@ public class Evento {
 	public void setFecha(String fecha) {
 		Fecha = fecha;
 	}
+	
+	public String toStringEntrada(Evento evento) {
+		String info = "";
+
+		info = info;
+
+		return info;
+	}
 
 }
