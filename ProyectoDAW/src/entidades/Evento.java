@@ -17,10 +17,10 @@ public class Evento {
 	private String DiaSemana;
 	private String hora;
 
-	public Evento(String nombre,
-			String tipoEvento, String locales, String ciudad,
-			int numEntradas, int entrReservadas, String descripcion, int precio,
-			String fecha, String DiaSemana, String hora) {
+	public Evento(String nombre, String tipoEvento, String locales,
+			String ciudad, int numEntradas, int entrReservadas,
+			String descripcion, int precio, String fecha, String DiaSemana,
+			String hora) {
 
 		this.nombre = nombre;
 		this.tipoEvento = tipoEvento;
@@ -37,6 +37,22 @@ public class Evento {
 		this.hora = hora;
 	}
 
+	// MÉTODOS
+
+	public String toStringEntrada(Evento evento) {
+		String info = "";
+
+		info = info + " " + evento.getNombre() + " " + evento.getTipoEvento()
+				+ " " + evento.getFecha() + evento.getDiaSemana()
+				+ evento.getOra() + " " + evento.getNumEntradas() + " "
+				+ evento.getEntrReservadas() + " " + evento.getDescripcion()
+				+ " " + evento.getLocales() + " " + evento.getCiudad() + " "
+				+ evento.getPrecio();
+
+		return info;
+	}
+
+	// GETS AND SETS
 
 	public String getNombre() {
 		return nombre;
@@ -132,14 +148,6 @@ public class Evento {
 
 	public void setFecha(String fecha) {
 		Fecha = fecha;
-	}
-	
-	public String toStringEntrada(Evento evento) {
-		String info = "";
-
-		info = info;
-
-		return info;
 	}
 
 }
