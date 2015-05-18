@@ -79,6 +79,7 @@ CREATE TABLE compras (
 	IDEntrada integer NOT NULL,
 	Titular varchar(30) NOT NULL,
 	NumTarjeta varchar(20) NOT NULL,
+	NumEntradas integer NOT NULL,
 	FechaCaducidad varchar(10) NOT NULL,
 	CodigoSeguridad integer NOT NULL,
 	FormaPago varchar(20) NOT NULL,
