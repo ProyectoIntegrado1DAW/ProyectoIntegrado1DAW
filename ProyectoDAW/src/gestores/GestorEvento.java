@@ -1,5 +1,8 @@
 package gestores;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import entidades.Evento;
 
 public class GestorEvento {
@@ -34,6 +37,55 @@ public class GestorEvento {
 				+ "','" + evento.getHora() + "')");
 
 		// }
+
+	}
+
+	public Evento obtenerEvento(String nomEvento) throws SQLException {
+
+		Evento eventos = null;
+		ConexionDB conexion = ConexionDB.getConexionDB();
+		ResultSet resultado;
+
+		String nombre = null;
+		String tipoEvento = null;
+
+		int numEntradas = 0;
+		int entrReservadas = 0;
+
+		String descripcion = null;
+		String locales = null;
+		String ciudad = null;
+		String Fecha = null;
+		int precio = 0;
+
+		String DiaSemana = null;
+		String hora = null;
+
+		resultado = conexion
+				.getQuery("SELECT * FROM clickntick.eventos WHERE nombreevento = '"
+						+ nomEvento + "';");
+
+		while (resultado.next()) {
+
+			nombre = resultado.getString("nombreevento");
+			tipoEvento = resultado.getString("tipoevento");
+			numEntradas = resultado.getInt("numentradas");
+			entrReservadas = resultado.getInt("entradasreservadas");
+			descripcion = resultado.getString("descripcion");
+			locales = resultado.getString("locales");
+			ciudad = resultado.getString("ciudad");
+			Fecha = resultado.getString("fecha");
+			precio = resultado.getInt("precio");
+			DiaSemana = resultado.getString("diasemana");
+			hora = resultado.getString("hora");
+
+			eventos = new Evento(nombre, tipoEvento, locales, ciudad,
+					numEntradas, entrReservadas, descripcion, precio, Fecha,
+					DiaSemana, hora);
+
+		}
+
+		return eventos;
 
 	}
 
