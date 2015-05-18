@@ -20,11 +20,13 @@ public class Main {
 		 * while (resultado.next()) { nombres = resultado.getString("nombre");
 		 * System.out.println("nombre: " + nombres); }
 		 */
-		Evento evento = new Evento("MuerteMachin",
+		/*Evento evento = new Evento("MuerteMachin",
 				"Festival del mal", "Muchos", "Lepe", 666, 0, "Sangre", 20,
-				"2016-6-6", "Sabado", "6:06");
+				"2016-6-6", "Sabado", "6:06");*/
 
-		GestorEvento.altaEvento(evento);
+		Evento guay = GestorEvento.obtenerEvento("MuerteMachin");
+		
+		System.out.println(guay.toStringEntrada(guay));
 
 		cliente = Cliente.getInstance("11d", "mmarin", "1234", "Miquel",
 				"Marin", "c/ valencia", "Suma", "Valencia", 23445, "Aspaña",

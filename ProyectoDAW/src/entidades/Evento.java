@@ -43,8 +43,8 @@ public class Evento {
 		String info = "";
 
 		info = info + " " + evento.getNombre() + " " + evento.getTipoEvento()
-				+ " " + evento.getFecha() + evento.getDiaSemana()
-				+ evento.getOra() + " " + evento.getNumEntradas() + " "
+				+ " " + evento.getFecha() +" "+ evento.getDiaSemana()
+				+" "+ evento.getOra() + " " + evento.getNumEntradas() + " "
 				+ evento.getEntrReservadas() + " " + evento.getDescripcion()
 				+ " " + evento.getLocales() + " " + evento.getCiudad() + " "
 				+ evento.getPrecio();

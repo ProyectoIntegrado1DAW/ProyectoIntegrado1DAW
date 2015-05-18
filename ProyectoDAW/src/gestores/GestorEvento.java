@@ -1,5 +1,6 @@
 package gestores;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -40,7 +41,7 @@ public class GestorEvento {
 
 	}
 
-	public Evento obtenerEvento(String nomEvento) throws SQLException {
+	public static Evento obtenerEvento(String nomEvento) throws SQLException {
 
 		Evento eventos = null;
 		ConexionDB conexion = ConexionDB.getConexionDB();
@@ -55,7 +56,7 @@ public class GestorEvento {
 		String descripcion = null;
 		String locales = null;
 		String ciudad = null;
-		String Fecha = null;
+		Date fecha = null;
 		int precio = 0;
 
 		String DiaSemana = null;
@@ -74,13 +75,13 @@ public class GestorEvento {
 			descripcion = resultado.getString("descripcion");
 			locales = resultado.getString("locales");
 			ciudad = resultado.getString("ciudad");
-			Fecha = resultado.getString("fecha");
+			fecha = resultado.getDate("fecha");
 			precio = resultado.getInt("precio");
 			DiaSemana = resultado.getString("diasemana");
 			hora = resultado.getString("hora");
-
+			
 			eventos = new Evento(nombre, tipoEvento, locales, ciudad,
-					numEntradas, entrReservadas, descripcion, precio, Fecha,
+					numEntradas, entrReservadas, descripcion, precio, fecha.toString(),
 					DiaSemana, hora);
 
 		}
