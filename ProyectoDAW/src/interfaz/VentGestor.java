@@ -1,5 +1,7 @@
 package interfaz;
-import entidades.Evento;
+
+
+import Evento;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
@@ -8,6 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class VentGestor {
@@ -115,5 +123,25 @@ public class VentGestor {
 		JTree tree = new JTree(modelo);
 		tree.setBounds(0, 0, 225, 429);
 		frame.getContentPane().add(tree);
+		
+		JButton quitar = new JButton("Quitar");
+		quitar.setBounds(248, 177, 156, 50);
+		frame.getContentPane().add(quitar);
+		
+		JButton anyadir = new JButton("Añadir");
+		
+		anyadir.addActionListener (new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				VentGestorAnyadir ventanaGestor = new VentGestorAnyadir();
+				ventanaGestor.getFrame().setVisible(true);
+				frame.dispose();} }
+			);
+		
+		anyadir.setBounds(248, 25, 156, 50);
+		frame.getContentPane().add(anyadir);
+		
+		JButton editar = new JButton("Editar");
+		editar.setBounds(248, 99, 156, 50);
+		frame.getContentPane().add(editar);
 	}
 }

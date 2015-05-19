@@ -1,11 +1,16 @@
 package interfaz;
 
+
+import Evento;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import java.awt.GridLayout;
 
@@ -15,7 +20,6 @@ import java.awt.Color;
 
 import javax.swing.SwingConstants;
 import javax.swing.DropMode;
-
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
@@ -23,10 +27,13 @@ import java.awt.CardLayout;
 
 import javax.swing.JButton;
 
+import java.awt.Frame;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JSpinner;
 import javax.swing.GroupLayout;
@@ -37,18 +44,18 @@ import javax.swing.JTextArea;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.SpinnerNumberModel;
 
 public class VentGestorAnyadir extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textNombreEvento;
-	private JTextField Locales;
-	private JTextField Ciudad;
-	private JTextField txtDdmmaaaa;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtNombre;
+	private JTextField locales;
+	private JTextField ciudad;
+	private JTextField anyo;
+	private JTextField dia;
+	private JTextField precio;
+	private JTextArea descripcion;
 
 	/**
 	 * Launch the application.
@@ -77,370 +84,128 @@ public class VentGestorAnyadir extends JFrame {
 		setContentPane(contentPane);
 
 		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setBounds(5, 27, 61, 14);
 
-		textNombreEvento = new JTextField();
-		textNombreEvento.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setBounds(87, 24, 318, 20);
+		txtNombre.setColumns(10);
 
 		JLabel lblTipo = new JLabel("Tipo:");
+		lblTipo.setBounds(5, 74, 39, 14);
 
-		JComboBox comboTipoEvento = new JComboBox();
+		JComboBox cmbTipo = new JComboBox();
+		cmbTipo.setBounds(87, 71, 113, 20);
 
 		JLabel lblPlazas = new JLabel("Plazas:");
+		lblPlazas.setBounds(212, 74, 54, 14);
 
 		JSpinner plazas = new JSpinner();
+		plazas.setBounds(256, 71, 31, 20);
 		plazas.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0),
 				null, new Integer(1)));
+		
 
 		JLabel lblReservadas = new JLabel("Reservadas:");
-
+		lblReservadas.setBounds(297, 74, 96, 14);
+		
+		
 		JSpinner reservadas = new JSpinner();
+		reservadas.setBounds(362, 71, 31, 20);
 		reservadas.setModel(new SpinnerNumberModel(new Integer(0), new Integer(
 				0), null, new Integer(1)));
 
-		JLabel lblLugar = new JLabel("");
+		reservadas.getN
 
-		TextArea descripcion = new TextArea();
-
-		Locales = new JTextField();
-		Locales.setColumns(10);
+		locales = new JTextField();
+		locales.setBounds(87, 118, 126, 20);
+		locales.setColumns(10);
 
 		JLabel lblCiudad = new JLabel("Ciudad:");
+		lblCiudad.setBounds(217, 121, 49, 14);
 
-		Ciudad = new JTextField();
-		Ciudad.setText("");
-		Ciudad.setColumns(10);
+		ciudad = new JTextField();
+		ciudad.setBounds(276, 118, 129, 20);
+		ciudad.setText("");
+		ciudad.setColumns(10);
 
 		JLabel lblLocales = new JLabel("Locales:");
+		lblLocales.setBounds(5, 121, 61, 14);
 
-		JTextArea textArea = new JTextArea();
+		descripcion = new JTextArea();
+		descripcion.setBounds(15, 279, 385, 93);
 
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n:");
+		lblDescripcin.setBounds(5, 254, 79, 14);
 
 		JLabel lblDia = new JLabel("D\u00EDa:");
+		lblDia.setBounds(5, 178, 45, 14);
 
-		JComboBox comboBox = new JComboBox();
+		JComboBox mes = new JComboBox();
+		mes.setBounds(175, 175, 91, 20);
 
 		JLabel lblMes = new JLabel("Mes:");
+		lblMes.setBounds(141, 178, 39, 14);
 
 		JLabel lblAo = new JLabel("A\u00F1o:");
+		lblAo.setBounds(280, 178, 33, 14);
 
-		txtDdmmaaaa = new JTextField();
-		txtDdmmaaaa.setColumns(10);
+		anyo = new JTextField();
+		anyo.setBounds(326, 175, 79, 20);
+		anyo.setColumns(10);
 
-		textField = new JTextField();
-		textField.setColumns(10);
+		dia = new JTextField();
+		dia.setBounds(87, 175, 32, 20);
+		dia.setColumns(10);
 
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(331, 390, 75, 23);
 
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener (new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+			
+				Evento evento = new Evento(txtNombre.getText(), cmbTipo.getName(), locales.getText(), ciudad.getText(), 
+						plazas.getValue(), reservadas.getValue(), descripcion.getText(), Integer.parseInt(precio.getText()),
+						dia.getText()+"/" + mes.getName()+"/" + anyo.getText(), "Lunes", "12:00");
+			
+			} }
+			);
+		btnGuardar.setBounds(242, 390, 71, 23);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		precio = new JTextField();
+		precio.setBounds(87, 216, 49, 20);
+		precio.setColumns(10);
 
-		JLabel lblPrecio = DefaultComponentFactory.getInstance().createLabel(
-				"Precio");
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane
-				.setHorizontalGroup(gl_contentPane
-						.createParallelGroup(Alignment.TRAILING)
-						.addGroup(
-								gl_contentPane
-										.createSequentialGroup()
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addContainerGap()
-																		.addComponent(
-																				btnGuardar)
-																		.addGap(18)
-																		.addComponent(
-																				btnCancelar)
-																		.addGap(13))
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addGroup(
-																				gl_contentPane
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addGroup(
-																								gl_contentPane
-																										.createSequentialGroup()
-																										.addGroup(
-																												gl_contentPane
-																														.createParallelGroup(
-																																Alignment.LEADING)
-																														.addComponent(
-																																lblNombre)
-																														.addGroup(
-																																gl_contentPane
-																																		.createSequentialGroup()
-																																		.addComponent(
-																																				lblLocales)
-																																		.addPreferredGap(
-																																				ComponentPlacement.RELATED)
-																																		.addComponent(
-																																				lblLugar))
-																														.addComponent(
-																																lblTipo))
-																										.addGap(37)
-																										.addGroup(
-																												gl_contentPane
-																														.createParallelGroup(
-																																Alignment.LEADING)
-																														.addGroup(
-																																gl_contentPane
-																																		.createSequentialGroup()
-																																		.addComponent(
-																																				comboTipoEvento,
-																																				0,
-																																				117,
-																																				Short.MAX_VALUE)
-																																		.addGap(12)
-																																		.addComponent(
-																																				lblPlazas)
-																																		.addPreferredGap(
-																																				ComponentPlacement.UNRELATED)
-																																		.addComponent(
-																																				plazas,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				GroupLayout.DEFAULT_SIZE,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addPreferredGap(
-																																				ComponentPlacement.UNRELATED)
-																																		.addComponent(
-																																				lblReservadas)
-																																		.addPreferredGap(
-																																				ComponentPlacement.RELATED)
-																																		.addComponent(
-																																				reservadas,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				GroupLayout.DEFAULT_SIZE,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addGap(12))
-																														.addGroup(
-																																gl_contentPane
-																																		.createSequentialGroup()
-																																		.addComponent(
-																																				Locales,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				126,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addPreferredGap(
-																																				ComponentPlacement.RELATED)
-																																		.addComponent(
-																																				lblCiudad,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				49,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addPreferredGap(
-																																				ComponentPlacement.UNRELATED)
-																																		.addComponent(
-																																				Ciudad,
-																																				GroupLayout.DEFAULT_SIZE,
-																																				129,
-																																				Short.MAX_VALUE))
-																														.addComponent(
-																																textNombreEvento,
-																																GroupLayout.DEFAULT_SIZE,
-																																318,
-																																Short.MAX_VALUE)))
-																						.addGroup(
-																								gl_contentPane
-																										.createSequentialGroup()
-																										.addGroup(
-																												gl_contentPane
-																														.createParallelGroup(
-																																Alignment.LEADING)
-																														.addGroup(
-																																gl_contentPane
-																																		.createSequentialGroup()
-																																		.addComponent(
-																																				lblDia)
-																																		.addPreferredGap(
-																																				ComponentPlacement.UNRELATED)
-																																		.addComponent(
-																																				textField,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				19,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addGap(12)
-																																		.addComponent(
-																																				lblMes))
-																														.addGroup(
-																																gl_contentPane
-																																		.createSequentialGroup()
-																																		.addContainerGap()
-																																		.addComponent(
-																																				lblDescripcin,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				79,
-																																				GroupLayout.PREFERRED_SIZE)))
-																										.addGap(6)
-																										.addComponent(
-																												comboBox,
-																												GroupLayout.PREFERRED_SIZE,
-																												109,
-																												GroupLayout.PREFERRED_SIZE)
-																										.addGap(24)
-																										.addComponent(
-																												lblAo)
-																										.addGap(12)
-																										.addComponent(
-																												txtDdmmaaaa,
-																												GroupLayout.DEFAULT_SIZE,
-																												137,
-																												Short.MAX_VALUE))
-																						.addGroup(
-																								gl_contentPane
-																										.createSequentialGroup()
-																										.addComponent(
-																												lblPrecio)
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED)
-																										.addComponent(
-																												textField_1,
-																												GroupLayout.PREFERRED_SIZE,
-																												49,
-																												GroupLayout.PREFERRED_SIZE)))
-																		.addGap(14))
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addContainerGap()
-																		.addComponent(
-																				textArea,
-																				GroupLayout.PREFERRED_SIZE,
-																				385,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addGap(19)))
-										.addContainerGap()));
-		gl_contentPane
-				.setVerticalGroup(gl_contentPane
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								gl_contentPane
-										.createSequentialGroup()
-										.addGap(19)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(lblNombre)
-														.addComponent(
-																textNombreEvento,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												ComponentPlacement.RELATED, 27,
-												Short.MAX_VALUE)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																comboTipoEvento,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblTipo)
-														.addComponent(
-																plazas,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																lblReservadas)
-														.addComponent(
-																reservadas,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblPlazas))
-										.addGap(27)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addGap(5)
-																		.addComponent(
-																				lblLugar))
-														.addGroup(
-																gl_contentPane
-																		.createParallelGroup(
-																				Alignment.BASELINE)
-																		.addComponent(
-																				Locales,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addComponent(
-																				lblLocales)
-																		.addComponent(
-																				lblCiudad)
-																		.addComponent(
-																				Ciudad,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE)))
-										.addGap(37)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(lblDia)
-														.addComponent(
-																txtDdmmaaaa,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblAo)
-														.addComponent(
-																comboBox,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblMes)
-														.addComponent(
-																textField,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(18)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																textField_1,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblPrecio))
-										.addGap(14)
-										.addComponent(lblDescripcin)
-										.addGap(18)
-										.addComponent(textArea,
-												GroupLayout.PREFERRED_SIZE, 93,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(18)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																btnGuardar)
-														.addComponent(
-																btnCancelar))
-										.addContainerGap()));
-		contentPane.setLayout(gl_contentPane);
+		JLabel lblPrecio = new JLabel("Precio:");
+		lblPrecio.setBounds(5, 216, 45, 14);
+		contentPane.setLayout(null);
+		contentPane.add(btnGuardar);
+		contentPane.add(btnCancelar);
+		contentPane.add(lblNombre);
+		contentPane.add(lblLocales);
+		contentPane.add(lblTipo);
+		contentPane.add(cmbTipo);
+		contentPane.add(lblPlazas);
+		contentPane.add(plazas);
+		contentPane.add(lblReservadas);
+		contentPane.add(reservadas);
+		contentPane.add(locales);
+		contentPane.add(lblCiudad);
+		contentPane.add(ciudad);
+		contentPane.add(txtNombre);
+		contentPane.add(lblDia);
+		contentPane.add(dia);
+		contentPane.add(lblMes);
+		contentPane.add(lblDescripcin);
+		contentPane.add(mes);
+		contentPane.add(lblAo);
+		contentPane.add(anyo);
+		contentPane.add(lblPrecio);
+		contentPane.add(precio);
+		contentPane.add(descripcion);
+	}
+	
+	public JFrame getFrame(){
+		return this;
 	}
 }
