@@ -85,7 +85,7 @@ public class VentLogin {
 		textField.setColumns(10);
 		
 		textfield_pass = new JPasswordField();
-		textfield_pass.setEchoChar('¬');
+		textfield_pass.setEchoChar('*');
 		textfield_pass.setForeground(Color.WHITE);
 		textfield_pass.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
 		textfield_pass.setBackground(Color.GRAY);
