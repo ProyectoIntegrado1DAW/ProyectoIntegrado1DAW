@@ -1,13 +1,18 @@
 package interfaz;
 
 
-import Evento;
+
+
+import entidades.Evento;
+import gestores.GestorEvento;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.JButton;
@@ -18,12 +23,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-public class VentGestor {
+public class VentGestor implements TreeSelectionListener{
 
 	private JFrame frame;
-	private ArrayList<Evento> eventos = new ArrayList<Evento>();
-	private ArrayList<String> tipos = new ArrayList<String>();
-
+	private String seleccionado;
+	private JTree tree;
 	/**
 	 * Launch the application.
 	 */
@@ -45,11 +49,9 @@ public class VentGestor {
 	 * Create the application.
 	 */
 	
-	public void addEvento(Evento ev){
-		
-		eventos.add(ev);
-		
-	}
+	
+	
+	
 	
 	public VentGestor() {
 		initialize();
@@ -61,29 +63,6 @@ public class VentGestor {
 	private void initialize() {
 		
 		//PRUEBA
-		Evento ev1 = new Evento("Nombre1", "Tipo1", "Locales", "Ciudad1", 24, 35, "Descripcion", 20, "Fecha", "Lunes", "Hora");
-		Evento ev2 = new Evento("Nombre2", "Tipo1", "Locales", "Ciudad1", 24, 35, "Descripcion", 20, "Fecha", "Lunes", "Hora");
-		Evento ev3 = new Evento("Nombre3", "Tipo2", "Locales", "Ciudad1", 24, 35, "Descripcion", 20, "Fecha", "Lunes", "Hora");
-		Evento ev4 = new Evento("Nombre4", "Tipo3", "Locales", "Ciudad1", 24, 35, "Descripcion", 20, "Fecha", "Lunes", "Hora");
-		Evento ev5 = new Evento("Nombre5", "Tipo2", "Locales", "Ciudad1", 24, 35, "Descripcion", 20, "Fecha", "Lunes", "Hora");
-		Evento ev6 = new Evento("Nombre6", "Tipo3", "Locales", "Ciudad1", 24, 35, "Descripcion", 20, "Fecha", "Lunes", "Hora");
-		Evento ev7 = new Evento("Nombre7", "Tipo4", "Locales", "Ciudad1", 24, 35, "Descripcion", 20, "Fecha", "Lunes", "Hora");
-		Evento ev8 = new Evento("Nombre8", "Tipo4", "Locales", "Ciudad1", 24, 35, "Descripcion", 20, "Fecha", "Lunes", "Hora");
-		Evento ev9 = new Evento("Nombre9", "Tipo5", "Locales", "Ciudad1", 24, 35, "Descripcion", 20, "Fecha", "Lunes", "Hora");
-		Evento ev0 = new Evento("Nombre0", "Tipo5", "Locales", "Ciudad1", 24, 35, "Descripcion", 20, "Fecha", "Lunes", "Hora");
-		
-		this.addEvento(ev1);
-		this.addEvento(ev2);
-		this.addEvento(ev3);
-		this.addEvento(ev4);
-		this.addEvento(ev5);
-		this.addEvento(ev6);
-		this.addEvento(ev7);
-		this.addEvento(ev8);
-		this.addEvento(ev9);
-		this.addEvento(ev0);
-		
-		
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 430, 467);
@@ -93,12 +72,10 @@ public class VentGestor {
 		//JTREE
 		
 		//Nodos
+		GestorEvento g1 = new GestorEvento();
+		ArrayList<Evento> eventos = g1.getArrayEventos();
+		ArrayList<String> tipos = g1.getArrayTipos();
 		
-		for(Evento evento_ : eventos){
-			if(tipos.contains(evento_.getTipoEvento()) == false){
-				tipos.add(evento_.getTipoEvento());
-			}
-		}
 		DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Eventos");
 		DefaultMutableTreeNode evento = null;
 		DefaultMutableTreeNode tipo = null;
@@ -120,9 +97,11 @@ public class VentGestor {
 		DefaultTreeModel modelo = new DefaultTreeModel(raiz);
 		
 		//Declaracion
-		JTree tree = new JTree(modelo);
+		tree = new JTree(modelo);
 		tree.setBounds(0, 0, 225, 429);
+		tree.getSelectionModel().addTreeSelectionListener(this);
 		frame.getContentPane().add(tree);
+		
 		
 		JButton quitar = new JButton("Quitar");
 		quitar.setBounds(248, 177, 156, 50);
@@ -134,7 +113,7 @@ public class VentGestor {
 			public void actionPerformed(ActionEvent e){
 				VentGestorAnyadir ventanaGestor = new VentGestorAnyadir();
 				ventanaGestor.getFrame().setVisible(true);
-				frame.dispose();} }
+				frame.setVisible(false);} }
 			);
 		
 		anyadir.setBounds(248, 25, 156, 50);
@@ -142,6 +121,33 @@ public class VentGestor {
 		
 		JButton editar = new JButton("Editar");
 		editar.setBounds(248, 99, 156, 50);
+		editar.addActionListener (new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				
+				Evento evSeleccionado = null;
+				
+				GestorEvento g1 = new GestorEvento();
+				for(Evento ev : g1.getArrayEventos()){
+					if(seleccionado.equals(ev.getNombre())){
+						evSeleccionado = ev;
+					}
+				}
+				VentGestorEditar ventanaGestor = new VentGestorEditar(evSeleccionado);
+				ventanaGestor.getFrame().setVisible(true);
+				frame.setVisible(false);
+				} }
+			);
 		frame.getContentPane().add(editar);
+	}
+	public JFrame getFrame(){
+		return frame;
+	}
+
+	public void valueChanged(TreeSelectionEvent e) {
+		
+		DefaultMutableTreeNode seleccion=(DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+		
+		Object objeto = seleccion.getUserObject();
+		seleccionado = objeto.toString();
 	}
 }
