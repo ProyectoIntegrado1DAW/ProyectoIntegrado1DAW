@@ -23,10 +23,7 @@ public class ConexionDB {
 			Class.forName("org.postgresql.Driver");
 			conn = (Connection) DriverManager.getConnection(_url, _usuario,
 					_pwd);
-			if (conn != null) {
-				System.out.println("Conexi-n a base de datos " + _url
-						+ " . . . Ok");
-			}
+			
 		} catch (SQLException ex) {
 			System.out
 					.println("Hubo un problema al intentar conecarse a la base de datos"

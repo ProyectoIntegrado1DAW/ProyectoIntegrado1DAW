@@ -64,7 +64,8 @@ public class VentRegistro {
 
 		JLabel lblLogoHere = new JLabel("");
 		lblLogoHere
-				.setIcon(new ImageIcon("C:\\Users\\hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
+				.setIcon(new ImageIcon(
+						"C:\\Users\\hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
 		lblLogoHere.setBounds(292, 38, 111, 38);
 		frame.getContentPane().add(lblLogoHere);
 
@@ -256,4 +257,10 @@ public class VentRegistro {
 		lblPas.setBounds(337, 206, 127, 38);
 		frame.getContentPane().add(lblPas);
 	}
+
+	public JFrame getFrame() {
+
+		return frame;
+	}
+
 }
