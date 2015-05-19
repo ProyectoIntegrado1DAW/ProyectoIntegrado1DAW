@@ -1,8 +1,13 @@
 package gestores;
 
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.xml.transform.TransformerException;
+
+import entidades.Entrada;
+import gestores.ConversorXML;
 import entidades.Cliente;
 import entidades.Evento;
 
@@ -24,6 +29,7 @@ public class Main {
 				"Festival del mal", "Muchos", "Lepe", 666, 0, "Sangre", 20,
 				"2016-6-6", "Sabado", "6:06");*/
 
+		/*
 		Evento guay = GestorEvento.obtenerEvento("MuerteMachin");
 		
 		System.out.println(guay.toStringEntrada(guay));
@@ -34,5 +40,21 @@ public class Main {
 		
 		GestorUsuario.altaUsuario(cliente);
 		//GestorUsuario.logIn("mmarin", "1234");
+		*/
+		
+		Entrada e = new Entrada(25,10,"20666665Y","Viñacipote","concerto","General", 1000.6f, "Miquel caracrater");
+
+		ConversorXML marshaller = new ConversorXML(e);
+
+		marshaller.crearDocumento();
+		marshaller.crearArbolDOM();
+
+		File file = new File("ticket2.xml");
+
+		try {
+			marshaller.escribirDocumentoAXml(file);
+		} catch (TransformerException ex) {
+
+		}
 	}
 }

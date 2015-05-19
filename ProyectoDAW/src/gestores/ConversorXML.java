@@ -1,7 +1,6 @@
 package gestores;
 
 import java.io.File;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -27,11 +26,10 @@ public class ConversorXML {
 	private Document dom = null;
 	// private ArrayList<Entrada> entrada = null;
 	private Entrada entrada = null;
-	private Usuario usuario = null;
-	
-	public ConversorXML(Entrada e, Usuario u) {
+
+	public ConversorXML(Entrada e) {
 		entrada = e;
-		usuario = u;
+
 	}
 
 	public void crearDocumento() {
@@ -52,52 +50,42 @@ public class ConversorXML {
 		Element docEle = dom.createElement("Entrada");
 		dom.appendChild(docEle);
 
-		Element entradaEle = setEntrada(entrada, usuario);
+		Element entradaEle = setEntrada(entrada);
 		docEle.appendChild(entradaEle);
 
 	}
 
-	private Element setEntrada(Entrada e, Usuario u) {
+	private Element setEntrada(Entrada e) {
 		// creamos el elemento entrada
 		Element entradaEle = dom.createElement("entrada");
 
 		// creamos el elemento nombre y el nodo de texto y lo añadimos al
 		// elemento raiz
-		/*Element nombreEle = dom.createElement("nombre");
-		Text nombreTexto = dom.createTextNode(e.getNombre());
+		Element nombreEle = dom.createElement("Nombre");
+		Text nombreTexto = dom.createTextNode(e.getNombreEvento());
 		nombreEle.appendChild(nombreTexto);
 		entradaEle.appendChild(nombreEle);
 
-		Element dniEle = dom.createElement("dni");
-		Text dniTexto = dom.createTextNode(Integer.toString(e.getDni()));
-		dniEle.appendChild(dniTexto);
-		entradaEle.appendChild(dniEle);
-
-		Element direccionEle = dom.createElement("direccion");
-		Text direccionTexto = dom.createTextNode(e.getDireccion());
-		direccionEle.appendChild(direccionTexto);
-		entradaEle.appendChild(direccionEle);
+		Element infoEle = dom.createElement("Informacion");
+		Text infoTexto = dom.createTextNode(e.getInformacion());
+		infoEle.appendChild(infoTexto);
+		entradaEle.appendChild(infoEle);
 
 		Element tipoEle = dom.createElement("tipo");
-		Text tipoTexto = dom.createTextNode(e.getTipo());
+		Text tipoTexto = dom.createTextNode(e.getTipoEntrada());
 		tipoEle.appendChild(tipoTexto);
 		entradaEle.appendChild(tipoEle);
 
-		Element eventoEle = dom.createElement("evento");
-		Text eventoTexto = dom.createTextNode(e.getEvento());
-		eventoEle.appendChild(eventoTexto);
-		entradaEle.appendChild(eventoEle);
-
-		Element fechaEle = dom.createElement("fecha");
-		Text fechaTexto = dom.createTextNode(e.getFecha());
-		fechaEle.appendChild(fechaTexto);
-		entradaEle.appendChild(fechaEle);
-
 		Element precioEle = dom.createElement("precio");
-		Text precioTexto = dom.createTextNode(Integer.toString(e.getPrecio()));
+		Text precioTexto = dom.createTextNode(Double.toString(e.getPrecio()));
 		precioEle.appendChild(precioTexto);
 		entradaEle.appendChild(precioEle);
-*/
+
+		Element datoEle = dom.createElement("datos");
+		Text datoTexto = dom.createTextNode(e.getDatosCliente());
+		datoEle.appendChild(datoTexto);
+		entradaEle.appendChild(datoEle);
+
 		return entradaEle;
 
 	}
