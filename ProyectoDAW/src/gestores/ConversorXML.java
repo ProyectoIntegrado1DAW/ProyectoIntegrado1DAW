@@ -63,7 +63,7 @@ public class ConversorXML {
 
 		// creamos el elemento nombre y el nodo de texto y lo añadimos al
 		// elemento raiz
-		Element nombreEle = dom.createElement("nombre");
+		/*Element nombreEle = dom.createElement("nombre");
 		Text nombreTexto = dom.createTextNode(e.getNombre());
 		nombreEle.appendChild(nombreTexto);
 		entradaEle.appendChild(nombreEle);
@@ -97,7 +97,7 @@ public class ConversorXML {
 		Text precioTexto = dom.createTextNode(Integer.toString(e.getPrecio()));
 		precioEle.appendChild(precioTexto);
 		entradaEle.appendChild(precioEle);
-
+*/
 		return entradaEle;
 
 	}
