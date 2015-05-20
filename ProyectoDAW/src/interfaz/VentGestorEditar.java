@@ -1,6 +1,6 @@
 package interfaz;
-import Evento;
-import GestorEvento;
+import entidades.Evento;
+import gestores.GestorEvento;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
