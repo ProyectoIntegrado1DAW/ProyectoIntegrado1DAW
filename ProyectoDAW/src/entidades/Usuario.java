@@ -7,6 +7,7 @@ public class Usuario {
 	private String direccion;
 	private String poblacion;
 	private String provincia;
+	private int edad;
 	private int CP;
 	private String pais;
 	private int telefono;
@@ -91,6 +92,7 @@ public class Usuario {
 	}
 
 	public int getCP() {
+		CP=0;
 		return CP;
 	}
 
@@ -145,6 +147,16 @@ public class Usuario {
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+
+
+	public int getEdad() {
+		return edad;
+	}
+
+
+	public void setEdad(int edad) {
+		this.edad = edad;
 	}
 
 }

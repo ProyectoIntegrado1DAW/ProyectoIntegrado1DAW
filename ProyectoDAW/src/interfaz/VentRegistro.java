@@ -1,16 +1,29 @@
 package interfaz;
 
+import entidades.Cliente;
+import gestores.ConexionDB;
+import gestores.GestorUsuario;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+
 import java.awt.Color;
+
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 public class VentRegistro {
 
@@ -159,13 +172,6 @@ public class VentRegistro {
 		textUsuario.setBounds(163, 360, 200, 28);
 		frame.getContentPane().add(textUsuario);
 
-		JButton button = new JButton("CREAR CUENTA");
-		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
-		button.setBackground(Color.BLACK);
-		button.setBounds(209, 463, 282, 52);
-		frame.getContentPane().add(button);
-
 		textContrasenya = new JPasswordField();
 		textContrasenya.setForeground(Color.WHITE);
 		textContrasenya.setBackground(Color.DARK_GRAY);
@@ -256,6 +262,65 @@ public class VentRegistro {
 		lblPas.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		lblPas.setBounds(337, 206, 127, 38);
 		frame.getContentPane().add(lblPas);
+
+		JButton button = new JButton("CREAR CUENTA");
+		button.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent arg0) {
+
+				String nombre;
+				String apellidos;
+				String correo;
+				String telefono;
+				String edad;
+				String usuario;
+				String contrasenya;
+				String dni;
+				String direccion;
+				String pais;
+				String poblacion;
+				String provincia;
+				String cp;
+
+				nombre = textNombre.getText();
+				apellidos = textApellido.getText();
+				correo = textCorreo.getText();
+				telefono = textTlf.getText();
+				edad = textEdad.getText();
+				usuario = textUsuario.getText();
+				contrasenya = textContrasenya.getText();
+				dni = textDNI.getText();
+				direccion = textDireccion.getText();
+				pais = textPais.getText();
+				poblacion = textPoblacion.getText();
+				provincia = textProvincia.getText();
+				cp = textCP.getText();
+
+				int cpInt = Integer.parseInt(cp);
+				int tlfnInt = Integer.parseInt(telefono);
+
+				Cliente.setInstanceOff();
+				Cliente c = Cliente.getInstance(dni, usuario, contrasenya,
+						nombre, apellidos, direccion, poblacion, provincia,
+						cpInt, pais, tlfnInt, correo);
+				Cliente.setInstanceOff();
+
+				try {
+
+					GestorUsuario.altaUsuario(c);
+				} catch (Exception e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "La cuenta ya existe",
+							"ERROR", JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});
+		button.setForeground(Color.WHITE);
+		button.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
+		button.setBackground(Color.BLACK);
+		button.setBounds(209, 463, 282, 52);
+		frame.getContentPane().add(button);
+
 	}
 
 	public JFrame getFrame() {
