@@ -45,7 +45,7 @@ CREATE TABLE eventos (
 	Fecha date NOT NULL,
 	DiaSemana varchar(15) NOT NULL,
 	Hora varchar(20) NOT NULL,
-	PRIMARY KEY (IDEvento),
+	PRIMARY KEY (IDEvento)
 );
 
 CREATE TABLE entrada (

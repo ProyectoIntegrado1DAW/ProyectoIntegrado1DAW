@@ -16,11 +16,11 @@ public class GestorEntrada {
 
 	// public static void compraEntrReg(Evento evento) {}
 
-	public static void compraEntr(Evento evento, Cliente cliente, int numEnt) throws SQLException {
-
+	public static void compraEntr(String nomEvento, Cliente cliente, int numEnt) throws SQLException {
+		Evento evento = GestorEvento.obtenerEvento(nomEvento);
 		// llamara a existePlazasDisponibles
 		if (existePlazasDisponibles(evento, numEnt)) {
-
+			
 			// si quedan entradas, hara la compra y actualizara la base de
 			// datos.
 			actualEntradas(evento, numEnt);
@@ -72,12 +72,11 @@ public class GestorEntrada {
 
 	}
 
-	private static boolean existePlazasDisponibles(Evento evento, int numEnt)
+	private static boolean existePlazasDisponibles(Evento ev, int numEnt)
 			throws SQLException {
 		// conectar base de datos para ver si existen plazas
 		boolean existen = false;
 
-		Evento ev = GestorEvento.obtenerEvento(evento.getNombre());
 		if ((ev.getNumEntradas() - ev.getEntrReservadas()) > numEnt) {
 			existen = true;
 		}

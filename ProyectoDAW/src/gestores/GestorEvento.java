@@ -142,6 +142,8 @@ public class GestorEvento {
 		return eventos;
 	}
 	
+	
+	
 	public static void bajaEvento(Evento evento) {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
