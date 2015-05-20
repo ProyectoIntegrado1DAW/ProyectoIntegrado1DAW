@@ -41,8 +41,8 @@ public class Main {
 		GestorUsuario.altaUsuario(cliente);
 		//GestorUsuario.logIn("mmarin", "1234");
 		*/
-		
-		Entrada e = new Entrada(25,10,"20666665Y","Viñacipote","concerto","General", 1000.6f, "Miquel caracrater");
+		/*
+		Entrada e = new Entrada(25,"20666665Y","Viñacipote","concerto","General", 1000.6f, "Miquel caracrater");
 
 		ConversorXML marshaller = new ConversorXML(e);
 
@@ -56,5 +56,7 @@ public class Main {
 		} catch (TransformerException ex) {
 
 		}
+		*/
+		
 	}
 }

@@ -16,52 +16,63 @@ public class GestorEntrada {
 
 	// public static void compraEntrReg(Evento evento) {}
 
-	public static void compraEntr(Evento evento, Entrada entrada, int numEnt) {
+	public static void compraEntr(Evento evento, Cliente cliente, int numEnt) throws SQLException {
 
 		// llamara a existePlazasDisponibles
+		if (existePlazasDisponibles(evento, numEnt)) {
 
-		// si quedan entradas, hara la compra y actualizara la base de datos.
-		// Restando las entradas compradas a las dispobnibles
+			// si quedan entradas, hara la compra y actualizara la base de
+			// datos.
+			actualEntradas(evento, numEnt);
 
-		// finalmente imprimira la entrada
+			// finalmente imprimira la entrada
+			generarEntrada(evento, cliente, numEnt);
 
-	}
-	
-	public static void generarEntrada(Evento evento, Cliente cliente, int numEnt) {
-		
-		Evento ev = GestorEvento.obtenerEvento(evento.getNombre());
-		int ultimoID = ev.getEntrReservadas();
-		
-		for (int i = 0; i < numEnt; i++) {
-			// id buscar el num max reservada i a partir de ahi buscar
-			
-			Entrada e = new Entrada(IDentrada,IDevento,DNI,
-					nombreEvento, informacion,tipoEntrada,
-					Precio, datosCliente);
-			imprimirEntrada(e);
 		}
-		
-		
+
 	}
 
-	public static void imprimirEntrada(Entrada entrada) {
-		
+	public static void generarEntrada(Evento evento, Cliente cliente, int numEnt)
+			throws SQLException {
+
+		evento = GestorEvento.obtenerEvento(evento.getNombre());
+		int ultimoID = evento.getEntrReservadas();
+		int numEntrImpr = ultimoID - numEnt;
+
+		for (int i = numEntrImpr; i <= ultimoID; i++) {
+			// id buscar el num max reservada e imprimir el num de entradas con
+			// el nuevo id
+
+			Entrada e = new Entrada(numEntrImpr, cliente.getDNI(),
+					evento.getNombre(), evento.toStringEntrada(evento),
+					evento.getTipoEvento(), evento.getPrecio(),
+					cliente.toStringEntrada(cliente));
+			imprimirEntrada(e, cliente, evento);
+		}
+
+	}
+
+	private static void imprimirEntrada(Entrada entrada, Cliente cliente, Evento evento) {
+
 		ConversorXML marshaller = new ConversorXML(entrada);
 
 		marshaller.crearDocumento();
 		marshaller.crearArbolDOM();
+		
+		String nomCliente = cliente.getNombre();
+		String nomEvento = evento.getNombre();
 
-		File file = new File("ticket2.xml");
+		File file = new File(nomEvento+" - "+nomCliente+".xml");
 
 		try {
 			marshaller.escribirDocumentoAXml(file);
 		} catch (TransformerException ex) {
 
 		}
-		
+
 	}
 
-	public static boolean existePlazasDisponibles(Evento evento, int numEnt)
+	private static boolean existePlazasDisponibles(Evento evento, int numEnt)
 			throws SQLException {
 		// conectar base de datos para ver si existen plazas
 		boolean existen = false;
@@ -74,14 +85,15 @@ public class GestorEntrada {
 		return existen;
 	}
 
-	public static void actualEntradas(Evento evento, int numEnt) throws SQLException {
+	private static void actualEntradas(Evento evento, int numEnt)
+			throws SQLException {
 
 		Evento ev = GestorEvento.obtenerEvento(evento.getNombre());
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		int i = ev.getEntrReservadas() + numEnt;
 
-		conexion.setQuery("UPDATE clickntick.eventos SET EntradasReservadas = " + i
-				+ " WHERE NombreEvento = '" + ev.getNombre() + "';");
+		conexion.setQuery("UPDATE clickntick.eventos SET EntradasReservadas = "
+				+ i + " WHERE NombreEvento = '" + ev.getNombre() + "';");
 
 	}
 
