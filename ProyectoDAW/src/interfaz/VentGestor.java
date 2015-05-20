@@ -29,6 +29,9 @@ public class VentGestor implements TreeSelectionListener{
 	private JFrame frame;
 	private String seleccionado;
 	private JTree tree;
+	private Evento evSeleccionado = null;
+	private GestorEvento g1 = new GestorEvento();
+	private ArrayList<Evento> eventos = null;
 	/**
 	 * Launch the application.
 	 */
@@ -75,8 +78,7 @@ public class VentGestor implements TreeSelectionListener{
 		//JTREE
 		
 		//Nodos
-		GestorEvento g1 = new GestorEvento();
-		ArrayList<Evento> eventos = g1.getArrayEvento();
+		eventos = g1.getArrayEvento();
 		ArrayList<String> tipos = g1.getArrayTipo();
 		
 		DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Eventos");
@@ -93,7 +95,11 @@ public class VentGestor implements TreeSelectionListener{
 				}
 			}
 		}
-		
+		for(Evento ev : eventos){
+			if(ev!=null && seleccionado.equals(ev.getNombre())){
+				evSeleccionado = ev;
+			}
+		}
 		
 		//Modelo
 		
@@ -108,6 +114,16 @@ public class VentGestor implements TreeSelectionListener{
 		
 		JButton quitar = new JButton("Quitar");
 		quitar.setBounds(248, 177, 156, 50);
+		quitar.addActionListener (new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				
+				for(Evento ev : eventos){
+					g1.bajaEvento(evSeleccionado);
+				}
+				
+			} }
+				);
+			
 		frame.getContentPane().add(quitar);
 		
 		JButton anyadir = new JButton("Añadir");
@@ -127,18 +143,12 @@ public class VentGestor implements TreeSelectionListener{
 		editar.addActionListener (new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				
-				Evento evSeleccionado = null;
 				
-				GestorEvento g1 = new GestorEvento();
-				ArrayList<Evento> eventos = null;
+				eventos = null;
 				try {eventos = g1.getArrayEvento();} 
 				catch (SQLException e1) {e1.printStackTrace();}
 				ArrayList<String> tipos = g1.getArrayTipo();
-				for(Evento ev : eventos){
-					if(ev!=null && seleccionado.equals(ev.getNombre())){
-						evSeleccionado = ev;
-					}
-				}
+				
 				VentGestorEditar ventanaGestor = new VentGestorEditar(evSeleccionado);
 				ventanaGestor.getFrame().setVisible(true);
 				frame.setVisible(false);
