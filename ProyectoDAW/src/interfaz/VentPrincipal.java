@@ -56,6 +56,11 @@ public class VentPrincipal {
 		button_entrar.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
 		button_entrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				VentEvent User = new VentEvent();
+				User.getFrame().setVisible(true);
+				frame.dispose();
+				
 			}
 		});
 		button_entrar.setForeground(Color.WHITE);
@@ -66,6 +71,11 @@ public class VentPrincipal {
 		JButton button_login = new JButton("LOGIN");
 		button_login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				VentLogin User = new VentLogin();
+				User.getFrame().setVisible(true);
+				frame.dispose();
+				
 			}
 		});
 		button_login.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
