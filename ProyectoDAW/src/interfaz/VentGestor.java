@@ -7,6 +7,7 @@ import entidades.Evento;
 import gestores.GestorEvento;
 
 import java.awt.EventQueue;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -47,20 +48,22 @@ public class VentGestor implements TreeSelectionListener{
 
 	/**
 	 * Create the application.
+	 * @throws SQLException 
 	 */
 	
 	
 	
 	
 	
-	public VentGestor() {
+	public VentGestor() throws SQLException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws SQLException 
 	 */
-	private void initialize() {
+	private void initialize() throws SQLException {
 		
 		//PRUEBA
 		
@@ -73,8 +76,8 @@ public class VentGestor implements TreeSelectionListener{
 		
 		//Nodos
 		GestorEvento g1 = new GestorEvento();
-		ArrayList<Evento> eventos = g1.getArrayEventos();
-		ArrayList<String> tipos = g1.getArrayTipos();
+		ArrayList<Evento> eventos = g1.getArrayEvento();
+		ArrayList<String> tipos = g1.getArrayTipo();
 		
 		DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Eventos");
 		DefaultMutableTreeNode evento = null;
@@ -127,8 +130,12 @@ public class VentGestor implements TreeSelectionListener{
 				Evento evSeleccionado = null;
 				
 				GestorEvento g1 = new GestorEvento();
-				for(Evento ev : g1.getArrayEventos()){
-					if(seleccionado.equals(ev.getNombre())){
+				ArrayList<Evento> eventos = null;
+				try {eventos = g1.getArrayEvento();} 
+				catch (SQLException e1) {e1.printStackTrace();}
+				ArrayList<String> tipos = g1.getArrayTipo();
+				for(Evento ev : eventos){
+					if(ev!=null && seleccionado.equals(ev.getNombre())){
 						evSeleccionado = ev;
 					}
 				}

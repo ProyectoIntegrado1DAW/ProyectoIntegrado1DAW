@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -80,7 +81,7 @@ public class VentGestorEditar extends JFrame {
 				cmbTipo = new JComboBox();
 				cmbTipo.setBounds(87, 71, 113, 20);
 				GestorEvento g1 = new GestorEvento();
-				ArrayList<String> tipos = g1.getArrayTipos();
+				ArrayList<String> tipos = g1.getArrayTipo();
 				
 				for(String tipo : tipos){
 					cmbTipo.addItem(tipo);
@@ -190,9 +191,14 @@ public class VentGestorEditar extends JFrame {
 				btnCancelar.setBounds(331, 390, 75, 23);
 				btnCancelar.addActionListener (new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						closeFrame(e);
+						try {
+							closeFrame(e);
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
-				private void closeFrame(ActionEvent e){
+				private void closeFrame(ActionEvent e) throws SQLException{
 					setVisible(false);
 					VentGestor v1 = new VentGestor();
 					v1.getFrame().setVisible(true);
@@ -205,14 +211,20 @@ public class VentGestorEditar extends JFrame {
 				btnGuardar.addActionListener (new ActionListener(){
 					public void actionPerformed(ActionEvent e){
 						
-						closeFrame(e);
+						try {
+							closeFrame(e);
+						} catch (SQLException e1) {
+							
+							e1.printStackTrace();
+						}
 						
 					}
-					private void saveBtn(ActionEvent e){
+					private void saveBtn(ActionEvent e) throws SQLException{
 						GestorEvento g2 = new GestorEvento();
 						//Eliminar evento
-						for(Evento ev2 : g2.getArrayEventos()){
-							if(ev2 == eventoEditar){ g2.getArrayEventos().remove(ev2);}
+						ArrayList<Evento> eventos = g2.getArrayEvento();
+						for(Evento ev2 : eventos){
+							if(ev2 == eventoEditar){ eventos.remove(ev2);}
 						}
 						
 						//g2.bajaEvento();
@@ -223,7 +235,7 @@ public class VentGestorEditar extends JFrame {
 						
 						//g2.addEvent(evento);
 					}
-					private void closeFrame(ActionEvent e){
+					private void closeFrame(ActionEvent e) throws SQLException{
 						setVisible(false);
 						VentGestor v1 = new VentGestor();
 						v1.getFrame().setVisible(true);

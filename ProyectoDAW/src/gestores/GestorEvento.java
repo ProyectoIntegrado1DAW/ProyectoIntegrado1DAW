@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import entidades.Evento;
 
 public class GestorEvento {
-
+	
+	private static ArrayList<Evento> eventos  = new ArrayList<Evento>();
+	private static ArrayList<String> tipos = new ArrayList<String>();
+	
 	public static void altaEvento(Evento evento) {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
@@ -91,9 +94,21 @@ public class GestorEvento {
 		return eventos;
 
 	}
-
+	
+	public static ArrayList getArrayTipo(){
+		
+		for(Evento ev : eventos){
+			if(tipos.contains(ev.getTipoEvento())!=true){
+				
+				tipos.add(ev.getTipoEvento());
+				
+			}
+		}
+		return tipos;
+	}
+	
 	public static ArrayList getArrayEvento() throws SQLException{
-		ArrayList<Evento> eventos  = new ArrayList<Evento>();
+		
 		
 		Evento e = null;
 		ConexionDB conexion = ConexionDB.getConexionDB();
