@@ -16,11 +16,12 @@ public class GestorEntrada {
 
 	// public static void compraEntrReg(Evento evento) {}
 
-	public static void compraEntr(String nomEvento, Cliente cliente, int numEnt) throws SQLException {
+	public static void compraEntr(String nomEvento, Cliente cliente, int numEnt)
+			throws SQLException {
 		Evento evento = GestorEvento.obtenerEvento(nomEvento);
 		// llamara a existePlazasDisponibles
 		if (existePlazasDisponibles(evento, numEnt)) {
-			
+
 			// si quedan entradas, hara la compra y actualizara la base de
 			// datos.
 			actualEntradas(evento, numEnt);
@@ -36,33 +37,34 @@ public class GestorEntrada {
 			throws SQLException {
 
 		evento = GestorEvento.obtenerEvento(evento.getNombre());
-		int ultimoID = evento.getEntrReservadas();
-		int numEntrImpr = ultimoID - numEnt;
+		int ultimoID = evento.getEntrReservadas() - numEnt;
 
-		for (int i = numEntrImpr; i <= ultimoID; i++) {
+		for (int i = 1; i <= numEnt; i++) {
 			// id buscar el num max reservada e imprimir el num de entradas con
 			// el nuevo id
 
-			Entrada e = new Entrada(numEntrImpr, cliente.getDNI(),
+			Entrada e = new Entrada(ultimoID++, cliente.getDNI(),
 					evento.getNombre(), evento.toStringEntrada(evento),
 					evento.getTipoEvento(), evento.getPrecio(),
 					cliente.toStringEntrada(cliente));
-			imprimirEntrada(e, cliente, evento);
+			imprimirEntrada(e, cliente, evento, i);
 		}
 
 	}
 
-	private static void imprimirEntrada(Entrada entrada, Cliente cliente, Evento evento) {
+	private static void imprimirEntrada(Entrada entrada, Cliente cliente,
+			Evento evento, int num) {
 
 		ConversorXML marshaller = new ConversorXML(entrada);
 
 		marshaller.crearDocumento();
 		marshaller.crearArbolDOM();
-		
+
 		String nomCliente = cliente.getNombre();
 		String nomEvento = evento.getNombre();
 
-		File file = new File(nomEvento+" - "+nomCliente+".xml");
+		File file = new File(nomEvento + " - " + nomCliente + " - " + num
+				+ ".xml");
 
 		try {
 			marshaller.escribirDocumentoAXml(file);

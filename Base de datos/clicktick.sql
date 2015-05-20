@@ -20,7 +20,7 @@ CREATE TABLE clientes (
 	Provincia varchar(50) NOT NULL,
 	CodPostal varchar(50) NOT NULL,
 	Pais varchar(20) NOT NULL,
-	Telefono varchar(20) NOT NULL,
+	Telefono integer NOT NULL,
 	Email varchar(30) NOT NULL,
 	PRIMARY KEY (DNI)
 );

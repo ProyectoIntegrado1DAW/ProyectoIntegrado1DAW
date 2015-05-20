@@ -11,6 +11,7 @@ import gestores.ConversorXML;
 import entidades.Cliente;
 import entidades.Evento;
 
+
 public class Main {
 
 	public static void main(String[] args) throws SQLException {
@@ -59,23 +60,22 @@ public class Main {
 		}
 		*/
 		
-		/*
+	
 		cliente = Cliente.getInstance("11d", "mmarin", "1234", "Miquel",
 				"Marin", "c/ valencia", "Suma", "Valencia", 23445, "Aspaña",
 				8457463, "Shurprim@gmail.com");
-		GestorUsuario.altaUsuario(cliente);
-		*/
+		//GestorUsuario.altaUsuario(cliente);
 		
-		cliente2 = Cliente.getInstance("12222d", "hejuso", "1234", "hector",
-				"Juan", "c/ alzira", "Alzira", "Valencia", 33445, "Aspaña",
-				8463, "prim@gmail.com");
-		GestorUsuario.altaUsuario(cliente2);
 		
-		Evento evento = new Evento("MuerteMachin",
+		//cliente2 = Cliente.getInstance("122d", "hejuso", "1234", "hector", "Juan", "c/ alzira", "Alzira", "Valencia", 33445, "Aspaña", 8463, "prim@gmail.com");
+		
+		//GestorUsuario.altaUsuario(cliente2);
+		
+		Evento evento2 = new Evento("Unodostres",
 				"Festival del mal", "Muchos", "Lepe", 666, 0, "Sangre", 20,
 				"2016-6-6", "Sabado", "6:06");
-		GestorEvento.altaEvento(evento);
+		GestorEvento.altaEvento(evento2);
 		
-		GestorEntrada.compraEntr("MuerteMachin", cliente2, 2);
+		GestorEntrada.compraEntr("Unodostres", cliente, 3);
 	}
 }
