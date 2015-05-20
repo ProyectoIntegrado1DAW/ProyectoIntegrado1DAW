@@ -33,6 +33,7 @@ import java.awt.Insets;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JSpinner;
@@ -101,7 +102,7 @@ public class VentGestorAnyadir extends JFrame {
 		cmbTipo = new JComboBox();
 		cmbTipo.setBounds(87, 71, 113, 20);
 		GestorEvento g1 = new GestorEvento();
-		ArrayList<String> tipos = g1.getArrayTipos();
+		ArrayList<String> tipos = g1.getArrayTipo();
 		
 		for(String tipo : tipos){
 			cmbTipo.addItem(tipo);
@@ -207,9 +208,14 @@ public class VentGestorAnyadir extends JFrame {
 		btnCancelar.setBounds(331, 390, 75, 23);
 		btnCancelar.addActionListener (new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				closeFrame(e);
+				try {
+					closeFrame(e);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
-		private void closeFrame(ActionEvent e){
+		private void closeFrame(ActionEvent e) throws SQLException{
 			setVisible(false);
 			VentGestor v1 = new VentGestor();
 			v1.getFrame().setVisible(true);
@@ -228,9 +234,14 @@ public class VentGestorAnyadir extends JFrame {
 						dia.getText()+"/" + (String) mes.getSelectedItem()+"/" + anyo.getText(), "Lunes", "12:00");
 				//GestorEvento g2 = new GestorEvento();
 				//g2.addEvent(evento);
-				closeFrame(e);
+				try {
+					closeFrame(e);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
-			}private void closeFrame(ActionEvent e){
+			}private void closeFrame(ActionEvent e) throws SQLException{
 				setVisible(false);
 				VentGestor v1 = new VentGestor();
 				v1.getFrame().setVisible(true);

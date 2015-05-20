@@ -14,6 +14,7 @@ CREATE TABLE clientes (
 	Puntos integer NOT NULL,
 	Nombre varchar(30) NOT NULL,
 	Apellido varchar(30) NOT NULL,
+	Edad integer NOT NULL,
 	Direccion varchar(50) NOT NULL,
 	Poblacion varchar(50) NOT NULL,
 	Provincia varchar(50) NOT NULL,

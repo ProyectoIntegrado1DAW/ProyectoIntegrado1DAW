@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import entidades.Cliente;
 import entidades.Gestor;
 
@@ -81,27 +83,37 @@ public class GestorUsuario {
 
 	}
 
-	public static void altaUsuario(Cliente cliente) throws SQLException {
+	public static void altaUsuario(Cliente cliente){
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 
-		boolean existe = comprobarExisteUsuario(cliente);
-		if (existe = false) {
+		boolean existe;
+		try {
+			existe = comprobarExisteUsuario(cliente);
+			//System.out.println(existe);
+		//	if (existe = false) {
 
-			conexion.setQuery("INSERT INTO clickntick.clientes VALUES ('"
-					+ cliente.getDNI() + "', '" + cliente.getUsuario() + "', '"
-					+ cliente.getPassword() + "', " + cliente.getPuntos()
-					+ ", '" + cliente.getNombre() + "', '"
-					+ cliente.getApellido() + "', '" + cliente.getDireccion()
-					+ "', '" + cliente.getPoblacion() + "', '"
-					+ cliente.getProvincia() + "', '" + cliente.getCP()
-					+ "', '" + cliente.getPais() + "', '"
-					+ cliente.getTelefono() + "', '" + cliente.getEmail()
-					+ "');");
+				conexion.setQuery("INSERT INTO clickntick.clientes VALUES ('"
+						+ cliente.getDNI() + "', '" + cliente.getUsuario() + "', '"
+						+ cliente.getPassword() + "', " + cliente.getPuntos()
+						+ ", '" + cliente.getNombre() + "', '"
+						+ cliente.getApellido() + "', "+cliente.getEdad()+" , '" + cliente.getDireccion()
+						+ "', '" + cliente.getPoblacion() + "', '"
+						+ cliente.getProvincia() + "', '" + cliente.getCP()
+						+ "', '" + cliente.getPais() + "', '"
+						+ cliente.getTelefono() + "', '" + cliente.getEmail()
+						+ "');");
 
-		} else {
-			System.out.println("YA EXISTE ");
+			//} else {
+				//System.out.println("YA EXISTE ");
+			//}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "La cuenta ya existe",
+					"ERROR", JOptionPane.WARNING_MESSAGE);
 		}
+		
+		
 
 	}
 

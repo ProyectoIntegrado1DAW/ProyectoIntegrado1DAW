@@ -4,10 +4,13 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.sql.SQLException;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
@@ -84,6 +87,19 @@ public class VentPrincipal {
 		JButton btnGestor = new JButton("Gestor");
 		btnGestor.setBackground(new Color(240, 248, 255));
 		btnGestor.setBounds(325, 0, 89, 23);
+		btnGestor.addActionListener (new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				frame.setVisible(false);
+				try {
+					VentGestor gestor = new VentGestor();
+					gestor.getFrame().setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			} }
+				);
 		frame.getContentPane().add(btnGestor);
 	}
 }
