@@ -1,5 +1,7 @@
 package interfaz;
 
+import gestores.ConexionDB;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -87,12 +89,10 @@ public class VentBuscarPrueba {
 			public void actionPerformed(ActionEvent e){
 				Connection con = null;
 				try{
-					Class.forName("org.postgresql.Driver").newInstance();
-					con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Jardin","postgres","0");
-					Statement stmt = con.createStatement();/**linea modificada*/	
-					System.out.println("Created DB Conection....");
 					
-					ResultSet rs = stmt.executeQuery("select * from jardineria.clientes");
+					ConexionDB conexion = ConexionDB.getConexionDB();
+					
+					ResultSet rs = conexion.getQuery("select * from clickntick.eventos;");
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 				
 				}catch (Exception e1){
@@ -105,9 +105,9 @@ public class VentBuscarPrueba {
 				}
 			}
 		});
-		//asta aqui
+		//Hasta aqui
 		buttonBuscar.setBackground(Color.YELLOW);
-		buttonBuscar.setIcon(new ImageIcon("C:\\Users\\Asus\\Desktop\\fotos proyecto\\Black_Search.png"));
+		buttonBuscar.setIcon(new ImageIcon("C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\lupa2.png"));
 		buttonBuscar.setBounds(38, 11, 46, 46);
 		frame.getContentPane().add(buttonBuscar);
 		
