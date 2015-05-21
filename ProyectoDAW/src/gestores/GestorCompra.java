@@ -2,6 +2,7 @@ package gestores;
 
 import java.sql.ResultSet;
 
+import net.proteanit.sql.DbUtils;
 import entidades.Cliente;
 import entidades.Evento;
 
@@ -22,11 +23,14 @@ public class GestorCompra {
 
 	}
 
-	public static void getCompras() {
+	public static ResultSet getResultSetComprasClientes(String DNI) {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
-		ResultSet resultado;
+		ResultSet rs = conexion
+				.getQuery("SELECT * FROM clickntick.compras WHERE dni = '"+DNI+"'");
 
+		
+		return rs;
 	}
 
 }
