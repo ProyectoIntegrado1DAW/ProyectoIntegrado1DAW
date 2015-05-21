@@ -23,10 +23,14 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
+import javax.swing.JScrollPane;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
 
 public class VentUsuario {
 
 	JFrame frame;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -88,11 +92,6 @@ public class VentUsuario {
 		textAreaPuntos.setBounds(0, 239, 434, 62);
 		frame.getContentPane().add(textAreaPuntos);
 		
-		JTextArea textAreaTicket = new JTextArea();
-		textAreaTicket.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-		textAreaTicket.setBounds(1, 310, 434, 97);
-		frame.getContentPane().add(textAreaTicket);
-		
 		JLabel lblNewLabel_2 = new JLabel("Configuracion");
 		lblNewLabel_2.setBounds(88, 430, 117, 21);
 		frame.getContentPane().add(lblNewLabel_2);
@@ -119,10 +118,6 @@ public class VentUsuario {
 		buttonBorrarCuenta.setBounds(88, 530, 117, 23);
 		frame.getContentPane().add(buttonBorrarCuenta);
 		
-		JEditorPane panelConfiguracion = new JEditorPane();
-		panelConfiguracion.setBounds(0, 413, 434, 163);
-		frame.getContentPane().add(panelConfiguracion);
-		
 		JButton buttonHome = new JButton("");
 		buttonHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -138,13 +133,27 @@ public class VentUsuario {
 		
 	
 		
-		buttonHome.setIcon(new ImageIcon("C:\\Users\\Asus\\Desktop\\fotos proyecto\\nuevas fotos\\nueva home.png"));
+		buttonHome.setIcon(new ImageIcon("C:\\Users\\Asus\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\nueva home.png"));
 		buttonHome.setBounds(369, 53, 55, 43);
 		buttonHome.setBorder(null);
 		buttonHome.setOpaque(false);
 		buttonHome.setContentAreaFilled(false);
 		buttonHome.setBorderPainted(false);
 		frame.getContentPane().add(buttonHome);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 414, 434, 162);
+		frame.getContentPane().add(panel_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 307, 434, 103);
+		frame.getContentPane().add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+	
+		
+		
 	}
 	
 
