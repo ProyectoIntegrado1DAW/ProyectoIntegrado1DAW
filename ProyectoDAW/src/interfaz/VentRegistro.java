@@ -1,9 +1,5 @@
 package interfaz;
 
-import entidades.Cliente;
-import gestores.ConexionDB;
-import gestores.GestorUsuario;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -21,9 +17,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 
+import entidades.Cliente;
+import gestores.GestorUsuario;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.sql.SQLException;
 
 public class VentRegistro {
 
@@ -77,9 +75,8 @@ public class VentRegistro {
 
 		JLabel lblLogoHere = new JLabel("");
 		lblLogoHere
-				.setIcon(new ImageIcon(
-						"C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoBig.png"));
-		lblLogoHere.setBounds(252, 11, 201, 76);
+				.setIcon(new ImageIcon("C:\\Users\\hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
+		lblLogoHere.setBounds(292, 38, 111, 38);
 		frame.getContentPane().add(lblLogoHere);
 
 		JLabel label = new JLabel("Nombre");
@@ -172,6 +169,96 @@ public class VentRegistro {
 		textUsuario.setBounds(163, 360, 200, 28);
 		frame.getContentPane().add(textUsuario);
 
+		JButton button = new JButton("CREAR CUENTA");
+		button.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent arg0) {
+
+				String nombre;
+				String apellidos;
+				String correo;
+				String telefono;
+				String edad;
+				String usuario;
+				String contrasenya;
+				String dni;
+				String direccion;
+				String pais;
+				String poblacion;
+				String provincia;
+				String cp;
+
+				nombre = textNombre.getText();
+				apellidos = textApellido.getText();
+				correo = textCorreo.getText();
+				telefono = textTlf.getText();
+				edad = textEdad.getText();
+				usuario = textUsuario.getText();
+				contrasenya = textContrasenya.getText();
+				dni = textDNI.getText();
+				direccion = textDireccion.getText();
+				pais = textPais.getText();
+				poblacion = textPoblacion.getText();
+				provincia = textProvincia.getText();
+				cp = textCP.getText();
+				int cpInt = 0;
+				int tlfnInt = 0;
+
+				if (!cp.equals("")) {
+
+					cpInt = Integer.parseInt(cp);
+
+					if (!telefono.equals("")) {
+
+						tlfnInt = Integer.parseInt(telefono);
+
+					}
+
+				}
+
+				Cliente.setInstanceOff();
+				Cliente c = Cliente.getInstance(dni, usuario, contrasenya,
+						nombre, apellidos, direccion, poblacion, provincia,
+						cpInt, pais, tlfnInt, correo);
+				Cliente.setInstanceOff();
+
+				try {
+
+					if (usuario.equals("") || contrasenya.equals("")
+							|| nombre.equals("") || apellidos.equals("")
+							|| correo.equals("") || tlfnInt == 0
+							|| edad.equals("") || dni.equals("")
+							|| direccion.equals("") || pais.equals("")
+							|| poblacion.equals("") || provincia.equals("")
+							|| cpInt == 0) {
+						JOptionPane.showMessageDialog(null,
+								"Se ha dejado algun campo sin rellenar",
+								"ERROR", JOptionPane.WARNING_MESSAGE);
+					} else {
+
+						GestorUsuario.altaUsuario(c);
+						JOptionPane.showMessageDialog(null,
+								"Ha sido registrado con éxito.", "Enhorabuena",
+								JOptionPane.INFORMATION_MESSAGE);
+						VentUsuario User = new VentUsuario();
+						User.getFrame().setVisible(true);
+						frame.dispose();
+
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "La cuenta ya existe",
+							"ERROR", JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});
+		button.setForeground(Color.WHITE);
+		button.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
+		button.setBackground(Color.BLACK);
+		button.setBounds(209, 463, 282, 52);
+		frame.getContentPane().add(button);
+
 		textContrasenya = new JPasswordField();
 		textContrasenya.setForeground(Color.WHITE);
 		textContrasenya.setBackground(Color.DARK_GRAY);
@@ -262,102 +349,8 @@ public class VentRegistro {
 		lblPas.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		lblPas.setBounds(337, 206, 127, 38);
 		frame.getContentPane().add(lblPas);
-
-		JButton button = new JButton("CREAR CUENTA");
-		button.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
-			public void actionPerformed(ActionEvent arg0) {
-
-				String nombre;
-				String apellidos;
-				String correo;
-				String telefono;
-				String edad;
-				String usuario;
-				String contrasenya;
-				String dni;
-				String direccion;
-				String pais;
-				String poblacion;
-				String provincia;
-				String cp;
-
-				nombre = textNombre.getText();
-				apellidos = textApellido.getText();
-				correo = textCorreo.getText();
-				telefono = textTlf.getText();
-				edad = textEdad.getText();
-				usuario = textUsuario.getText();
-				contrasenya = textContrasenya.getText();
-				dni = textDNI.getText();
-				direccion = textDireccion.getText();
-				pais = textPais.getText();
-				poblacion = textPoblacion.getText();
-				provincia = textProvincia.getText();
-				cp = textCP.getText();
-				int cpInt = 0;
-				int tlfnInt = 0;
-
-				if (!cp.equals("")) {
-
-					cpInt = Integer.parseInt(cp);
-
-					if (!telefono.equals("")) {
-
-						tlfnInt = Integer.parseInt(telefono);
-
-					}
-
-				}
-
-				Cliente.setInstanceOff();
-				Cliente c = Cliente.getInstance(dni, usuario, contrasenya,
-						nombre, apellidos, direccion, poblacion, provincia,
-						cpInt, pais, tlfnInt, correo);
-				Cliente.setInstanceOff();
-
-				try {
-
-					if (usuario.equals("") || contrasenya.equals("")
-							|| nombre.equals("") || apellidos.equals("")
-							|| correo.equals("") || tlfnInt == 0
-							|| edad.equals("") || dni.equals("")
-							|| direccion.equals("") || pais.equals("")
-							|| poblacion.equals("") || provincia.equals("")
-							|| cpInt == 0) {
-						JOptionPane.showMessageDialog(null,
-								"Se ha dejado algun campo sin rellenar",
-								"ERROR", JOptionPane.WARNING_MESSAGE);
-					} else {
-
-						GestorUsuario.altaUsuario(c);
-						JOptionPane.showMessageDialog(null,
-								"Ha sido registrado con éxito.", "Enhorabuena",
-								JOptionPane.INFORMATION_MESSAGE);
-						VentEvent User = new VentEvent();
-						User.getFrame().setVisible(true);
-						frame.dispose();
-
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-					JOptionPane.showMessageDialog(null, "La cuenta ya existe",
-							"ERROR", JOptionPane.WARNING_MESSAGE);
-				}
-			}
-		});
-		button.setForeground(Color.WHITE);
-		button.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
-		button.setBackground(Color.BLACK);
-		button.setBounds(209, 463, 282, 52);
-		frame.getContentPane().add(button);
-
 	}
-
-	public JFrame getFrame() {
-
+	public JFrame getFrame(){//llamada para poder cambiar de pantalla
 		return frame;
 	}
-
 }

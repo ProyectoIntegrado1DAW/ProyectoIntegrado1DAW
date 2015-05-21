@@ -95,11 +95,11 @@ public class VentGestor implements TreeSelectionListener{
 				}
 			}
 		}
-		for(Evento ev : eventos){
+		/*for(Evento ev : eventos){
 			if(ev!=null && seleccionado.equals(ev.getNombre())){
 				evSeleccionado = ev;
 			}
-		}
+		}*/
 		
 		//Modelo
 		
