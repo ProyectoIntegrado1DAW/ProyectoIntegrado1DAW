@@ -49,6 +49,8 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.CompoundBorder;
 
 public class VentEvent {
 
@@ -109,7 +111,8 @@ public class VentEvent {
 						ConexionDB conexion = ConexionDB.getConexionDB();
 
 						ResultSet rs = conexion
-								.getQuery("select nombreevento as \"Nombre\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos WHERE nombreevento LIKE '%"+nombreEvento+"%'");
+								.getQuery("select nombreevento as \"Nombre\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos WHERE nombreevento LIKE '%"
+										+ nombreEvento + "%'");
 
 						table.setModel(DbUtils.resultSetToTableModel(rs));
 
@@ -173,6 +176,9 @@ public class VentEvent {
 		frame.getContentPane().add(scrollPane);
 
 		table = new JTable();
+		
+		table.setShowVerticalLines(false);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
 		table.setFont(new Font("Trebuchet MS", Font.PLAIN, 11));
 
