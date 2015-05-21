@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
 import java.awt.Component;
@@ -44,11 +45,12 @@ import javax.swing.JScrollPane;
 
 import net.proteanit.sql.DbUtils;
 
+import javax.swing.DefaultComboBoxModel;
+
 public class VentBuscarPrueba {
 
 	private JFrame frame;
 	private JTextField textField;
-	private JTextField textField_1;
 	private JTable table;
 
 	/**
@@ -84,15 +86,25 @@ public class VentBuscarPrueba {
 		frame.getContentPane().setLayout(null);
 		
 		JButton buttonBuscar = new JButton("");
+		final JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Festival", "Concierto", "Opera", "sdfs"}));
+		comboBox.setBounds(226, 37, 145, 20);
+		frame.getContentPane().add(comboBox);
+		
 		//desde aqui
 		buttonBuscar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				Connection con = null;
+				
+				String nombreEvento = textField.getText();
+				Object tipo = comboBox.getSelectedItem();
+				
 				try{
 					
 					ConexionDB conexion = ConexionDB.getConexionDB();
 					
-					ResultSet rs = conexion.getQuery("select * from clickntick.eventos;");
+					ResultSet rs = conexion.getQuery("select * from clickntick.eventos WHERE nombreevento LIKE '"+nombreEvento+"%' AND tipoevento = '"+tipo+"';");
+					
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 				
 				}catch (Exception e1){
@@ -101,7 +113,11 @@ public class VentBuscarPrueba {
 					
 					try{
 						if(con != null)con.close();
-					}catch(Exception ex){}
+					}catch(Exception ex){
+						
+						JOptionPane.showMessageDialog(null, ex);
+						
+					}
 				}
 			}
 		});
@@ -121,16 +137,6 @@ public class VentBuscarPrueba {
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblFecha = new JLabel("Fecha");
-		lblFecha.setBounds(224, 24, 46, 14);
-		frame.getContentPane().add(lblFecha);
-		lblFecha.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(221, 37, 86, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
-		
 		JButton ButtonComprar = new JButton("COMPRAR");
 		ButtonComprar.setBackground(Color.YELLOW);
 		ButtonComprar.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
@@ -144,6 +150,13 @@ public class VentBuscarPrueba {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.setFont(new Font("Trebuchet MS", Font.PLAIN, 11));
+		
+		JLabel lblTipo = new JLabel("Tipo");
+		lblTipo.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
+		lblTipo.setBounds(226, 22, 58, 14);
+		frame.getContentPane().add(lblTipo);
+		
+		
 	}
 	
 
