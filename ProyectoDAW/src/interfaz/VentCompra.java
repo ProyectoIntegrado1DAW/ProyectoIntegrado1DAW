@@ -77,7 +77,8 @@ public class VentCompra {
 		panel.setBounds(0, 0, 435, 50);
 		frame.getContentPane().add(panel);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
 		panel.add(lblNewLabel_1);
 		
 		JButton buttonEvent = new JButton("");
@@ -101,7 +102,8 @@ public class VentCompra {
 		buttonEvent.setIcon(new ImageIcon("C:\\Users\\Asus\\Desktop\\fotos proyecto\\nuevas fotos\\home.png"));
 		panel.add(buttonEvent);
 		
-		JLabel lblImagenEvento = new JLabel("Imagen evento");
+		JLabel lblImagenEvento = new JLabel("");
+		lblImagenEvento.setIcon(new ImageIcon("C:\\Users\\dai\\Desktop\\vinarock_300x300.png"));
 		lblImagenEvento.setBackground(Color.GRAY);
 		lblImagenEvento.setForeground(Color.BLACK);
 		lblImagenEvento.setHorizontalAlignment(SwingConstants.CENTER);
