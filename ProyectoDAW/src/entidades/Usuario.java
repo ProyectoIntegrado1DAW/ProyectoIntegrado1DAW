@@ -15,26 +15,23 @@ public class Usuario {
 	private String usuario;
 	private String password;
 	private String DNI;
-	
 
 	public Usuario() {
 	}
-	
-	
+
 	// usuario gestor
 	public Usuario(String DNI, String nombre, String usuario, String password) {
-		
+
 		this.DNI = DNI;
 		this.nombre = nombre;
 		this.usuario = usuario;
 		this.password = password;
-		
+
 	}
 
-	public Usuario(String DNI, String usuario, String password,
-			String nombre, String apellido, String direccion, String poblacion,
-			String provincia, int CP, String pais, int telefono,
-			String email) {
+	public Usuario(String DNI, String usuario, String password, String nombre,
+			String apellido, String direccion, String poblacion,
+			String provincia, int CP, String pais, int telefono, String email) {
 
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -49,6 +46,26 @@ public class Usuario {
 		this.password = password;
 		this.DNI = DNI;
 
+	}
+
+	// cliente no registrado
+	public Usuario(String nombre, String apellido, String email, int telefono) {
+
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.telefono = telefono;
+
+	}
+
+	public String toStringEntrada(Usuario userNoReg) {
+		String info = "";
+
+		info = info + userNoReg.getNombre() + " " + userNoReg.getApellido()
+				+ "\n" + userNoReg.getEmail() + "\n" + userNoReg.getTelefono();
+		;
+
+		return info;
 	}
 
 	public String getNombre() {
@@ -92,7 +109,7 @@ public class Usuario {
 	}
 
 	public int getCP() {
-		CP=0;
+		CP = 0;
 		return CP;
 	}
 
@@ -140,7 +157,6 @@ public class Usuario {
 		DNI = dNI;
 	}
 
-
 	public String getUsuario() {
 		return usuario;
 	}
@@ -149,11 +165,9 @@ public class Usuario {
 		this.usuario = usuario;
 	}
 
-
 	public int getEdad() {
 		return edad;
 	}
-
 
 	public void setEdad(int edad) {
 		this.edad = edad;
