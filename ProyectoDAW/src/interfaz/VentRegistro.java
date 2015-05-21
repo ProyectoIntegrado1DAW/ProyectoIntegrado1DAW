@@ -77,9 +77,8 @@ public class VentRegistro {
 
 		JLabel lblLogoHere = new JLabel("");
 		lblLogoHere
-				.setIcon(new ImageIcon(
-						"C:\\Users\\hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
-		lblLogoHere.setBounds(292, 38, 111, 38);
+				.setIcon(new ImageIcon("C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoBig.png"));
+		lblLogoHere.setBounds(252, 11, 201, 76);
 		frame.getContentPane().add(lblLogoHere);
 
 		JLabel label = new JLabel("Nombre");
@@ -308,6 +307,7 @@ public class VentRegistro {
 				try {
 
 					GestorUsuario.altaUsuario(c);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, "La cuenta ya existe",

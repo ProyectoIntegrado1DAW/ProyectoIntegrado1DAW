@@ -65,25 +65,25 @@ public class VentLogin {
 		frame.setBounds(100, 100, 430, 490);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JLabel label_usuario = new JLabel("USUARIO");
 		label_usuario.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		label_usuario.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_usuario.setBounds(39, 153, 127, 38);
 		frame.getContentPane().add(label_usuario);
-		
+
 		JLabel label_password = new JLabel("CONTRASE\u00D1A");
 		label_password.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_password.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		label_password.setBounds(39, 181, 127, 52);
 		frame.getContentPane().add(label_password);
-		
+
 		textField = new JTextField();
 		textField.setBackground(Color.GRAY);
 		textField.setBounds(182, 157, 200, 28);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
-		
+
 		textfield_pass = new JPasswordField();
 		textfield_pass.setEchoChar('*');
 		textfield_pass.setForeground(Color.WHITE);
@@ -91,44 +91,63 @@ public class VentLogin {
 		textfield_pass.setBackground(Color.GRAY);
 		textfield_pass.setBounds(182, 187, 200, 28);
 		frame.getContentPane().add(textfield_pass);
-		
+
 		button_entrar = new JButton("ENTRAR");
 		button_entrar.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				try {
-					
+
 					String usuario;
 					String password;
-					
+
 					boolean test;
-					
+
 					usuario = textField.getText();
 					password = textfield_pass.getText();
-					
+
 					test = GestorUsuario.logIn(usuario, password);
-					
-					if (test){
-						
-						VentEvent User = new VentEvent();
-						User.getFrame().setVisible(true);
-						frame.dispose();
-						
-					}else{
-						
-						JOptionPane.showMessageDialog(null, "Ha introducido un usuario y contraseña incorrecto", "ERROR", JOptionPane.WARNING_MESSAGE);
-						
+
+					if (test) {
+
+						if (usuario.equals("") || password.equals("")) {
+							JOptionPane
+									.showMessageDialog(
+											null,
+											"Introduzca algun campo Usuario y Contraseña",
+											"ERROR",
+											JOptionPane.WARNING_MESSAGE);
+						} else {
+
+							VentEvent User = new VentEvent();
+							User.getFrame().setVisible(true);
+							frame.dispose();
+
+						}
+
+					} else {
+
+						JOptionPane
+								.showMessageDialog(
+										null,
+										"Ha introducido un usuario y contraseña incorrecto",
+										"ERROR", JOptionPane.WARNING_MESSAGE);
+
 					}
-					
+
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					
-					JOptionPane.showMessageDialog(null, "Ha introducido un usuario y contraseña incorrecto", "ERROR", JOptionPane.WARNING_MESSAGE);
-					
+
+					JOptionPane
+							.showMessageDialog(
+									null,
+									"Ha introducido un usuario y contraseña incorrecto",
+									"ERROR", JOptionPane.WARNING_MESSAGE);
+
 					e.printStackTrace();
 				}
-			
+
 			}
 		});
 		button_entrar.setForeground(Color.WHITE);
@@ -136,28 +155,28 @@ public class VentLogin {
 		button_entrar.setBackground(Color.DARK_GRAY);
 		button_entrar.setBounds(118, 262, 187, 52);
 		frame.getContentPane().add(button_entrar);
-		
+
 		label = new JLabel("\u00BFTodav\u00EDa no tienes cuenta?");
 		label.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(118, 327, 187, 50);
 		frame.getContentPane().add(label);
-		
+
 		button = new JButton("REGISTRARME");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				try{
-					
+
+				try {
+
 					VentRegistro User = new VentRegistro();
 					User.getFrame().setVisible(true);
 					frame.dispose();
-					
-				}catch (Exception e1){
-					
+
+				} catch (Exception e1) {
+
 					e1.printStackTrace();
 				}
-				
+
 			}
 		});
 		button.setForeground(Color.WHITE);
@@ -165,18 +184,18 @@ public class VentLogin {
 		button.setBackground(Color.DARK_GRAY);
 		button.setBounds(96, 376, 229, 52);
 		frame.getContentPane().add(button);
-		
+
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoBig.png"));
+		lblNewLabel
+				.setIcon(new ImageIcon(
+						"C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoBig.png"));
 		lblNewLabel.setBounds(106, 11, 209, 116);
 		frame.getContentPane().add(lblNewLabel);
-		
-		
 
 	}
-	
-	public JFrame getFrame(){
-		
+
+	public JFrame getFrame() {
+
 		return frame;
 	}
 }
