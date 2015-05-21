@@ -77,7 +77,8 @@ public class VentRegistro {
 
 		JLabel lblLogoHere = new JLabel("");
 		lblLogoHere
-				.setIcon(new ImageIcon("C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoBig.png"));
+				.setIcon(new ImageIcon(
+						"C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoBig.png"));
 		lblLogoHere.setBounds(252, 11, 201, 76);
 		frame.getContentPane().add(lblLogoHere);
 
@@ -294,9 +295,20 @@ public class VentRegistro {
 				poblacion = textPoblacion.getText();
 				provincia = textProvincia.getText();
 				cp = textCP.getText();
+				int cpInt = 0;
+				int tlfnInt = 0;
 
-				int cpInt = Integer.parseInt(cp);
-				int tlfnInt = Integer.parseInt(telefono);
+				if (!cp.equals("")) {
+
+					cpInt = Integer.parseInt(cp);
+
+					if (!telefono.equals("")) {
+
+						tlfnInt = Integer.parseInt(telefono);
+
+					}
+
+				}
 
 				Cliente.setInstanceOff();
 				Cliente c = Cliente.getInstance(dni, usuario, contrasenya,
@@ -306,8 +318,28 @@ public class VentRegistro {
 
 				try {
 
-					GestorUsuario.altaUsuario(c);
-					
+					if (usuario.equals("") || contrasenya.equals("")
+							|| nombre.equals("") || apellidos.equals("")
+							|| correo.equals("") || tlfnInt == 0
+							|| edad.equals("") || dni.equals("")
+							|| direccion.equals("") || pais.equals("")
+							|| poblacion.equals("") || provincia.equals("")
+							|| cpInt == 0) {
+						JOptionPane.showMessageDialog(null,
+								"Se ha dejado algun campo sin rellenar",
+								"ERROR", JOptionPane.WARNING_MESSAGE);
+					} else {
+
+						GestorUsuario.altaUsuario(c);
+						JOptionPane.showMessageDialog(null,
+								"Ha sido registrado con éxito.", "Enhorabuena",
+								JOptionPane.INFORMATION_MESSAGE);
+						VentEvent User = new VentEvent();
+						User.getFrame().setVisible(true);
+						frame.dispose();
+
+					}
+
 				} catch (Exception e) {
 					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, "La cuenta ya existe",
