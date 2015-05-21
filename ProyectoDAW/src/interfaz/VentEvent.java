@@ -75,7 +75,7 @@ public class VentEvent {
 		button.setIcon(new ImageIcon("C:\\Users\\Asus\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\right.png"));
 		button.setForeground(Color.YELLOW);
 		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { 
 				
 				VentPrincipal User = new VentPrincipal();
 				User.getFrame().setVisible(true);
