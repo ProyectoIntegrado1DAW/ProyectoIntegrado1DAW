@@ -28,7 +28,6 @@ public class VentEvent {
 	private JTextField textThreeEvent;
 	private JTextArea infoTwoEvent;
 	private JTextArea infoThreeEvent;
-	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -66,15 +65,14 @@ public class VentEvent {
 		panel.setBackground(Color.YELLOW);
 		panel.setBounds(0, 0, 438, 50);
 		frame.getContentPane().add(panel);
-		
-		btnNewButton = new JButton("New button");
-		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
-		panel.add(btnNewButton);
+		panel.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setBounds(220, 9, 66, 14);
 		panel.add(lblNewLabel_1);
 		
 		JButton buttonAtras = new JButton("");
+		buttonAtras.setBounds(291, 16, 1, 1);
 		buttonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -88,6 +86,7 @@ public class VentEvent {
 			}
 		});
 		
+		
 		buttonAtras.setBorder(null);
 		buttonAtras.setOpaque(false);
 		buttonAtras.setContentAreaFilled(false);
@@ -95,6 +94,22 @@ public class VentEvent {
 		buttonAtras.setBackground(Color.YELLOW);
 		buttonAtras.setIcon(new ImageIcon("C:\\Users\\Asus\\Desktop\\fotos proyecto\\nuevas fotos\\right.png"));
 		panel.add(buttonAtras);
+		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon("C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
+		button.setForeground(Color.YELLOW);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				VentPrincipal User = new VentPrincipal();
+				User.getFrame().setVisible(true);
+				frame.dispose();
+				
+			}
+		});
+		button.setBackground(Color.YELLOW);
+		button.setBounds(10, 11, 51, 28);
+		panel.add(button);
 		
 		JLabel lblNewLabel = new JLabel("Imagen evento");
 		lblNewLabel.setForeground(Color.BLACK);
