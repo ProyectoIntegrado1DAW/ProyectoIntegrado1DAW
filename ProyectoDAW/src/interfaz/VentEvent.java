@@ -48,6 +48,7 @@ import net.proteanit.sql.DbUtils;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
 
 public class VentEvent {
 
@@ -83,14 +84,14 @@ public class VentEvent {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 659);
+		frame.setBounds(100, 100, 450, 581);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JButton buttonBuscar = new JButton("");
 		final JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Festival",
-				"Concierto", "Opera", "sdfs" }));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Todos",
+				"Festival", "Concierto", "Opera" }));
 		comboBox.setBounds(286, 121, 122, 20);
 		frame.getContentPane().add(comboBox);
 
@@ -103,16 +104,27 @@ public class VentEvent {
 				Object tipo = comboBox.getSelectedItem();
 
 				try {
+					if (tipo.equals("Todos")) {
 
-					ConexionDB conexion = ConexionDB.getConexionDB();
+						ConexionDB conexion = ConexionDB.getConexionDB();
 
-					ResultSet rs = conexion
-							.getQuery("select nombreevento as \"Nombre\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos WHERE nombreevento LIKE '"
-									+ nombreEvento
-									+ "%' AND tipoevento = '"
-									+ tipo + "';");
+						ResultSet rs = conexion
+								.getQuery("select nombreevento as \"Nombre\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos WHERE nombreevento LIKE '%"+nombreEvento+"%'");
 
-					table.setModel(DbUtils.resultSetToTableModel(rs));
+						table.setModel(DbUtils.resultSetToTableModel(rs));
+
+					} else {
+
+						ConexionDB conexion = ConexionDB.getConexionDB();
+
+						ResultSet rs = conexion
+								.getQuery("select nombreevento as \"Nombre\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos WHERE nombreevento LIKE '"
+										+ nombreEvento
+										+ "%' AND tipoevento = '" + tipo + "';");
+
+						table.setModel(DbUtils.resultSetToTableModel(rs));
+
+					}
 
 				} catch (Exception e1) {
 
@@ -129,6 +141,7 @@ public class VentEvent {
 				}
 			}
 		});
+
 		// Hasta aqui
 		buttonBuscar.setBackground(Color.YELLOW);
 		buttonBuscar
@@ -150,11 +163,13 @@ public class VentEvent {
 		JButton ButtonComprar = new JButton("COMPRAR");
 		ButtonComprar.setBackground(Color.YELLOW);
 		ButtonComprar.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
-		ButtonComprar.setBounds(149, 557, 122, 39);
+		ButtonComprar.setBounds(147, 471, 122, 39);
 		frame.getContentPane().add(ButtonComprar);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(21, 152, 387, 378);
+		scrollPane.setViewportBorder(new EtchedBorder(EtchedBorder.LOWERED,
+				null, null));
+		scrollPane.setBounds(21, 152, 387, 308);
 		frame.getContentPane().add(scrollPane);
 
 		table = new JTable();
@@ -172,28 +187,17 @@ public class VentEvent {
 		panel.setBounds(0, 0, 434, 50);
 		frame.getContentPane().add(panel);
 
-		JLabel label = new JLabel("asfsfasf");
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(
+				"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
 		label.setBounds(166, 9, 116, 28);
 		panel.add(label);
 
-		JButton button = new JButton("");
-		button.setOpaque(false);
-		button.setForeground(Color.YELLOW);
-		button.setContentAreaFilled(false);
-		button.setBorderPainted(false);
-		button.setBorder(null);
-		button.setBackground(Color.YELLOW);
-		button.setBounds(360, 9, 51, 28);
-		panel.add(button);
+		ConexionDB conexion = ConexionDB.getConexionDB();
+		ResultSet rs = conexion
+				.getQuery("select nombreevento as \"Nombre\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos");
 
-		JButton button_1 = new JButton("");
-		button_1.setOpaque(false);
-		button_1.setContentAreaFilled(false);
-		button_1.setBorderPainted(false);
-		button_1.setBorder(null);
-		button_1.setBackground(Color.YELLOW);
-		button_1.setBounds(10, 0, 67, 50);
-		panel.add(button_1);
+		table.setModel(DbUtils.resultSetToTableModel(rs));
 
 	}
 
