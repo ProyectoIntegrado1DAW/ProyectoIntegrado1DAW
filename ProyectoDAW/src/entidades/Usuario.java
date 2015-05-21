@@ -55,6 +55,7 @@ public class Usuario {
 		this.apellido = apellido;
 		this.email = email;
 		this.telefono = telefono;
+		this.DNI = null;
 
 	}
 

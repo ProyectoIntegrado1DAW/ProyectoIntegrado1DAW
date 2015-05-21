@@ -28,6 +28,8 @@ public class GestorEntrada {
 
 			// finalmente imprimira la entrada
 			generarEntrada(evento, cliente, numEnt);
+			
+			// registrar la compra
 
 		}
 
@@ -97,5 +99,7 @@ public class GestorEntrada {
 				+ i + " WHERE NombreEvento = '" + ev.getNombre() + "';");
 
 	}
+	
+	private static void registrarCompra(){}
 
 }
