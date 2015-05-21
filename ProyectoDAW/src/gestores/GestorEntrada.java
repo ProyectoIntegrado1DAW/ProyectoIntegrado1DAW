@@ -23,8 +23,8 @@ public class GestorEntrada {
 		if (existePlazasDisponibles(evento, numEnt)) {
 
 			// si quedan entradas, hara la compra y actualizara la base de
-			// datos.
-			actualEntradas(evento, numEnt);
+			// datos con las entradas reservadas y los puntos acumulados.
+			actualBBDD(cliente, evento, numEnt);
 
 			// finalmente imprimira la entrada
 			generarEntrada(evento, cliente, numEnt);
@@ -88,16 +88,23 @@ public class GestorEntrada {
 		return existen;
 	}
 
-	private static void actualEntradas(Evento evento, int numEnt)
+	private static void actualBBDD(Cliente cliente, Evento evento, int numEnt)
 			throws SQLException {
 
 		Evento ev = GestorEvento.obtenerEvento(evento.getNombre());
+		Cliente cl = Cliente.getInstance();
+		int antPuntos = cl.getPuntos();
+		int nuevPuntos = antPuntos + (numEnt*5);
+		
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		int i = ev.getEntrReservadas() + numEnt;
 
 		conexion.setQuery("UPDATE clickntick.eventos SET EntradasReservadas = "
 				+ i + " WHERE NombreEvento = '" + ev.getNombre() + "';");
 
+		conexion.setQuery("UPDATE clickntick.clientes SET Puntos = "
+				+ nuevPuntos + " WHERE Usuario = '" + cl.getUsuario() + "';");
+		
 	}
 	
 	private static void registrarCompra(){}

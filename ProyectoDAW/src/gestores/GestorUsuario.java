@@ -201,7 +201,11 @@ public class GestorUsuario {
 		return existe;
 	}
 
-	// public static void comprobarExisteGestor() {}
+	// public static void getCompras() {}
+	// Este metodo devolvera las compras que ha realizado un usuario.
+	
+	
+	
 	// public static void bajaUsuario() {}
 
 }
