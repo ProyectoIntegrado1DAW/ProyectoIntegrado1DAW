@@ -67,36 +67,12 @@ public class VentEvent {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(220, 9, 66, 14);
+		JLabel lblNewLabel_1 = new JLabel("asfsfasf");
+		lblNewLabel_1.setBounds(166, 9, 116, 28);
 		panel.add(lblNewLabel_1);
 		
-		JButton buttonAtras = new JButton("");
-		buttonAtras.setBounds(291, 16, 1, 1);
-		buttonAtras.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-					try {
-						VentUsuario Evento = new VentUsuario();
-						Evento.getFrame().setVisible(true);
-						frame.dispose();
-					} catch (Exception e2){
-						e2.printStackTrace();
-					}
-			}
-		});
-		
-		
-		buttonAtras.setBorder(null);
-		buttonAtras.setOpaque(false);
-		buttonAtras.setContentAreaFilled(false);
-		buttonAtras.setBorderPainted(false);
-		buttonAtras.setBackground(Color.YELLOW);
-		buttonAtras.setIcon(new ImageIcon("C:\\Users\\Asus\\Desktop\\fotos proyecto\\nuevas fotos\\right.png"));
-		panel.add(buttonAtras);
-		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon("C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
+		button.setIcon(new ImageIcon("C:\\Users\\Asus\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\right.png"));
 		button.setForeground(Color.YELLOW);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -108,8 +84,26 @@ public class VentEvent {
 			}
 		});
 		button.setBackground(Color.YELLOW);
-		button.setBounds(10, 11, 51, 28);
+		button.setBounds(360, 9, 51, 28);
+		button.setBorder(null);
+		button.setOpaque(false);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
 		panel.add(button);
+		
+		JButton buttonUsuario = new JButton("");
+		buttonUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		buttonUsuario.setBorder(null);
+		buttonUsuario.setOpaque(false);
+		buttonUsuario.setContentAreaFilled(false);
+		buttonUsuario.setBorderPainted(false);
+		buttonUsuario.setBackground(Color.YELLOW);
+		buttonUsuario.setIcon(new ImageIcon("C:\\Users\\Asus\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\bus.png"));
+		buttonUsuario.setBounds(10, 0, 67, 50);
+		panel.add(buttonUsuario);
 		
 		JLabel lblNewLabel = new JLabel("Imagen evento");
 		lblNewLabel.setForeground(Color.BLACK);

@@ -70,16 +70,17 @@ public class VentUsuario {
 		panel.setBounds(0, 0, 435, 50);
 		frame.getContentPane().add(panel);
 		
-		JLabel lblNewLabel = new JLabel("FotoUser");
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Asus\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\profile.png"));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(67, 61, 101, 89);
+		lblNewLabel.setBounds(50, 65, 101, 89);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("MI CUENTA");
-		lblNewLabel_1.setForeground(Color.YELLOW);
+		lblNewLabel_1.setForeground(new Color(255, 255, 0));
 		lblNewLabel_1.setBackground(Color.GRAY);
-		lblNewLabel_1.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		lblNewLabel_1.setBounds(189, 90, 115, 24);
+		lblNewLabel_1.setFont(new Font("Trebuchet MS", Font.BOLD, 25));
+		lblNewLabel_1.setBounds(161, 99, 151, 24);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JTextArea textAreaUsuario = new JTextArea();
