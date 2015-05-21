@@ -61,19 +61,19 @@ public class Main {
 		*/
 		
 	
-//	cliente = Cliente.getInstance("11d", "mmarin", "1234", "Miquel", "Marin", "c/ valencia", "Suma", "Valencia", 23445, "Aspaña", 8457463, "Shurprim@gmail.com");
-//		//GestorUsuario.altaUsuario(cliente);
+	//cliente = Cliente.getInstance("11d", "mmarin", "1234", "Miquel", "Marin", "c/ valencia", "Suma", "Valencia", 23445, "Aspaña", 8457463, "Shurprim@gmail.com");
+		//GestorUsuario.altaUsuario(cliente);
 		
 		
 		cliente2 = Cliente.getInstance("122d", "hejuso", "1234", "hector", "Juan", "c/ alzira", "Alzira", "Valencia", 33445, "Aspaña", 8463, "prim@gmail.com");
-		
-		//GestorUsuario.altaUsuario(cliente2);
+		 //GestorUsuario.altaUsuario(cliente2);
 		
 		Evento evento2 = new Evento("Unodostres",
 				"Festival del mal", "Muchos", "Lepe", 666, 0, "Sangre", 20,
 				"2016-6-6", "Sabado", "6:06");
 		//GestorEvento.altaEvento(evento2);
 		
-		GestorEntrada.compraEntr("Unodostres", cliente2, 3);
+		GestorEntrada.compraEntr("Unodostres", cliente2,"2334-2222-3423-43434"," VISA",  2);
+		//GestorEntrada.compraEntrNoReg("Unodostres", cliente, 1);
 	}
 }

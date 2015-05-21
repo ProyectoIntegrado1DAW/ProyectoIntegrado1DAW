@@ -201,10 +201,14 @@ public class GestorUsuario {
 		return existe;
 	}
 
-	// public static void getCompras() {}
-	// Este metodo devolvera las compras que ha realizado un usuario.
-	
-	
+//	public static void getCompras(String dni) {
+//	// Este metodo devolvera las compras que ha realizado un usuario.
+//		ConexionDB conexion = ConexionDB.getConexionDB();
+//		ResultSet resultado;
+//		resultado = conexion
+//				.getQuery("SELECT * FROM clickntick.compras WHERE DNI = '"
+//						+ dni + "';");
+//	}
 	
 	// public static void bajaUsuario() {}
 

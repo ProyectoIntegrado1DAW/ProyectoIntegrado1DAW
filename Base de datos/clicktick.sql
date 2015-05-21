@@ -1,6 +1,6 @@
 -- Schema: clickntick
 
--- DROP SCHEMA clickntick;
+-- DROP SCHEMA clickntick cascade;
 
 CREATE SCHEMA clickntick
   AUTHORIZATION postgres;
@@ -75,17 +75,11 @@ CREATE TABLE ofertas (
 );
 
 CREATE TABLE compras (
-	IDCompra integer NOT NULL,
-	DNI varchar(10) NOT NULL,
-	IDEntrada integer NOT NULL,
-	Titular varchar(30) NOT NULL,
+	IDCompra SERIAL,
+	NombreEvento varchar(30) NOT NULL,
+	DNI varchar(10) NULL,
 	NumTarjeta varchar(20) NOT NULL,
-	NumEntradas integer NOT NULL,
-	FechaCaducidad varchar(10) NOT NULL,
-	CodigoSeguridad integer NOT NULL,
 	FormaPago varchar(20) NOT NULL,
-	TipoTarjeta varchar(20) NOT NULL,
-	PRIMARY KEY (IDCompra),
-	CONSTRAINT compras_DNI_FK FOREIGN KEY (DNI) REFERENCES clientes (DNI),
-	CONSTRAINT compras_IDENTRADA_FK FOREIGN KEY (IDEntrada) REFERENCES entrada (IDEntrada)
+	NumEntradas integer NOT NULL,
+	PRIMARY KEY (IDCompra)
 );

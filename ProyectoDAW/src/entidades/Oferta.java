@@ -20,6 +20,9 @@ public class Oferta {
 		this.descuento = descuento;
 
 	}
+	
+	public static void getOfertas() {
+	}
 
 	public int getIDOferta() {
 		return IDOferta;

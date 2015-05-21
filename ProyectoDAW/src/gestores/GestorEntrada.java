@@ -11,13 +11,9 @@ import entidades.Cliente;
 
 public class GestorEntrada {
 
-	public static void reservarEntrada() {
-	}
-
-	// public static void compraEntrReg(Evento evento) {}
-
-	public static void compraEntr(String nomEvento, Cliente cliente, int numEnt)
-			throws SQLException {
+	// compra sin oferta
+	public static void compraEntr(String nomEvento, Cliente cliente,
+			String numTar, String forPago, int numEnt) throws SQLException {
 		Evento evento = GestorEvento.obtenerEvento(nomEvento);
 		// llamara a existePlazasDisponibles
 		if (existePlazasDisponibles(evento, numEnt)) {
@@ -34,7 +30,30 @@ public class GestorEntrada {
 			// finalmente imprimira la entrada
 			generarEntrada(evento, cliente, numEnt);
 
-			// registrar la compra (con el precio actualizado si hay oferta)
+			// registrar la compra
+			GestorCompra.registrarCompra(evento, cliente, numTar, forPago,
+					numEnt);
+		}
+
+	}
+
+	// public static void compraEntrOferta (String nomEvento, Cliente cliente,
+	// int numEnt){}
+	// compra con oferta
+
+	public static void compraEntrNoReg(String nomEvento, Cliente cliente,
+			int numEnt) throws SQLException {
+
+		Evento evento = GestorEvento.obtenerEvento(nomEvento);
+		// llamara a existePlazasDisponibles
+		if (existePlazasDisponibles(evento, numEnt)) {
+
+			// si quedan entradas, hara la compra y actualizara la base de
+			// datos con las entradas reservadas.
+			actualBBDDnoReg(cliente, evento, numEnt);
+
+			// Imprimir la entrada
+			generarEntrada(evento, cliente, numEnt);
 
 		}
 
@@ -99,8 +118,8 @@ public class GestorEntrada {
 		Evento ev = GestorEvento.obtenerEvento(evento.getNombre());
 		Cliente cl = Cliente.getInstance();
 		int nuevPuntos = 0;
-		int antPuntos = cl.getPuntos(); // no suma bien los puntos.
-		
+		int antPuntos = Cliente.getPuntosBBDD(cl.getDNI());
+
 		nuevPuntos = antPuntos + (numEnt * 5);
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
@@ -110,12 +129,24 @@ public class GestorEntrada {
 				+ i + " WHERE NombreEvento = '" + ev.getNombre() + "';");
 
 		conexion.setQuery("UPDATE clickntick.clientes SET Puntos = "
-				+ nuevPuntos + " WHERE Usuario = '" + cl.getUsuario()
-				+ "';");
+				+ nuevPuntos + " WHERE Usuario = '" + cl.getUsuario() + "';");
 
 	}
 
-	// restara los puntos que ha usado a los que ya habian.
+	// actualiza las entradas reservadas en la bbdd para compras no registradas.
+	private static void actualBBDDnoReg(Cliente cliente, Evento evento,
+			int numEnt) throws SQLException {
+
+		Evento ev = GestorEvento.obtenerEvento(evento.getNombre());
+		ConexionDB conexion = ConexionDB.getConexionDB();
+		int i = ev.getEntrReservadas() + numEnt;
+
+		conexion.setQuery("UPDATE clickntick.eventos SET EntradasReservadas = "
+				+ i + " WHERE NombreEvento = '" + ev.getNombre() + "';");
+
+	}
+
+	// resta los puntos que ha usado a los que ya habian.
 	private static void actualPuntosCliente(int numEnt, Cliente cl) {
 
 		int i = 0;
@@ -127,12 +158,6 @@ public class GestorEntrada {
 		conexion.setQuery("UPDATE clickntick.clientes SET Puntos = " + i
 				+ " WHERE Usuario = '" + cl.getUsuario() + "';");
 
-	}
-
-	private static void registrarCompra() {
-	}
-
-	public static void getOfertas() {
 	}
 
 	public static void actualizarPrecio() {

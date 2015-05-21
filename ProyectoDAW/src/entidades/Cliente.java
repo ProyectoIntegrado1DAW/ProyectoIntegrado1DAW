@@ -1,5 +1,10 @@
 package entidades;
 
+import gestores.ConexionDB;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Cliente extends Usuario {
 
 	private int puntos;
@@ -32,12 +37,20 @@ public class Cliente extends Usuario {
 
 		return instance;
 	}
-	
-	public static int getPuntosBBDD() {
+
+	public static int getPuntosBBDD(String dni) throws SQLException {
 		int p = 0;
-		
-		
-		
+		ConexionDB conexion = ConexionDB.getConexionDB();
+		ResultSet resultado;
+
+		resultado = conexion
+				.getQuery("SELECT Puntos FROM clickntick.clientes WHERE DNI = '"
+						+ dni + "';");
+		if (resultado.next()) {
+
+			p = resultado.getInt("Puntos");
+		}
+
 		return p;
 	}
 
