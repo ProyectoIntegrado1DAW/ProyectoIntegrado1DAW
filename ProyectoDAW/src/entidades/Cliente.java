@@ -32,6 +32,14 @@ public class Cliente extends Usuario {
 
 		return instance;
 	}
+	
+	public static int getPuntosBBDD() {
+		int p = 0;
+		
+		
+		
+		return p;
+	}
 
 	public static void setInstanceOff() { // cerrar sesion
 		instance = null;

@@ -26,10 +26,15 @@ public class GestorEntrada {
 			// datos con las entradas reservadas y los puntos acumulados.
 			actualBBDD(cliente, evento, numEnt);
 
+			// actualizar el precio si hay ofertas? if cliente.puntos > 5
+			// (oferta min), pero solo si quiere el cliente? ... y la oferta que
+			// quiera
+			// actualizar los datos del usuario con los puntos restantes.
+
 			// finalmente imprimira la entrada
 			generarEntrada(evento, cliente, numEnt);
-			
-			// registrar la compra
+
+			// registrar la compra (con el precio actualizado si hay oferta)
 
 		}
 
@@ -93,9 +98,11 @@ public class GestorEntrada {
 
 		Evento ev = GestorEvento.obtenerEvento(evento.getNombre());
 		Cliente cl = Cliente.getInstance();
-		int antPuntos = cl.getPuntos();
-		int nuevPuntos = antPuntos + (numEnt*5);
+		int nuevPuntos = 0;
+		int antPuntos = cl.getPuntos(); // no suma bien los puntos.
 		
+		nuevPuntos = antPuntos + (numEnt * 5);
+
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		int i = ev.getEntrReservadas() + numEnt;
 
@@ -103,10 +110,32 @@ public class GestorEntrada {
 				+ i + " WHERE NombreEvento = '" + ev.getNombre() + "';");
 
 		conexion.setQuery("UPDATE clickntick.clientes SET Puntos = "
-				+ nuevPuntos + " WHERE Usuario = '" + cl.getUsuario() + "';");
-		
+				+ nuevPuntos + " WHERE Usuario = '" + cl.getUsuario()
+				+ "';");
+
 	}
-	
-	private static void registrarCompra(){}
+
+	// restara los puntos que ha usado a los que ya habian.
+	private static void actualPuntosCliente(int numEnt, Cliente cl) {
+
+		int i = 0;
+		ConexionDB conexion = ConexionDB.getConexionDB();
+		cl = Cliente.getInstance();
+		int antPuntos = cl.getPuntos();
+
+		i = antPuntos - (numEnt * 5);
+		conexion.setQuery("UPDATE clickntick.clientes SET Puntos = " + i
+				+ " WHERE Usuario = '" + cl.getUsuario() + "';");
+
+	}
+
+	private static void registrarCompra() {
+	}
+
+	public static void getOfertas() {
+	}
+
+	public static void actualizarPrecio() {
+	}
 
 }
