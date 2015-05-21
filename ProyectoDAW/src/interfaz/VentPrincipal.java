@@ -112,4 +112,9 @@ public class VentPrincipal {
 				);
 		frame.getContentPane().add(btnGestor);
 	}
+	
+	public JFrame getFrame(){
+		return frame;
+	}
+	
 }

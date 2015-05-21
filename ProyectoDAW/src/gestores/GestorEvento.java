@@ -1,6 +1,5 @@
 package gestores;
 
-
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,10 +8,10 @@ import java.util.ArrayList;
 import entidades.Evento;
 
 public class GestorEvento {
-	
-	private static ArrayList<Evento> eventos  = new ArrayList<Evento>();
+
+	private static ArrayList<Evento> eventos = new ArrayList<Evento>();
 	private static ArrayList<String> tipos = new ArrayList<String>();
-	
+
 	public static void altaEvento(Evento evento) {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
@@ -84,32 +83,31 @@ public class GestorEvento {
 			precio = resultado.getInt("precio");
 			DiaSemana = resultado.getString("diasemana");
 			hora = resultado.getString("hora");
-			
+
 			eventos = new Evento(nombre, tipoEvento, locales, ciudad,
-					numEntradas, entrReservadas, descripcion, precio, fecha.toString(),
-					DiaSemana, hora);
+					numEntradas, entrReservadas, descripcion, precio,
+					fecha.toString(), DiaSemana, hora);
 
 		}
 
 		return eventos;
 
 	}
-	
-	public static ArrayList getArrayTipo(){
-		
-		for(Evento ev : eventos){
-			if(tipos.contains(ev.getTipoEvento())!=true){
-				
+
+	public static ArrayList getArrayTipo() {
+
+		for (Evento ev : eventos) {
+			if (tipos.contains(ev.getTipoEvento()) != true) {
+
 				tipos.add(ev.getTipoEvento());
-				
+
 			}
 		}
 		return tipos;
 	}
-	
-	public static ArrayList getArrayEvento() throws SQLException{
-		
-		
+
+	public static ArrayList getArrayEvento() throws SQLException {
+
 		Evento e = null;
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet resultado;
@@ -129,8 +127,7 @@ public class GestorEvento {
 		String DiaSemana = null;
 		String hora = null;
 
-		resultado = conexion
-				.getQuery("SELECT * FROM clickntick.eventos;");
+		resultado = conexion.getQuery("SELECT * FROM clickntick.eventos;");
 
 		while (resultado.next()) {
 
@@ -145,20 +142,18 @@ public class GestorEvento {
 			precio = resultado.getInt("precio");
 			DiaSemana = resultado.getString("diasemana");
 			hora = resultado.getString("hora");
-			
-			e = new Evento(nombre, tipoEvento, locales, ciudad,
-					numEntradas, entrReservadas, descripcion, precio, fecha.toString(),
+
+			e = new Evento(nombre, tipoEvento, locales, ciudad, numEntradas,
+					entrReservadas, descripcion, precio, fecha.toString(),
 					DiaSemana, hora);
-			
+
 			eventos.add(e);
 
 		}
-		
+
 		return eventos;
 	}
-	
-	
-	
+
 	public static void bajaEvento(Evento evento) {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
