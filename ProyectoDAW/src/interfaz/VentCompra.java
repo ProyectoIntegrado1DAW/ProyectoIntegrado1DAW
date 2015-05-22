@@ -1,6 +1,8 @@
 package interfaz;
 
+import entidades.Evento;
 import gestores.ConexionDB;
+import gestores.GestorEvento;
 
 import java.awt.EventQueue;
 
@@ -24,6 +26,7 @@ import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JScrollPane;
@@ -39,6 +42,9 @@ public class VentCompra {
 	private JTextField textTitulo;
 	private JTable table;
 	private JTextField textField;
+	private String nombreEvento;
+	private String descripcion;
+
 
 	/**
 	 * Launch the application.
@@ -47,7 +53,10 @@ public class VentCompra {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentCompra window = new VentCompra();
+					String nombreEvento = null;
+					String descripcion = null;
+					
+					VentCompra window = new VentCompra(nombreEvento, descripcion);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,15 +67,18 @@ public class VentCompra {
 
 	/**
 	 * Create the application.
+	 * @throws SQLException 
 	 */
-	public VentCompra() {
+	public VentCompra(String nombreEvento, String descripcion) throws SQLException {
 		initialize();
+		this.nombreEvento = nombreEvento;
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws SQLException 
 	 */
-	private void initialize() {
+	private void initialize() throws SQLException {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 451, 580);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,6 +106,9 @@ public class VentCompra {
 					}
 			}
 		});
+		
+		Evento ev = getEvent(nombreEvento);
+		
 		buttonEvent.setBorder(null);
 		buttonEvent.setOpaque(false);
 		buttonEvent.setContentAreaFilled(false);
@@ -102,22 +117,24 @@ public class VentCompra {
 		buttonEvent.setIcon(new ImageIcon("C:\\Users\\Asus\\Desktop\\fotos proyecto\\nuevas fotos\\home.png"));
 		panel.add(buttonEvent);
 		
-		JLabel lblImagenEvento = new JLabel("");
+		JLabel lblImagenEvento = new JLabel();
 		lblImagenEvento.setIcon(new ImageIcon("C:\\Users\\dai\\Desktop\\vinarock_300x300.png"));
 		lblImagenEvento.setBackground(Color.GRAY);
 		lblImagenEvento.setForeground(Color.BLACK);
 		lblImagenEvento.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImagenEvento.setBounds(0, 49, 435, 114);
 		frame.getContentPane().add(lblImagenEvento);
-		
-		textTitulo = new JTextField();
+
+		textTitulo = new JTextField(nombreEvento);
+		textTitulo.setEditable(false);
 		textTitulo.setForeground(Color.WHITE);
 		textTitulo.setColumns(10);
 		textTitulo.setBackground(Color.DARK_GRAY);
 		textTitulo.setBounds(37, 174, 364, 23);
 		frame.getContentPane().add(textTitulo);
 		
-		JTextArea areaInfo = new JTextArea();
+		JTextArea areaInfo = new JTextArea(descripcion);
+		areaInfo.setEditable(false);
 		areaInfo.setForeground(Color.WHITE);
 		areaInfo.setBackground(Color.GRAY);
 		areaInfo.setBounds(37, 208, 324, 101);
@@ -166,7 +183,7 @@ public class VentCompra {
 				try{
 					ConexionDB conexion = ConexionDB.getConexionDB();
 					
-					ResultSet rs = conexion.getQuery("select * from clickntick.ofertas");
+					ResultSet rs = conexion.getQuery("select puntos as \"Coste:\", descuento as \"Descuento:\" from clickntick.ofertas");
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 				
 				}catch (Exception e1){
@@ -179,6 +196,8 @@ public class VentCompra {
 				}
 			}
 		});
+		
+		
 		buttonBuscar.setBounds(10, 348, 54, 43);
 		//desde aqui esto sirbe para que los bordes de los botones no aparezcan
 		buttonBuscar.setBorder(null);
@@ -218,4 +237,17 @@ public class VentCompra {
 		
 	
 	}
+	
+	private Evento getEvent(String nombreEvento) throws SQLException {
+		
+		Evento v = GestorEvento.obtenerEvento(nombreEvento);
+		
+		return v;
+		
+	}
+	
+	public JFrame getFrame(){
+		return frame;
+	}
+	
 }

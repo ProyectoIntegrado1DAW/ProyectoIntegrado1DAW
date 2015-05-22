@@ -1,6 +1,7 @@
 package interfaz;
 
 import gestores.ConexionDB;
+import entidades.Evento;
 
 import java.awt.EventQueue;
 import java.awt.Window;
@@ -37,10 +38,12 @@ import java.awt.List;
 import javax.swing.JComboBox;
 
 import java.awt.ScrollPane;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
 
@@ -51,12 +54,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.CompoundBorder;
+import javax.swing.table.TableModel;
 
 public class VentEvent {
 
 	private JFrame frame;
 	private JTextField textField;
 	private JTable table;
+	
+	private ArrayList<Evento> eventos;
 
 	/**
 	 * Launch the application.
@@ -111,17 +117,23 @@ public class VentEvent {
 						ConexionDB conexion = ConexionDB.getConexionDB();
 
 						ResultSet rs = conexion
-								.getQuery("select nombreevento as \"Nombre\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos WHERE nombreevento LIKE '%"
+								.getQuery("select nombreevento as \"Nombre\", descripcion as \"Descripcion\",tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos WHERE nombreevento LIKE '%"
 										+ nombreEvento + "%'");
 
 						table.setModel(DbUtils.resultSetToTableModel(rs));
+						
+						eventos=new ArrayList<Evento>();
+						while(rs.next()){
+							Evento e=new Evento(rs.getString());
+							eventos.add();
+						}
 
 					} else {
 
 						ConexionDB conexion = ConexionDB.getConexionDB();
 
 						ResultSet rs = conexion
-								.getQuery("select nombreevento as \"Nombre\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos WHERE nombreevento LIKE '"
+								.getQuery("select nombreevento as \"Nombre\", descripcion as \"Descripcion\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos WHERE nombreevento LIKE '"
 										+ nombreEvento
 										+ "%' AND tipoevento = '" + tipo + "';");
 
@@ -164,6 +176,33 @@ public class VentEvent {
 		textField.setColumns(10);
 
 		JButton ButtonComprar = new JButton("COMPRAR");
+		ButtonComprar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				if (table.getSelectedRow() == -1) {
+
+					JOptionPane.showMessageDialog(null, "Seleccione un evento",
+							"ERROR", JOptionPane.WARNING_MESSAGE);
+
+				} else {
+					
+					String nombre = (String) table.getValueAt(
+							table.getSelectedRow(), 1);
+					String descripcion = (String) table.getValueAt(
+							table.getSelectedRow(), 2);
+					VentCompra User = null;
+					try {
+						User = new VentCompra(nombre, descripcion);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					User.getFrame().setVisible(true);
+					frame.dispose();
+
+				}
+			}
+		});
 		ButtonComprar.setBackground(Color.YELLOW);
 		ButtonComprar.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
 		ButtonComprar.setBounds(147, 471, 122, 39);
@@ -176,7 +215,7 @@ public class VentEvent {
 		frame.getContentPane().add(scrollPane);
 
 		table = new JTable();
-		
+
 		table.setShowVerticalLines(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
@@ -201,7 +240,7 @@ public class VentEvent {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet rs = conexion
-				.getQuery("select nombreevento as \"Nombre\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos");
+				.getQuery("select nombreevento as \"Nombre\", descripcion as \"Descripcion\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos");
 
 		table.setModel(DbUtils.resultSetToTableModel(rs));
 
