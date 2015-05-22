@@ -133,13 +133,12 @@ public class VentUsuario {
 		});
 		
 	
-		
-		buttonHome.setIcon(new ImageIcon("C:\\Users\\Asus\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\nueva home.png"));
-		buttonHome.setBounds(369, 53, 55, 43);
 		buttonHome.setBorder(null);
 		buttonHome.setOpaque(false);
 		buttonHome.setContentAreaFilled(false);
 		buttonHome.setBorderPainted(false);
+		buttonHome.setIcon(new ImageIcon("C:\\Users\\Asus\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\nueva home.png"));
+		buttonHome.setBounds(369, 53, 55, 43);
 		frame.getContentPane().add(buttonHome);
 		
 		JPanel panel_1 = new JPanel();
