@@ -64,14 +64,11 @@ CREATE TABLE entrada (
 );
 
 CREATE TABLE ofertas (
-	IDOfertas integer NOT NULL,
-	IDEvento integer NOT NULL,
+	IDOfertas SERIAL,
 	Puntos integer NOT NULL,
-	FechaInicio date NOT NULL,
-	FechaFin date NOT NULL,
+	Descripcion varchar(30) NOT NULL,
 	Descuento decimal DEFAULT NULL,
-	PRIMARY KEY (IDOfertas),
-	CONSTRAINT ofertas_IDEVENTO_FK FOREIGN KEY (IDEvento) REFERENCES eventos (IDEvento)
+	PRIMARY KEY (IDOfertas)
 );
 
 CREATE TABLE compras (

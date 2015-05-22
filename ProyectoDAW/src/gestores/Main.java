@@ -10,6 +10,7 @@ import entidades.Entrada;
 import gestores.ConversorXML;
 import entidades.Cliente;
 import entidades.Evento;
+import entidades.Oferta;
 
 
 public class Main {
@@ -71,9 +72,13 @@ public class Main {
 		Evento evento2 = new Evento("Unodostres",
 				"Festival del mal", "Muchos", "Lepe", 666, 0, "Sangre", 20,
 				"2016-6-6", "Sabado", "6:06");
-		//GestorEvento.altaEvento(evento2);
+		GestorEvento.altaEvento(evento2);
 		
-		GestorEntrada.compraEntr("Unodostres", cliente2,"2334-2222-3423-43434"," VISA",  2);
-		//GestorEntrada.compraEntrNoReg("Unodostres", cliente, 1);
+//		GestorEntrada.compraEntr("Unodostres", cliente2,"2334-2222-3423-43434"," VISA",  1);
+//		GestorEntrada.compraEntrNoReg("Unodostres", cliente, 1);
+		Oferta oferta = new Oferta(1, "Descuento chachi", 10);
+		//GestorOferta.insertarOferta(oferta);
+		
+		GestorEntrada.compraEntrOferta("Unodostres", cliente2, "2334-2222-3423-43434"," VISA", 1, "Descuento chachi");
 	}
 }

@@ -1,13 +1,16 @@
 package gestores;
 
 import java.io.File;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
 import javax.xml.transform.TransformerException;
 
 import entidades.Entrada;
 import entidades.Evento;
 import entidades.Cliente;
+import entidades.Oferta;
 
 public class GestorEntrada {
 
@@ -22,11 +25,6 @@ public class GestorEntrada {
 			// datos con las entradas reservadas y los puntos acumulados.
 			actualBBDD(cliente, evento, numEnt);
 
-			// actualizar el precio si hay ofertas? if cliente.puntos > 5
-			// (oferta min), pero solo si quiere el cliente? ... y la oferta que
-			// quiera
-			// actualizar los datos del usuario con los puntos restantes.
-
 			// finalmente imprimira la entrada
 			generarEntrada(evento, cliente, numEnt);
 
@@ -37,9 +35,43 @@ public class GestorEntrada {
 
 	}
 
-	// public static void compraEntrOferta (String nomEvento, Cliente cliente,
-	// int numEnt){}
 	// compra con oferta
+	public static void compraEntrOferta(String nomEvento, Cliente cliente,
+			String numTar, String forPago, int numEnt, String descOferta) throws SQLException {
+
+		Evento evento = GestorEvento.obtenerEvento(nomEvento);
+		Oferta oferta = GestorOferta.getOferta(descOferta);
+		
+		float descuento = oferta.getDescuento();
+		// llamara a existePlazasDisponibles
+		if (existePlazasDisponibles(evento, numEnt)) {
+
+			
+			int puntOferta = oferta.getPuntos();
+			
+			if (comprobarPuntos(cliente, puntOferta)) {
+				// si quedan entradas, hara la compra y actualizara la base de
+				// datos con las entradas reservadas y los puntos acumulados.
+				actualBBDD(cliente, evento, numEnt);
+			
+			// actualizar los datos del usuario con los puntos restantes.
+			actualPuntosCliente(numEnt, cliente, puntOferta);
+
+			// finalmente imprimira la entrada
+			generarEntradaDesc(evento, cliente, numEnt, descuento);
+
+			// registrar la compra
+			GestorCompra.registrarCompra(evento, cliente, numTar, forPago,
+					numEnt);
+			} else {
+				JOptionPane.showMessageDialog(null,
+						"No hay puntos suficientes, se efectuara una compra sin la oferta.\n Gracias.",
+						"ERROR", JOptionPane.WARNING_MESSAGE);
+				compraEntr(nomEvento, cliente, numTar, forPago, numEnt);
+			}
+		}
+
+	}
 
 	public static void compraEntrNoReg(String nomEvento, Cliente cliente,
 			int numEnt) throws SQLException {
@@ -72,6 +104,29 @@ public class GestorEntrada {
 			Entrada e = new Entrada(ultimoID++, cliente.getDNI(),
 					evento.getNombre(), evento.toStringEntrada(evento),
 					evento.getTipoEvento(), evento.getPrecio(),
+					cliente.toStringEntrada(cliente));
+			imprimirEntrada(e, cliente, evento, i);
+		}
+
+	}
+
+	public static void generarEntradaDesc(Evento evento, Cliente cliente, int numEnt, float desc)
+			throws SQLException {
+
+		evento = GestorEvento.obtenerEvento(evento.getNombre());
+		int ultimoID = evento.getEntrReservadas() - numEnt;
+		
+		// calcular descuento here
+		float precioNew = 0;
+		precioNew = evento.getPrecio() - (evento.getPrecio()*(desc/100));
+
+		for (int i = 1; i <= numEnt; i++) {
+			// id buscar el num max reservada e imprimir el num de entradas con
+			// el nuevo id
+
+			Entrada e = new Entrada(ultimoID++, cliente.getDNI(),
+					evento.getNombre(), evento.toStringEntrada(evento),
+					evento.getTipoEvento(), precioNew,
 					cliente.toStringEntrada(cliente));
 			imprimirEntrada(e, cliente, evento, i);
 		}
@@ -128,7 +183,7 @@ public class GestorEntrada {
 		conexion.setQuery("UPDATE clickntick.eventos SET EntradasReservadas = "
 				+ i + " WHERE NombreEvento = '" + ev.getNombre() + "';");
 
-		conexion.setQuery("UPDATE clickntick.clientes SET Puntos = "
+		conexion.setQuery("UPDATE clickntick.clientes SET puntos = "
 				+ nuevPuntos + " WHERE Usuario = '" + cl.getUsuario() + "';");
 
 	}
@@ -147,20 +202,38 @@ public class GestorEntrada {
 	}
 
 	// resta los puntos que ha usado a los que ya habian.
-	private static void actualPuntosCliente(int numEnt, Cliente cl) {
+	private static void actualPuntosCliente(int numEnt, Cliente cl, int puntOferta) throws SQLException {
 
 		int i = 0;
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		cl = Cliente.getInstance();
-		int antPuntos = cl.getPuntos();
+		int antPuntos = Cliente.getPuntosBBDD(cl.getDNI());
 
-		i = antPuntos - (numEnt * 5);
-		conexion.setQuery("UPDATE clickntick.clientes SET Puntos = " + i
+		i = antPuntos - puntOferta;
+		conexion.setQuery("UPDATE clickntick.clientes SET puntos = " + i
 				+ " WHERE Usuario = '" + cl.getUsuario() + "';");
 
 	}
 
-	public static void actualizarPrecio() {
+	private static boolean comprobarPuntos(Cliente cliente, int puntOferta) throws SQLException {
+		ConexionDB conexion = ConexionDB.getConexionDB();
+		cliente = Cliente.getInstance();
+		ResultSet rs = null;
+		boolean aux = false;
+		int i = 0;
+		
+		rs = conexion.getQuery("SELECT puntos FROM clickntick.clientes WHERE Usuario = '" + cliente.getUsuario() + "';");
+		
+		if (rs.next()) {
+			i = rs.getInt("puntos");
+		}
+		
+		if (i > puntOferta) {
+			aux = true;
+		}
+		
+		return aux;
+		
 	}
 
 }
