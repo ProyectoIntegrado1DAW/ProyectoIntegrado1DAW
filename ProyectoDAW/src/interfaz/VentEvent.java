@@ -123,10 +123,10 @@ public class VentEvent {
 						table.setModel(DbUtils.resultSetToTableModel(rs));
 						
 						eventos=new ArrayList<Evento>();
-						while(rs.next()){
-							Evento e=new Evento(rs.getString());
-							eventos.add();
-						}
+//						while(rs.next()){
+//							Evento e=new Evento(rs.getString());
+//							eventos.add();
+//						}
 
 					} else {
 

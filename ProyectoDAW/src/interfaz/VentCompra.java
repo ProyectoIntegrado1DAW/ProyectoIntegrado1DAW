@@ -69,9 +69,16 @@ public class VentCompra {
 	 * Create the application.
 	 * @throws SQLException 
 	 */
-	public VentCompra(String nombreEvento, String descripcion) throws SQLException {
+	public VentCompra() throws SQLException {
 		initialize();
+
+	}
+	
+	public VentCompra(String nombreEvento, String descripcion) throws SQLException {
+		
 		this.nombreEvento = nombreEvento;
+		this.descripcion = descripcion;
+		initialize();
 	}
 
 	/**

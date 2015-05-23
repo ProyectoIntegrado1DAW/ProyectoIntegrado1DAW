@@ -11,7 +11,7 @@ public class ConexionDB {
 	private String _usuario = "postgres";
 	private String _pwd = "123";
 	private static String _bd = "clickntick";
-	static String _url = "jdbc:postgresql://localhost:5433/" + _bd;
+	static String _url = "jdbc:postgresql://localhost:5432/" + _bd;
 	private Connection conn = null;
 	// modo singleton
 	private static ConexionDB instance = null; 
