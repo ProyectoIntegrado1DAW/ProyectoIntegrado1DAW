@@ -61,7 +61,7 @@ public class VentEvent {
 	private JFrame frame;
 	private JTextField textField;
 	private JTable table;
-	
+
 	private ArrayList<Evento> eventos;
 
 	/**
@@ -121,12 +121,12 @@ public class VentEvent {
 										+ nombreEvento + "%'");
 
 						table.setModel(DbUtils.resultSetToTableModel(rs));
-						
-						eventos=new ArrayList<Evento>();
-//						while(rs.next()){
-//							Evento e=new Evento(rs.getString());
-//							eventos.add();
-//						}
+
+						eventos = new ArrayList<Evento>();
+						// while(rs.next()){
+						// Evento e=new Evento(rs.getString());
+						// eventos.add();
+						// }
 
 					} else {
 
@@ -185,11 +185,11 @@ public class VentEvent {
 							"ERROR", JOptionPane.WARNING_MESSAGE);
 
 				} else {
-					
+
 					String nombre = (String) table.getValueAt(
-							table.getSelectedRow(), 1);
+							table.getSelectedRow(), 0);
 					String descripcion = (String) table.getValueAt(
-							table.getSelectedRow(), 2);
+							table.getSelectedRow(), 1);
 					VentCompra User = null;
 					try {
 						User = new VentCompra(nombre, descripcion);
