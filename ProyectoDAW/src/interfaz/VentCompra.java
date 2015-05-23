@@ -87,7 +87,7 @@ public class VentCompra {
 	 */
 	private void initialize() throws SQLException {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 451, 580);
+		frame.setBounds(100, 100, 451, 546);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -95,12 +95,15 @@ public class VentCompra {
 		panel.setBackground(Color.YELLOW);
 		panel.setBounds(0, 0, 435, 50);
 		frame.getContentPane().add(panel);
+		panel.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(202, 24, 0, 0);
 		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
 		panel.add(lblNewLabel_1);
 		
 		JButton buttonEvent = new JButton("");
+		buttonEvent.setBounds(282, 24, 1, 1);
 		buttonEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
@@ -116,6 +119,11 @@ public class VentCompra {
 		
 		Evento ev = getEvent(nombreEvento);
 		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBounds(177, 0, 70, 50);
+		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\icons.jpg"));
+		panel.add(lblNewLabel_2);
+		
 		buttonEvent.setBorder(null);
 		buttonEvent.setOpaque(false);
 		buttonEvent.setContentAreaFilled(false);
@@ -124,8 +132,24 @@ public class VentCompra {
 		buttonEvent.setIcon(new ImageIcon("C:\\Users\\Asus\\Desktop\\fotos proyecto\\nuevas fotos\\home.png"));
 		panel.add(buttonEvent);
 		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setForeground(Color.YELLOW);
+		btnNewButton.setBackground(Color.YELLOW);
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				VentEvent window = new VentEvent();
+				window.getFrame().setVisible(true);
+				frame.dispose();
+				
+			}
+		});
+		btnNewButton.setBounds(10, 0, 70, 50);
+		panel.add(btnNewButton);
+		
 		JLabel lblImagenEvento = new JLabel();
-		lblImagenEvento.setIcon(new ImageIcon("C:\\Users\\dai\\Desktop\\vinarock_300x300.png"));
+		lblImagenEvento.setIcon(new ImageIcon("C:\\Users\\Linkerk\\Pictures\\d6621d28c5b48c162a68427ca5db4296.png"));
 		lblImagenEvento.setBackground(Color.GRAY);
 		lblImagenEvento.setForeground(Color.BLACK);
 		lblImagenEvento.setHorizontalAlignment(SwingConstants.CENTER);
@@ -148,13 +172,13 @@ public class VentCompra {
 		frame.getContentPane().add(areaInfo);
 		
 		JButton buttonFacebook = new JButton("");
-		buttonFacebook.setIcon(new ImageIcon("C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\face.png"));
+		buttonFacebook.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\face.png"));
 		buttonFacebook.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
 		buttonFacebook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		buttonFacebook.setBounds(300, 487, 48, 43);
+		buttonFacebook.setBounds(313, 343, 48, 43);
 		buttonFacebook.setBorder(null);
 		buttonFacebook.setOpaque(false);
 		buttonFacebook.setContentAreaFilled(false);
@@ -174,74 +198,45 @@ public class VentCompra {
 		buttonComprar.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		buttonComprar.setBackground(Color.YELLOW);
 		buttonComprar.setForeground(Color.BLACK);
-		buttonComprar.setBounds(135, 487, 129, 32);
+		buttonComprar.setBounds(138, 451, 129, 45);
 		frame.getContentPane().add(buttonComprar);
 		
-		JLabel lblNewLabel = new JLabel("Elige la oferta");
+		JLabel lblNewLabel = new JLabel("Elige la oferta:");
 		lblNewLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
-		lblNewLabel.setBounds(10, 320, 118, 23);
+		lblNewLabel.setBounds(20, 330, 118, 23);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton buttonBuscar = new JButton("");
-		buttonBuscar.setIcon(new ImageIcon("C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\lupa1.png"));
-		buttonBuscar.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				Connection con = null;
-				try{
-					ConexionDB conexion = ConexionDB.getConexionDB();
-					
-					ResultSet rs = conexion.getQuery("select puntos as \"Coste:\", descuento as \"Descuento:\" from clickntick.ofertas");
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-				
-				}catch (Exception e1){
-					
-				}finally{
-					
-					try{
-						if(con != null)con.close();
-					}catch(Exception ex){}
-				}
-			}
-		});
-		
-		
-		buttonBuscar.setBounds(10, 348, 54, 43);
-		//desde aqui esto sirbe para que los bordes de los botones no aparezcan
-		buttonBuscar.setBorder(null);
-		buttonBuscar.setOpaque(false);
-		buttonBuscar.setContentAreaFilled(false);
-		buttonBuscar.setBorderPainted(false);
-		//asta aqui 
-		frame.getContentPane().add(buttonBuscar);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(62, 387, 192, 76);
+		scrollPane.setBounds(20, 364, 260, 76);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
 		textField = new JTextField();
-		textField.setBounds(358, 395, 32, 23);
+		textField.setBounds(358, 417, 32, 23);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblCantidad = new JLabel("Cantidad");
 		lblCantidad.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
-		lblCantidad.setBounds(266, 395, 82, 23);
+		lblCantidad.setBounds(290, 417, 82, 23);
 		frame.getContentPane().add(lblCantidad);
 		
 		JButton buttontwitter = new JButton("");
-		buttontwitter.setIcon(new ImageIcon("C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\twit.png"));
-		buttontwitter.setBounds(361, 487, 48, 43);
-		//desde aqui esto sirbe para que los bordes de los botones no aparezcan
+		buttontwitter.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\twit.png"));
+		buttontwitter.setBounds(358, 343, 48, 43);
+		//desde aqui esto sirve para que los bordes de los botones no aparezcan
 		buttontwitter.setBorder(null);
 		buttontwitter.setOpaque(false);
 		buttontwitter.setContentAreaFilled(false);
 		buttontwitter.setBorderPainted(false);
-		//asta aqui 
+		//hasta aqui 
 		frame.getContentPane().add(buttontwitter);
 		
+		ConexionDB conexion = ConexionDB.getConexionDB();
+		ResultSet rs = conexion.getQuery("select puntos as \"Coste:\", descuento as \"Descuento:\" from clickntick.ofertas");
+		table.setModel(DbUtils.resultSetToTableModel(rs));
 	
 	}
 	
@@ -256,5 +251,4 @@ public class VentCompra {
 	public JFrame getFrame(){
 		return frame;
 	}
-	
 }
