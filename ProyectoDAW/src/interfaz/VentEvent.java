@@ -237,6 +237,26 @@ public class VentEvent {
 				"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
 		label.setBounds(166, 9, 116, 28);
 		panel.add(label);
+		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBorder(null);
+		btnNewButton_1.setOpaque(false);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.setBackground(Color.YELLOW);
+		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\bus.png"));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				VentUsuario User = new VentUsuario();
+				User.getFrame().setVisible(true);
+				frame.dispose();
+				
+			}
+		});
+		btnNewButton_1.setBounds(370, 0, 55, 50);
+		panel.add(btnNewButton_1);
+		
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet rs = conexion

@@ -39,6 +39,9 @@ import javax.swing.JComboBox;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.ImageIcon;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class VentCompra {
 
@@ -97,15 +100,15 @@ public class VentCompra {
 		if (Desktop.isDesktopSupported()) {
 			try {
 				Desktop.getDesktop().browse(uri);
-			} catch (IOException e) { /* TODO: error handling */
+			} catch (IOException e) {
 			}
-		} else { /* TODO: error handling */
+		} else {
 		}
 	}
 
 	private void initialize() throws SQLException {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 451, 546);
+		frame.setBounds(100, 100, 451, 565);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -157,7 +160,10 @@ public class VentCompra {
 		panel.add(buttonEvent);
 
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setForeground(Color.YELLOW);
+		btnNewButton.setBorder(null);
+		btnNewButton.setOpaque(false);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
 		btnNewButton.setBackground(Color.YELLOW);
 		btnNewButton
 				.setIcon(new ImageIcon(
@@ -173,6 +179,25 @@ public class VentCompra {
 		});
 		btnNewButton.setBounds(10, 0, 70, 50);
 		panel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBorder(null);
+		btnNewButton_1.setOpaque(false);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.setBackground(Color.YELLOW);
+		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\bus.png"));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				VentUsuario User = new VentUsuario();
+				User.getFrame().setVisible(true);
+				frame.dispose();
+				
+			}
+		});
+		btnNewButton_1.setBounds(370, 0, 55, 50);
+		panel.add(btnNewButton_1);
 
 		JLabel lblImagenEvento = new JLabel();
 		lblImagenEvento

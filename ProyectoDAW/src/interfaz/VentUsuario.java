@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 
 import java.awt.Font;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
@@ -23,9 +24,12 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
+
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+
+import entidades.Cliente;
 
 public class VentUsuario {
 
@@ -101,6 +105,21 @@ public class VentUsuario {
 		lblNewLabel_2.setForeground(Color.GRAY);
 		
 		JButton buttonCerrar = new JButton("Cerrar sesi\u00F3n");
+		buttonCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Cliente.setInstanceOff();
+				
+				JOptionPane.showMessageDialog(null,
+						"Su sesión ha sido cerrada.", "Gracias",
+						JOptionPane.INFORMATION_MESSAGE);
+				
+				VentPrincipal User = new VentPrincipal();
+				User.getFrame().setVisible(true);
+				frame.dispose();
+				
+			}
+		});
 		buttonCerrar.setFont(new Font("Trebuchet MS", Font.PLAIN, 11));
 		buttonCerrar.setHorizontalAlignment(SwingConstants.LEFT);
 		buttonCerrar.setBounds(88, 462, 117, 23);
