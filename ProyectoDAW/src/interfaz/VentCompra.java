@@ -235,7 +235,7 @@ public class VentCompra {
 		frame.getContentPane().add(buttontwitter);
 		
 		ConexionDB conexion = ConexionDB.getConexionDB();
-		ResultSet rs = conexion.getQuery("select puntos as \"Coste:\", descuento as \"Descuento:\" from clickntick.ofertas");
+		ResultSet rs = conexion.getQuery("select descripcion as \"Ofertas\", puntos as \"Coste:\", descuento as \"Descuento:\" from clickntick.ofertas");
 		table.setModel(DbUtils.resultSetToTableModel(rs));
 	
 	}
