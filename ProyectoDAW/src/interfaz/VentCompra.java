@@ -4,6 +4,7 @@ import entidades.Evento;
 import gestores.ConexionDB;
 import gestores.GestorEvento;
 
+import java.awt.Desktop;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -23,6 +24,9 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -45,7 +49,6 @@ public class VentCompra {
 	private String nombreEvento;
 	private String descripcion;
 
-
 	/**
 	 * Launch the application.
 	 */
@@ -55,8 +58,9 @@ public class VentCompra {
 				try {
 					String nombreEvento = null;
 					String descripcion = null;
-					
-					VentCompra window = new VentCompra(nombreEvento, descripcion);
+
+					VentCompra window = new VentCompra(nombreEvento,
+							descripcion);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,15 +71,17 @@ public class VentCompra {
 
 	/**
 	 * Create the application.
-	 * @throws SQLException 
+	 * 
+	 * @throws SQLException
 	 */
 	public VentCompra() throws SQLException {
 		initialize();
 
 	}
-	
-	public VentCompra(String nombreEvento, String descripcion) throws SQLException {
-		
+
+	public VentCompra(String nombreEvento, String descripcion)
+			throws SQLException {
+
 		this.nombreEvento = nombreEvento;
 		this.descripcion = descripcion;
 		initialize();
@@ -83,73 +89,95 @@ public class VentCompra {
 
 	/**
 	 * Initialize the contents of the frame.
-	 * @throws SQLException 
+	 * 
+	 * @throws SQLException
 	 */
+
+	private static void open(URI uri) {
+		if (Desktop.isDesktopSupported()) {
+			try {
+				Desktop.getDesktop().browse(uri);
+			} catch (IOException e) { /* TODO: error handling */
+			}
+		} else { /* TODO: error handling */
+		}
+	}
+
 	private void initialize() throws SQLException {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 451, 546);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.YELLOW);
 		panel.setBounds(0, 0, 435, 50);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(202, 24, 0, 0);
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
+		lblNewLabel_1
+				.setIcon(new ImageIcon(
+						"C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
 		panel.add(lblNewLabel_1);
-		
+
 		JButton buttonEvent = new JButton("");
 		buttonEvent.setBounds(282, 24, 1, 1);
 		buttonEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-					try {
-						VentEvent Evento = new VentEvent();
-						Evento.getFrame().setVisible(true);
-						frame.dispose();
-					} catch (Exception e2){
-						e2.printStackTrace();
-					}
+
+				try {
+					VentEvent Evento = new VentEvent();
+					Evento.getFrame().setVisible(true);
+					frame.dispose();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
 			}
 		});
-		
+
 		Evento ev = getEvent(nombreEvento);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(177, 0, 70, 50);
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\icons.jpg"));
+		lblNewLabel_2
+				.setIcon(new ImageIcon(
+						"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\icons.jpg"));
 		panel.add(lblNewLabel_2);
-		
+
 		buttonEvent.setBorder(null);
 		buttonEvent.setOpaque(false);
 		buttonEvent.setContentAreaFilled(false);
 		buttonEvent.setBorderPainted(false);
 		buttonEvent.setBackground(Color.YELLOW);
-		buttonEvent.setIcon(new ImageIcon("C:\\Users\\Asus\\Desktop\\fotos proyecto\\nuevas fotos\\home.png"));
+		buttonEvent
+				.setIcon(new ImageIcon(
+						"C:\\Users\\Asus\\Desktop\\fotos proyecto\\nuevas fotos\\home.png"));
 		panel.add(buttonEvent);
-		
+
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setForeground(Color.YELLOW);
 		btnNewButton.setBackground(Color.YELLOW);
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
+		btnNewButton
+				.setIcon(new ImageIcon(
+						"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				VentEvent window = new VentEvent();
 				window.getFrame().setVisible(true);
 				frame.dispose();
-				
+
 			}
 		});
 		btnNewButton.setBounds(10, 0, 70, 50);
 		panel.add(btnNewButton);
-		
+
 		JLabel lblImagenEvento = new JLabel();
-		lblImagenEvento.setIcon(new ImageIcon("C:\\Users\\Linkerk\\Pictures\\d6621d28c5b48c162a68427ca5db4296.png"));
+		lblImagenEvento
+				.setIcon(new ImageIcon(
+						"C:\\Users\\Linkerk\\Pictures\\d6621d28c5b48c162a68427ca5db4296.png"));
 		lblImagenEvento.setBackground(Color.GRAY);
 		lblImagenEvento.setForeground(Color.BLACK);
 		lblImagenEvento.setHorizontalAlignment(SwingConstants.CENTER);
@@ -163,19 +191,33 @@ public class VentCompra {
 		textTitulo.setBackground(Color.DARK_GRAY);
 		textTitulo.setBounds(37, 174, 364, 23);
 		frame.getContentPane().add(textTitulo);
-		
+
 		JTextArea areaInfo = new JTextArea(descripcion);
 		areaInfo.setEditable(false);
 		areaInfo.setForeground(Color.WHITE);
 		areaInfo.setBackground(Color.GRAY);
 		areaInfo.setBounds(37, 208, 324, 101);
 		frame.getContentPane().add(areaInfo);
-		
+
 		JButton buttonFacebook = new JButton("");
-		buttonFacebook.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\face.png"));
+		buttonFacebook
+				.setIcon(new ImageIcon(
+						"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\face.png"));
 		buttonFacebook.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
 		buttonFacebook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
+				URI uri = null;
+				try {
+					uri = new URI(
+							"https://www.facebook.com/pages/Click-n-Tick/1586975411580100");
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				open(uri);
+
 			}
 		});
 		buttonFacebook.setBounds(313, 343, 48, 43);
@@ -185,14 +227,14 @@ public class VentCompra {
 		buttonFacebook.setBorderPainted(false);
 		//
 		frame.getContentPane().add(buttonFacebook);
-		
+
 		JButton buttonComprar = new JButton("COMPRAR");
 		buttonComprar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
-				//table.getValueAt(table.getSelectedRow(), column);//poder seleccionar eventos
-				
+
+				// table.getValueAt(table.getSelectedRow(), column);//poder
+				// seleccionar eventos
+
 			}
 		});
 		buttonComprar.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
@@ -200,55 +242,73 @@ public class VentCompra {
 		buttonComprar.setForeground(Color.BLACK);
 		buttonComprar.setBounds(138, 451, 129, 45);
 		frame.getContentPane().add(buttonComprar);
-		
+
 		JLabel lblNewLabel = new JLabel("Elige la oferta:");
 		lblNewLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
 		lblNewLabel.setBounds(20, 330, 118, 23);
 		frame.getContentPane().add(lblNewLabel);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(20, 364, 260, 76);
 		frame.getContentPane().add(scrollPane);
-		
+
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		
+
 		textField = new JTextField();
 		textField.setBounds(358, 417, 32, 23);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
-		
+
 		JLabel lblCantidad = new JLabel("Cantidad");
 		lblCantidad.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
 		lblCantidad.setBounds(290, 417, 82, 23);
 		frame.getContentPane().add(lblCantidad);
-		
+
 		JButton buttontwitter = new JButton("");
-		buttontwitter.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\twit.png"));
+		buttontwitter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				URI uri = null;
+				try {
+					uri = new URI("https://twitter.com/ClicknTick");
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				open(uri);
+
+			}
+		});
+		buttontwitter
+				.setIcon(new ImageIcon(
+						"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\twit.png"));
 		buttontwitter.setBounds(358, 343, 48, 43);
-		//desde aqui esto sirve para que los bordes de los botones no aparezcan
+		// desde aqui esto sirve para que los bordes de los botones no aparezcan
 		buttontwitter.setBorder(null);
 		buttontwitter.setOpaque(false);
 		buttontwitter.setContentAreaFilled(false);
 		buttontwitter.setBorderPainted(false);
-		//hasta aqui 
+		// hasta aqui
 		frame.getContentPane().add(buttontwitter);
-		
+
 		ConexionDB conexion = ConexionDB.getConexionDB();
-		ResultSet rs = conexion.getQuery("select descripcion as \"Ofertas\", puntos as \"Coste:\", descuento as \"Descuento:\" from clickntick.ofertas");
+		ResultSet rs = conexion
+				.getQuery("select descripcion as \"Ofertas\", puntos as \"Coste:\", descuento as \"Descuento:\" from clickntick.ofertas");
 		table.setModel(DbUtils.resultSetToTableModel(rs));
-	
+
 	}
-	
+
 	private Evento getEvent(String nombreEvento) throws SQLException {
-		
+
 		Evento v = GestorEvento.obtenerEvento(nombreEvento);
-		
+
 		return v;
-		
+
 	}
-	
-	public JFrame getFrame(){
+
+	public JFrame getFrame() {
 		return frame;
 	}
 }
