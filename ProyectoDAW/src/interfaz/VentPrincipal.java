@@ -100,13 +100,8 @@ public class VentPrincipal {
 		btnGestor.addActionListener (new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				frame.setVisible(false);
-				try {
-					VentGestor gestor = new VentGestor();
-					gestor.getFrame().setVisible(true);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				VentLoginGestor gestor = new VentLoginGestor();
+				gestor.getFrame().setVisible(true);
 				
 			} }
 				);
