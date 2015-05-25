@@ -142,6 +142,13 @@ public class GestorUsuario {
 		return login;
 
 	}
+	
+	
+	public static void logOut(){
+		
+		Cliente.setInstanceOff();
+		
+	}
 
 	public static boolean logInGestor(String usuario, String pass)
 			throws SQLException {
@@ -155,7 +162,6 @@ public class GestorUsuario {
 						+ usuario + "'");
 
 		if (resultado != null) {
-			System.out.println("Encuentra el usuario siii");
 			while (resultado.next()) {
 				pas = resultado.getString("Password");
 			}
@@ -163,7 +169,6 @@ public class GestorUsuario {
 			if (pass.equals(pas)) {
 				login = true;
 				getGestor(usuario);
-				System.out.println("Logeado siii");
 			}
 		}
 
