@@ -177,17 +177,18 @@ public class VentGestorAnyadir extends JFrame {
 		mes = new JComboBox();
 		mes.setBounds(175, 175, 91, 20);
 		
-		mes.addItem("Enero");
-		mes.addItem("Febrero");
-		mes.addItem("Marzo");
-		mes.addItem("Abril");
-		mes.addItem("Mayo");
-		mes.addItem("Junio");
-		mes.addItem("Agosto");
-		mes.addItem("Septiembre");
-		mes.addItem("Octubre");
-		mes.addItem("Diciembre");
-		mes.addItem("Enero");
+		mes.addItem("1");
+		mes.addItem("2");
+		mes.addItem("3");
+		mes.addItem("4");
+		mes.addItem("5");
+		mes.addItem("6");
+		mes.addItem("7");
+		mes.addItem("8");
+		mes.addItem("9");
+		mes.addItem("10");
+		mes.addItem("11");
+		mes.addItem("12");
 		
 		JLabel lblMes = new JLabel("Mes:");
 		lblMes.setBounds(141, 178, 39, 14);
@@ -227,13 +228,14 @@ public class VentGestorAnyadir extends JFrame {
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener (new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				System.out.println(plazastxt);
-				System.out.println(reservadastxt);
+				
+				int entradasPlazas = (Integer) plazas.getValue();
+				int entradasReservadas = (Integer) reservadas.getValue();
+				
 				Evento evento = new Evento(txtNombre.getText(), (String) cmbTipo.getSelectedItem(), locales.getText(), ciudad.getText(), 
-						plazastxt, reservadastxt, descripcion.getText(), Integer.parseInt(precio.getText()),
-						dia.getText()+"/" + (String) mes.getSelectedItem()+"/" + anyo.getText(), "Lunes", "12:00");
-				//GestorEvento g2 = new GestorEvento();
-				//g2.addEvent(evento);
+						entradasPlazas, entradasReservadas, descripcion.getText(), Integer.parseInt(precio.getText()),
+						dia.getText()+"-" + (String) mes.getSelectedItem()+"-" + anyo.getText(), "Lunes", "12:00");
+				GestorEvento.altaEvento(evento);
 				try {
 					closeFrame(e);
 				} catch (SQLException e1) {
