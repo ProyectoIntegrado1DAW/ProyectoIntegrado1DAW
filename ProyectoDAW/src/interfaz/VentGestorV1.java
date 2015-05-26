@@ -2,7 +2,9 @@ package interfaz;
 
 import gestores.ConexionDB;
 import gestores.GestorEvento;
+import entidades.Cliente;
 import entidades.Evento;
+import entidades.Gestor;
 
 import java.awt.EventQueue;
 import java.awt.Window;
@@ -216,6 +218,26 @@ public class VentGestorV1 {
 		panel.setBackground(Color.YELLOW);
 		panel.setBounds(0, 0, 572, 50);
 		frame.getContentPane().add(panel);
+		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				VentPrincipal window = new VentPrincipal();
+				window.getFrame().setVisible(true);
+				frame.dispose();
+				Gestor.setInstance();
+				
+			}
+		});
+		button.setOpaque(false);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setBorder(null);
+		button.setBackground(Color.YELLOW);
+		button.setBounds(10, 0, 70, 50);
+		panel.add(button);
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet rs = conexion
