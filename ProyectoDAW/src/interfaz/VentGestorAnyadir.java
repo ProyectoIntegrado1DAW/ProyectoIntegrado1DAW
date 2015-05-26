@@ -1,4 +1,5 @@
 package interfaz;
+
 import entidades.Evento;
 import gestores.GestorEvento;
 
@@ -60,6 +61,7 @@ public class VentGestorAnyadir extends JFrame {
 	private JTextField precio;
 	private JTextArea descripcion;
 	private JComboBox mes, cmbTipo;
+
 	/**
 	 * Launch the application.
 	 */
@@ -80,35 +82,34 @@ public class VentGestorAnyadir extends JFrame {
 	 * Create the frame.
 	 */
 	public VentGestorAnyadir() {
-	//JFRAME
+		// JFRAME
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 430, 467);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
-	//NOMBRE
+
+		// NOMBRE
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(5, 27, 61, 14);
 
 		txtNombre = new JTextField();
 		txtNombre.setBounds(87, 24, 318, 20);
 		txtNombre.setColumns(10);
-		
-	//TIPO
+
+		// TIPO
 		JLabel lblTipo = new JLabel("Tipo:");
 		lblTipo.setBounds(5, 74, 39, 14);
 
 		cmbTipo = new JComboBox();
 		cmbTipo.setBounds(87, 71, 113, 20);
-		GestorEvento g1 = new GestorEvento();
-		ArrayList<String> tipos = g1.getArrayTipo();
-		
-		for(String tipo : tipos){
-			cmbTipo.addItem(tipo);
-		}
-		
-	//PLAZAS
+		cmbTipo.addItem("Festival");
+		cmbTipo.addItem("Opera");
+		cmbTipo.addItem("Concierto");
+		cmbTipo.addItem("Teatro");
+		cmbTipo.addItem("Cine");
+
+		// PLAZAS
 		JLabel lblPlazas = new JLabel("Plazas:");
 		lblPlazas.setBounds(212, 74, 54, 14);
 
@@ -118,43 +119,46 @@ public class VentGestorAnyadir extends JFrame {
 				null, new Integer(1)));
 		plazas.addChangeListener(new javax.swing.event.ChangeListener() {
 			Object lastValue;
-	        public void stateChanged(ChangeEvent evt) {
 
-	                if (lastValue != null && !plazas.getValue().equals(lastValue)) {
-	                   plazastxt=Integer.parseInt(lastValue.toString())+1;
-	                }
-	                lastValue = plazas.getValue();
-	        }
-	    });
+			public void stateChanged(ChangeEvent evt) {
 
-		//RESERVADAS
+				if (lastValue != null && !plazas.getValue().equals(lastValue)) {
+					plazastxt = Integer.parseInt(lastValue.toString()) + 1;
+				}
+				lastValue = plazas.getValue();
+			}
+		});
+
+		// RESERVADAS
 		JLabel lblReservadas = new JLabel("Reservadas:");
 		lblReservadas.setBounds(297, 74, 96, 14);
-		
+
 		reservadas = new JSpinner();
 		reservadas.setBounds(362, 71, 31, 20);
 		reservadas.setModel(new SpinnerNumberModel(new Integer(0), new Integer(
 				0), null, new Integer(1)));
-		
+
 		reservadas.addChangeListener(new javax.swing.event.ChangeListener() {
 			Object lastValue;
-	        public void stateChanged(ChangeEvent evt) {
 
-	                if (lastValue != null && !reservadas.getValue().equals(lastValue)) {
-	                   reservadastxt=Integer.parseInt(lastValue.toString())+1;
-	                }
-	                lastValue = reservadas.getValue();
-	        }
-	    });
-		
-	//LOCALES
-		locales=new JTextField();
+			public void stateChanged(ChangeEvent evt) {
+
+				if (lastValue != null
+						&& !reservadas.getValue().equals(lastValue)) {
+					reservadastxt = Integer.parseInt(lastValue.toString()) + 1;
+				}
+				lastValue = reservadas.getValue();
+			}
+		});
+
+		// LOCALES
+		locales = new JTextField();
 		locales.setBounds(87, 118, 126, 20);
 		locales.setColumns(10);
-		
+
 		JLabel lblCiudad = new JLabel("Ciudad:");
 		lblCiudad.setBounds(217, 121, 49, 14);
-	//CIUDAD
+		// CIUDAD
 		ciudad = new JTextField();
 		ciudad.setBounds(276, 118, 129, 20);
 		ciudad.setText("");
@@ -162,21 +166,21 @@ public class VentGestorAnyadir extends JFrame {
 
 		JLabel lblLocales = new JLabel("Locales:");
 		lblLocales.setBounds(5, 121, 61, 14);
-	
-	//DESCRIPCION
+
+		// DESCRIPCION
 		descripcion = new JTextArea();
 		descripcion.setBounds(15, 279, 385, 93);
 
 		JLabel lblDescripcin = new JLabel("Descripción:");
 		lblDescripcin.setBounds(5, 254, 79, 14);
 
-	//FECHA
+		// FECHA
 		JLabel lblDia = new JLabel("D\u00EDa:");
 		lblDia.setBounds(5, 178, 45, 14);
 
 		mes = new JComboBox();
 		mes.setBounds(175, 175, 91, 20);
-		
+
 		mes.addItem("1");
 		mes.addItem("2");
 		mes.addItem("3");
@@ -189,10 +193,10 @@ public class VentGestorAnyadir extends JFrame {
 		mes.addItem("10");
 		mes.addItem("11");
 		mes.addItem("12");
-		
+
 		JLabel lblMes = new JLabel("Mes:");
 		lblMes.setBounds(141, 178, 39, 14);
-		
+
 		JLabel lblAo = new JLabel("A\u00F1o:");
 		lblAo.setBounds(280, 178, 33, 14);
 
@@ -203,12 +207,12 @@ public class VentGestorAnyadir extends JFrame {
 		dia = new JTextField();
 		dia.setBounds(87, 175, 32, 20);
 		dia.setColumns(10);
-		
-	//BOTONES
+
+		// BOTONES
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(331, 390, 75, 23);
-		btnCancelar.addActionListener (new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
 					closeFrame(e);
 				} catch (SQLException e1) {
@@ -216,25 +220,28 @@ public class VentGestorAnyadir extends JFrame {
 					e1.printStackTrace();
 				}
 			}
-		private void closeFrame(ActionEvent e) throws SQLException{
-			setVisible(false);
-			VentGestor v1 = new VentGestor();
-			v1.getFrame().setVisible(true);
-		}
-		}
-		);
-			
-			
+
+			private void closeFrame(ActionEvent e) throws SQLException {
+				setVisible(false);
+				VentGestorV1 v1 = new VentGestorV1();
+				v1.getFrame().setVisible(true);
+			}
+		});
+
 		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.addActionListener (new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
 				int entradasPlazas = (Integer) plazas.getValue();
 				int entradasReservadas = (Integer) reservadas.getValue();
-				
-				Evento evento = new Evento(txtNombre.getText(), (String) cmbTipo.getSelectedItem(), locales.getText(), ciudad.getText(), 
-						entradasPlazas, entradasReservadas, descripcion.getText(), Integer.parseInt(precio.getText()),
-						dia.getText()+"-" + (String) mes.getSelectedItem()+"-" + anyo.getText(), "Lunes", "12:00");
+
+				Evento evento = new Evento(txtNombre.getText(),
+						(String) cmbTipo.getSelectedItem(), locales.getText(),
+						ciudad.getText(), entradasPlazas, entradasReservadas,
+						descripcion.getText(), Integer.parseInt(precio
+								.getText()), dia.getText() + "-"
+								+ (String) mes.getSelectedItem() + "-"
+								+ anyo.getText(), "Lunes", "12:00");
 				GestorEvento.altaEvento(evento);
 				try {
 					closeFrame(e);
@@ -242,13 +249,15 @@ public class VentGestorAnyadir extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-			}private void closeFrame(ActionEvent e) throws SQLException{
+
+			}
+
+			private void closeFrame(ActionEvent e) throws SQLException {
 				setVisible(false);
-				VentGestor v1 = new VentGestor();
+				VentGestorV1 v1 = new VentGestorV1();
 				v1.getFrame().setVisible(true);
-			}}
-			);
+			}
+		});
 		btnGuardar.setBounds(242, 390, 71, 23);
 
 		precio = new JTextField();
@@ -283,8 +292,8 @@ public class VentGestorAnyadir extends JFrame {
 		contentPane.add(precio);
 		contentPane.add(descripcion);
 	}
-	
-	public JFrame getFrame(){
+
+	public JFrame getFrame() {
 		return this;
 	}
 }

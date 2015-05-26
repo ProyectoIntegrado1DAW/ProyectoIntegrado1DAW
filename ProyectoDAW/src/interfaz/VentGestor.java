@@ -6,6 +6,7 @@ import gestores.GestorEvento;
 import java.awt.EventQueue;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JTree;
@@ -114,7 +115,9 @@ public class VentGestor implements TreeSelectionListener {
 				DefaultMutableTreeNode eventoSeleccionado = (DefaultMutableTreeNode) tree
 						.getSelectionPath().getLastPathComponent();
 
-				for (Evento ev : eventos) {
+				for (Iterator<Evento> iterator = eventos.iterator(); iterator
+						.hasNext();) {
+					Evento ev = iterator.next();
 					GestorEvento.bajaEvento(eventoSeleccionado.getUserObject().toString());
 					tree.revalidate();
 					tree.repaint();
@@ -151,10 +154,10 @@ public class VentGestor implements TreeSelectionListener {
 				}
 				ArrayList<String> tipos = g1.getArrayTipo();
 
-				VentGestorEditar ventanaGestor = new VentGestorEditar(
-						evSeleccionado);
-				ventanaGestor.getFrame().setVisible(true);
-				frame.setVisible(false);
+//				VentGestorEditar ventanaGestor = new VentGestorEditar(
+//						evSeleccionado);
+//				ventanaGestor.getFrame().setVisible(true);
+//				frame.setVisible(false);
 			}
 		});
 		frame.getContentPane().add(editar);

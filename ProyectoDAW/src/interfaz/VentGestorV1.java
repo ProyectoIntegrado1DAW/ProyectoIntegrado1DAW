@@ -1,6 +1,7 @@
 package interfaz;
 
 import gestores.ConexionDB;
+import gestores.GestorEvento;
 import entidades.Evento;
 
 import java.awt.EventQueue;
@@ -56,9 +57,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.CompoundBorder;
 import javax.swing.table.TableModel;
 
-public class VentEvent {
+public class VentGestorV1 {
 
-	JFrame frame;
+	private JFrame frame;
 	private JTextField textField;
 	private JTable table;
 
@@ -71,7 +72,7 @@ public class VentEvent {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentEvent window = new VentEvent();
+					VentGestorV1 window = new VentGestorV1();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -82,8 +83,10 @@ public class VentEvent {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @wbp.parser.entryPoint
 	 */
-	public VentEvent() {
+	public VentGestorV1() {
 		initialize();
 	}
 
@@ -92,7 +95,7 @@ public class VentEvent {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 581);
+		frame.setBounds(100, 100, 588, 396);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -117,7 +120,7 @@ public class VentEvent {
 						ConexionDB conexion = ConexionDB.getConexionDB();
 
 						ResultSet rs = conexion
-								.getQuery("select nombreevento as \"Nombre\", descripcion as \"Descripcion\",tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos WHERE nombreevento LIKE '%"
+								.getQuery("select nombreevento as \"Nombre\", descripcion as \"Descripcion\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", numentradas as \"Num. Entradas\",precio as \"Precio\" from clickntick.eventos WHERE nombreevento LIKE '%"
 										+ nombreEvento + "%'");
 
 						table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -133,7 +136,7 @@ public class VentEvent {
 						ConexionDB conexion = ConexionDB.getConexionDB();
 
 						ResultSet rs = conexion
-								.getQuery("select nombreevento as \"Nombre\", descripcion as \"Descripcion\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos WHERE nombreevento LIKE '"
+								.getQuery("select nombreevento as \"Nombre\", descripcion as \"Descripcion\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", numentradas as \"Num. Entradas\",precio as \"Precio\" from clickntick.eventos WHERE nombreevento LIKE '"
 										+ nombreEvento
 										+ "%' AND tipoevento = '" + tipo + "';");
 
@@ -175,43 +178,25 @@ public class VentEvent {
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 
-		JButton ButtonComprar = new JButton("COMPRAR");
-		ButtonComprar.addActionListener(new ActionListener() {
+		JButton BotonAnyadir = new JButton("A\u00F1adir");
+		BotonAnyadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				if (table.getSelectedRow() == -1) {
+				VentGestorAnyadir ventanaGestor = new VentGestorAnyadir();
+				ventanaGestor.getFrame().setVisible(true);
+				frame.setVisible(false);
 
-					JOptionPane.showMessageDialog(null, "Seleccione un evento",
-							"ERROR", JOptionPane.WARNING_MESSAGE);
-
-				} else {
-
-					String nombre = (String) table.getValueAt(
-							table.getSelectedRow(), 0);
-					String descripcion = (String) table.getValueAt(
-							table.getSelectedRow(), 1);
-					VentCompra User = null;
-					try {
-						User = new VentCompra(nombre, descripcion);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					User.getFrame().setVisible(true);
-					frame.dispose();
-
-				}
 			}
 		});
-		ButtonComprar.setBackground(Color.YELLOW);
-		ButtonComprar.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
-		ButtonComprar.setBounds(147, 471, 122, 39);
-		frame.getContentPane().add(ButtonComprar);
+		BotonAnyadir.setBackground(Color.YELLOW);
+		BotonAnyadir.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+		BotonAnyadir.setBounds(427, 152, 122, 39);
+		frame.getContentPane().add(BotonAnyadir);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportBorder(new EtchedBorder(EtchedBorder.LOWERED,
 				null, null));
-		scrollPane.setBounds(21, 152, 387, 308);
+		scrollPane.setBounds(21, 152, 387, 174);
 		frame.getContentPane().add(scrollPane);
 
 		table = new JTable();
@@ -229,40 +214,70 @@ public class VentEvent {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.YELLOW);
-		panel.setBounds(0, 0, 434, 50);
+		panel.setBounds(0, 0, 572, 50);
 		frame.getContentPane().add(panel);
-
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(
-				"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
-		label.setBounds(166, 9, 116, 28);
-		panel.add(label);
-		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setBorder(null);
-		btnNewButton_1.setOpaque(false);
-		btnNewButton_1.setContentAreaFilled(false);
-		btnNewButton_1.setBorderPainted(false);
-		btnNewButton_1.setBackground(Color.YELLOW);
-		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\bus.png"));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				VentUsuario User = new VentUsuario();
-				User.getFrame().setVisible(true);
-				frame.dispose();
-				
-			}
-		});
-		btnNewButton_1.setBounds(370, 0, 55, 50);
-		panel.add(btnNewButton_1);
-		
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet rs = conexion
-				.getQuery("select nombreevento as \"Nombre\", descripcion as \"Descripcion\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", precio as \"Precio\" from clickntick.eventos");
+				.getQuery("select nombreevento as \"Nombre\", descripcion as \"Descripcion\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", numentradas as \"Num. Entradas\",precio as \"Precio\" from clickntick.eventos");
 
 		table.setModel(DbUtils.resultSetToTableModel(rs));
+
+		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (table.getSelectedRow() == -1) {
+
+					JOptionPane.showMessageDialog(null, "Seleccione un evento",
+							"ERROR", JOptionPane.WARNING_MESSAGE);
+
+				} else {
+
+					String nombre = (String) table.getValueAt(
+							table.getSelectedRow(), 0);
+					String descripcion = (String) table.getValueAt(
+							table.getSelectedRow(), 1);
+					String tipo = (String) table.getValueAt(
+							table.getSelectedRow(), 2);
+					String ciudad = (String) table.getValueAt(
+							table.getSelectedRow(), 3);
+					int numEntradas = (Integer) table.getValueAt(
+							table.getSelectedRow(), 5);
+
+					// int numEntradasToInt = Integer.parseInt(numEntradas);
+
+					VentGestorEditar User = null;
+					User = new VentGestorEditar(nombre, descripcion, tipo,
+							numEntradas, ciudad);
+					User.getFrame().setVisible(true);
+					frame.setVisible(false);
+
+				}
+
+			}
+		});
+		btnEditar.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+		btnEditar.setBackground(Color.YELLOW);
+		btnEditar.setBounds(427, 218, 122, 39);
+		frame.getContentPane().add(btnEditar);
+
+		JButton btnQuitar = new JButton("Quitar");
+		btnQuitar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String nombre = (String) table.getValueAt(
+						table.getSelectedRow(), 0);
+				GestorEvento.bajaEvento(nombre);
+				ConexionDB conexion = ConexionDB.getConexionDB();
+				ResultSet rs = conexion
+						.getQuery("select nombreevento as \"Nombre\", descripcion as \"Descripcion\", tipoevento as \"Tipo\", ciudad as \"Ciudad\", fecha as \"Fecha\", numentradas as \"Num. Entradas\",precio as \"Precio\" from clickntick.eventos");
+
+			}
+		});
+		btnQuitar.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+		btnQuitar.setBackground(Color.YELLOW);
+		btnQuitar.setBounds(427, 287, 122, 39);
+		frame.getContentPane().add(btnQuitar);
 
 	}
 
