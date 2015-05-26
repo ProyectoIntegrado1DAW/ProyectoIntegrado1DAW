@@ -154,12 +154,12 @@ public class GestorEvento {
 		return eventos;
 	}
 
-	public static void bajaEvento(Evento evento) {
+	public static void bajaEvento(String string) {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 
 		conexion.setQuery("DELETE FROM clickntick.eventos where nombreevento = '"
-				+ evento.getNombre() + "'");
+				+ string + "'");
 
 	}
 
