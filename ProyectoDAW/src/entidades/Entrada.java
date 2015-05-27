@@ -3,7 +3,7 @@ package entidades;
 public class Entrada {
 
 	private int IDentrada;
-	//private int IDevento;
+	// private int IDevento;
 	private String DNI;
 	private String nombreEvento;
 	private String informacion; // evento.toString();
@@ -11,18 +11,30 @@ public class Entrada {
 	private float Precio;
 	private String datosCliente; // cliente.tostring
 
-	public Entrada(int IDentrada, String DNI,
-			String nombreEvento, String informacion, String tipoEntrada,
-			float Precio, String datosCliente) {
+	public Entrada(int IDentrada, String DNI, String nombreEvento,
+			String informacion, String tipoEntrada, float Precio,
+			String datosCliente) {
 
 		this.IDentrada = IDentrada;
-		//this.IDevento = IDevento;
+		// this.IDevento = IDevento;
 		this.DNI = DNI;
 		this.nombreEvento = nombreEvento;
 		this.informacion = informacion;
 		this.tipoEntrada = tipoEntrada;
 		this.Precio = Precio;
 		this.datosCliente = datosCliente;
+	}
+
+	public Entrada(int IDentrada, String nombreEvento, String informacion,
+			String tipoEntrada, float Precio, String datosCliente) {
+
+		this.IDentrada = IDentrada;
+		this.nombreEvento = nombreEvento;
+		this.informacion = informacion;
+		this.tipoEntrada = tipoEntrada;
+		this.Precio = Precio;
+		this.datosCliente = datosCliente;
+
 	}
 
 	public int getIDentrada() {
@@ -32,8 +44,6 @@ public class Entrada {
 	public void setIDentrada(int iDentrada) {
 		IDentrada = iDentrada;
 	}
-
-
 
 	public String getDNI() {
 		return DNI;
