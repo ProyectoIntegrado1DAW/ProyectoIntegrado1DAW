@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -40,6 +41,9 @@ public class VentGestorEditar extends JFrame {
 	private static String tipo;
 	private static int numEntradas;
 	private static String ciudadC;
+	private static int reservadas1;
+	private static int precio1;
+	private static String locales1;
 
 	private static Evento eventoEditar;
 
@@ -52,7 +56,8 @@ public class VentGestorEditar extends JFrame {
 			public void run() {
 				try {
 					VentGestorEditar frame = new VentGestorEditar(nombre,
-							descripcionC, tipo, numEntradas, ciudadC);
+							descripcionC, tipo, numEntradas, ciudadC, reservadas1,
+							precio1, locales1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,19 +68,28 @@ public class VentGestorEditar extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @param fecha
+	 * @param locales
+	 * @param precio
+	 * @param reservadas
 	 */
 	public VentGestorEditar(String nombre, String descripcion, String tipo,
-			int numEntradas, String ciudad) {
+			int numEntradas, String ciudad, int reservadas1, int precio1,
+			String locales1) {
 
 		this.nombre = nombre;
 		this.descripcionC = descripcion;
 		this.tipo = tipo;
 		this.numEntradas = numEntradas;
 		this.ciudadC = ciudad;
-
+		this.reservadas1 = reservadas1;
+		this.precio1 = precio1;
+		this.locales1 = locales1;
+		
 		// JFRAME
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 430, 467);
+		setBounds(100, 100, 450, 467);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -85,7 +99,7 @@ public class VentGestorEditar extends JFrame {
 		lblNombre.setBounds(5, 27, 61, 14);
 
 		txtNombre = new JTextField();
-		txtNombre.setBounds(87, 24, 318, 20);
+		txtNombre.setBounds(87, 24, 337, 20);
 		txtNombre.setColumns(10);
 		txtNombre.setText(nombre);
 
@@ -106,7 +120,7 @@ public class VentGestorEditar extends JFrame {
 		lblPlazas.setBounds(212, 74, 54, 14);
 
 		plazas = new JSpinner();
-		plazas.setBounds(256, 71, 31, 20);
+		plazas.setBounds(266, 71, 31, 20);
 		plazas.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0),
 				null, new Integer(1)));
 		plazas.setValue(numEntradas);
@@ -124,12 +138,14 @@ public class VentGestorEditar extends JFrame {
 
 		// RESERVADAS
 		JLabel lblReservadas = new JLabel("Reservadas:");
-		lblReservadas.setBounds(297, 74, 96, 14);
+		lblReservadas.setBounds(310, 74, 96, 14);
 
 		reservadas = new JSpinner();
-		reservadas.setBounds(362, 71, 31, 20);
+		reservadas.setBounds(393, 71, 31, 20);
 		reservadas.setModel(new SpinnerNumberModel(new Integer(0), new Integer(
 				0), null, new Integer(1)));
+		reservadas.setValue(reservadas1);
+
 		reservadas.addChangeListener(new javax.swing.event.ChangeListener() {
 			Object lastValue;
 
@@ -148,7 +164,7 @@ public class VentGestorEditar extends JFrame {
 		JLabel lblLocales = new JLabel("Locales:");
 		lblLocales.setBounds(5, 121, 61, 14);
 
-		locales = new JTextField();
+		locales = new JTextField(locales1);
 		locales.setBounds(87, 118, 126, 20);
 		locales.setColumns(10);
 
@@ -156,13 +172,13 @@ public class VentGestorEditar extends JFrame {
 		lblCiudad.setBounds(217, 121, 49, 14);
 		// CIUDAD
 		this.ciudad = new JTextField();
-		this.ciudad.setBounds(276, 118, 129, 20);
+		this.ciudad.setBounds(276, 118, 148, 20);
 		this.ciudad.setText(ciudad);
 		this.ciudad.setColumns(10);
 
 		// DESCRIPCION
 		this.descripcion = new JTextArea();
-		this.descripcion.setBounds(15, 279, 385, 93);
+		this.descripcion.setBounds(15, 279, 409, 93);
 		this.descripcion.setText(descripcion);
 		JLabel lblDescripcin = new JLabel("Descripción:");
 		lblDescripcin.setBounds(5, 254, 79, 14);
@@ -174,17 +190,18 @@ public class VentGestorEditar extends JFrame {
 		mes = new JComboBox();
 		mes.setBounds(175, 175, 91, 20);
 
-		mes.addItem("Enero");
-		mes.addItem("Febrero");
-		mes.addItem("Marzo");
-		mes.addItem("Abril");
-		mes.addItem("Mayo");
-		mes.addItem("Junio");
-		mes.addItem("Agosto");
-		mes.addItem("Septiembre");
-		mes.addItem("Octubre");
-		mes.addItem("Diciembre");
-		mes.addItem("Enero");
+		mes.addItem("1");
+		mes.addItem("2");
+		mes.addItem("3");
+		mes.addItem("4");
+		mes.addItem("5");
+		mes.addItem("6");
+		mes.addItem("7");
+		mes.addItem("8");
+		mes.addItem("9");
+		mes.addItem("10");
+		mes.addItem("11");
+		mes.addItem("12");
 
 		JLabel lblMes = new JLabel("Mes:");
 		lblMes.setBounds(141, 178, 39, 14);
@@ -193,12 +210,19 @@ public class VentGestorEditar extends JFrame {
 		lblAo.setBounds(280, 178, 33, 14);
 
 		anyo = new JTextField();
-		anyo.setBounds(326, 175, 79, 20);
+		anyo.setBounds(326, 175, 98, 20);
 		anyo.setColumns(10);
 
 		dia = new JTextField();
 		dia.setBounds(87, 175, 32, 20);
 		dia.setColumns(10);
+		
+		final JFormattedTextField precio = new JFormattedTextField (new Integer(precio1));
+		precio.setBounds(87, 216, 49, 20);
+		precio.setColumns(10);
+
+		JLabel lblPrecio = new JLabel("Precio:");
+		lblPrecio.setBounds(5, 216, 45, 14);
 
 		// BOTONES
 		JButton btnCancelar = new JButton("Cancelar");
@@ -263,12 +287,7 @@ public class VentGestorEditar extends JFrame {
 		});
 		btnGuardar.setBounds(242, 390, 71, 23);
 
-		precio = new JTextField();
-		precio.setBounds(87, 216, 49, 20);
-		precio.setColumns(10);
-
-		JLabel lblPrecio = new JLabel("Precio:");
-		lblPrecio.setBounds(5, 216, 45, 14);
+		
 		contentPane.setLayout(null);
 		contentPane.add(btnGuardar);
 		contentPane.add(btnCancelar);

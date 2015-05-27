@@ -42,7 +42,7 @@ CREATE TABLE eventos (
 	NumEntradas integer NOT NULL,
 	EntradasReservadas integer default NULL,
 	Descripcion varchar(100) default NULL,
-	Precio decimal NOT NULL,
+	Precio integer NOT NULL,
 	Fecha date NOT NULL,
 	DiaSemana varchar(15) NOT NULL,
 	Hora varchar(20) NOT NULL,
