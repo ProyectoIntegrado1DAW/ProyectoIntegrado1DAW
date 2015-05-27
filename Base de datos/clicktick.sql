@@ -49,20 +49,6 @@ CREATE TABLE eventos (
 	PRIMARY KEY (IDEvento)
 );
 
-CREATE TABLE entrada (
-	IDEntrada integer NOT NULL,
-	IDEvento integer NOT NULL,
-	DNI varchar(10) NOT NULL,
-	NombreEvento varchar(30) NOT NULL,
-	Informacion varchar(300) DEFAULT NULL,
-	TipoEntrada varchar(30) NOT NULL,
-	Precio decimal NOT NULL,
-	DatosClientes varchar(250) DEFAULT NULL,
-	PRIMARY KEY (IDEntrada),
-	CONSTRAINT entrada_IDEVENTO_FK FOREIGN KEY (IDEvento) REFERENCES eventos (IDEvento),
-	CONSTRAINT entrada_DNI_FK FOREIGN KEY (DNI) REFERENCES clientes (DNI)
-);
-
 CREATE TABLE ofertas (
 	IDOfertas SERIAL,
 	Puntos integer NOT NULL,
@@ -78,6 +64,6 @@ CREATE TABLE compras (
 	NumTarjeta varchar(20) NOT NULL,
 	FormaPago varchar(20) NOT NULL,
 	NumEntradas integer NOT NULL,
-	PRIMARY KEY (IDCompra)
+	PRIMARY KEY (IDCompra),
 	CONSTRAINT compra_DNI_FK FOREIGN KEY (DNI) REFERENCES clientes (DNI)
 );

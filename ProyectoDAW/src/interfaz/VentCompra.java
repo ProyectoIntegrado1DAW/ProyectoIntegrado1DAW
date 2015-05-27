@@ -1,5 +1,6 @@
 package interfaz;
 
+import entidades.Cliente;
 import entidades.Evento;
 import gestores.ConexionDB;
 import gestores.GestorEvento;
@@ -13,6 +14,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -42,6 +44,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JCheckBox;
 
 public class VentCompra {
 
@@ -179,21 +182,23 @@ public class VentCompra {
 		});
 		btnNewButton.setBounds(10, 0, 70, 50);
 		panel.add(btnNewButton);
-		
+
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setBorder(null);
 		btnNewButton_1.setOpaque(false);
 		btnNewButton_1.setContentAreaFilled(false);
 		btnNewButton_1.setBorderPainted(false);
 		btnNewButton_1.setBackground(Color.YELLOW);
-		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\bus.png"));
+		btnNewButton_1
+				.setIcon(new ImageIcon(
+						"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\bus.png"));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				VentUsuario User = new VentUsuario();
 				User.getFrame().setVisible(true);
 				frame.dispose();
-				
+
 			}
 		});
 		btnNewButton_1.setBounds(370, 0, 55, 50);
@@ -227,7 +232,7 @@ public class VentCompra {
 		JButton buttonFacebook = new JButton("");
 		buttonFacebook
 				.setIcon(new ImageIcon(
-						"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\face.png"));
+						"C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\face.png"));
 		buttonFacebook.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
 		buttonFacebook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -245,7 +250,7 @@ public class VentCompra {
 
 			}
 		});
-		buttonFacebook.setBounds(313, 343, 48, 43);
+		buttonFacebook.setBounds(313, 320, 48, 43);
 		buttonFacebook.setBorder(null);
 		buttonFacebook.setOpaque(false);
 		buttonFacebook.setContentAreaFilled(false);
@@ -253,20 +258,10 @@ public class VentCompra {
 		//
 		frame.getContentPane().add(buttonFacebook);
 
-		JButton buttonComprar = new JButton("COMPRAR");
-		buttonComprar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				// table.getValueAt(table.getSelectedRow(), column);//poder
-				// seleccionar eventos
-
-			}
-		});
-		buttonComprar.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		buttonComprar.setBackground(Color.YELLOW);
-		buttonComprar.setForeground(Color.BLACK);
-		buttonComprar.setBounds(138, 451, 129, 45);
-		frame.getContentPane().add(buttonComprar);
+		final JCheckBox chckbxComprarSinOferta = new JCheckBox(
+				"Comprar sin oferta");
+		chckbxComprarSinOferta.setBounds(286, 370, 115, 23);
+		frame.getContentPane().add(chckbxComprarSinOferta);
 
 		JLabel lblNewLabel = new JLabel("Elige la oferta:");
 		lblNewLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
@@ -280,7 +275,7 @@ public class VentCompra {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-		textField = new JTextField();
+		textField = new JTextField("1");
 		textField.setBounds(358, 417, 32, 23);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
@@ -289,6 +284,51 @@ public class VentCompra {
 		lblCantidad.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
 		lblCantidad.setBounds(290, 417, 82, 23);
 		frame.getContentPane().add(lblCantidad);
+
+		JButton buttonComprar = new JButton("COMPRAR");
+		buttonComprar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				// table.getValueAt(table.getSelectedRow(), column);//poder
+				// seleccionar eventos
+
+				Cliente cliente = Cliente.getInstance();
+
+				String numEntradas = textField.getText();
+				int numEntradasInt = Integer.parseInt(numEntradas);
+
+				if (!chckbxComprarSinOferta.isSelected()) {
+
+					if (table.getSelectedRow() == -1) {
+
+						JOptionPane.showMessageDialog(null,
+								"Seleccione un evento", "ERROR",
+								JOptionPane.WARNING_MESSAGE);
+
+					} else {
+
+						String descripcionOferta = (String) table.getValueAt(
+								table.getSelectedRow(), 0);
+						VentConfPago User = new VentConfPago(descripcionOferta,
+								nombreEvento, cliente, numEntradasInt);
+						User.getFrame().setVisible(true);
+						frame.dispose();
+
+					}
+				} else {
+					VentConfPago User = new VentConfPago(nombreEvento, cliente,
+							numEntradasInt);
+					User.getFrame().setVisible(true);
+					frame.dispose();
+				}
+
+			}
+		});
+		buttonComprar.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
+		buttonComprar.setBackground(Color.YELLOW);
+		buttonComprar.setForeground(Color.BLACK);
+		buttonComprar.setBounds(138, 451, 129, 45);
+		frame.getContentPane().add(buttonComprar);
 
 		JButton buttontwitter = new JButton("");
 		buttontwitter.addActionListener(new ActionListener() {
@@ -308,8 +348,8 @@ public class VentCompra {
 		});
 		buttontwitter
 				.setIcon(new ImageIcon(
-						"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\twit.png"));
-		buttontwitter.setBounds(358, 343, 48, 43);
+						"C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\twit.png"));
+		buttontwitter.setBounds(358, 320, 48, 43);
 		// desde aqui esto sirve para que los bordes de los botones no aparezcan
 		buttontwitter.setBorder(null);
 		buttontwitter.setOpaque(false);
