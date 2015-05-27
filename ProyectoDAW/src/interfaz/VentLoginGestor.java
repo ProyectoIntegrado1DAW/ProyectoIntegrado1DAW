@@ -118,7 +118,7 @@ public class VentLoginGestor {
 											JOptionPane.WARNING_MESSAGE);
 						} else {
 
-							VentGestor User = new VentGestor();
+							VentGestorV1 User = new VentGestorV1();
 							User.getFrame().setVisible(true);
 							frame.dispose();
 
