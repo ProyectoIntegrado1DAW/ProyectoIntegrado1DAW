@@ -336,8 +336,9 @@ public class VentCompra {
 
 					}
 				} else {
+					boolean ofertas = chckbxComprarSinOferta.isSelected();
 					VentConfPago User = new VentConfPago(nombreEvento, c,
-							numEntradasInt);
+							numEntradasInt, ofertas);
 					User.getFrame().setVisible(true);
 					frame.dispose();
 				}

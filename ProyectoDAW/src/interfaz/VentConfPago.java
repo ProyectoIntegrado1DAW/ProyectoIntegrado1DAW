@@ -36,9 +36,14 @@ public class VentConfPago {
 	private Cliente cliente;
 	private int numEntradas;
 	private Cliente c;
-
+	private static boolean conOferta;
+	private static boolean sinOferta;
+	private boolean sinRegNiOferta;
 	private JFrame frame;
+	private String[] vector;
+	
 	private JTextField textField;
+	
 
 	/**
 	 * Launch the application.
@@ -70,18 +75,32 @@ public class VentConfPago {
 		this.nombreEvento = nombreEvento;
 		this.cliente = cliente;
 		this.numEntradas = numEntradas;
+		VentConfPago.conOferta = true;
 		initialize();
 	}
 
 	// no se usa de momento
-	public VentConfPago(String nombreEvento, Cliente c, int numEntradas) {
+	public VentConfPago(String nombreEvento, String[] vector, int numEntradas) {
 		// TODO Auto-generated constructor stub
-		
+
+		this.nombreEvento = nombreEvento;
+		this.numEntradas = numEntradas;
+		VentConfPago.sinOferta = true;
+		this.vector = vector;
+		initialize();
+
+	}
+
+	public VentConfPago(String nombreEvento, Cliente c, int numEntradas,
+			boolean ofertas) {
+		// TODO Auto-generated constructor stub
+
+		this.sinRegNiOferta = ofertas;
 		this.nombreEvento = nombreEvento;
 		this.numEntradas = numEntradas;
 		this.c = c;
 		initialize();
-		
+
 	}
 
 	/**
@@ -112,31 +131,68 @@ public class VentConfPago {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-//				try {
-					int numTarjInt = 0;
-					String numTarj = textField.getText();
+				// try {
+				int numTarjInt = 0;
+				String numTarj = textField.getText();
 
-					numTarjInt = Integer.parseInt(numTarj);
-					String tipoTarjeta = (String) comboBox.getSelectedItem();
-					
-					System.out.println(tipoTarjeta);
-					
-					try {
-						GestorEntrada.compraEntrNoReg(nombreEvento, cliente, numTarj, tipoTarjeta, numEntradas);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+				numTarjInt = Integer.parseInt(numTarj);
+				String tipoTarjeta = (String) comboBox.getSelectedItem();
 
-//				} catch (Exception e) {
-//
-//					JOptionPane
-//							.showMessageDialog(
-//									null,
-//									"Introduzca algun numero de tarjeta correcto (solo numeros)",
-//									"ERROR", JOptionPane.WARNING_MESSAGE);
-//
-//				}
+				System.out.println(tipoTarjeta);
+
+				try {
+					System.out.println(sinRegNiOferta);
+					System.out.println(conOferta);
+					System.out.println(sinOferta);
+					System.out.println(c);
+					
+					if (c == null) {
+						String nombre = vector[0];
+						String apellidos = vector[0];
+						String correo = vector[0];
+						String telefono = vector[0];
+						
+						int telefonoInt = Integer.parseInt(telefono);
+						
+						Cliente u = Cliente.getInstanceNoReg(nombre, apellidos, correo, telefonoInt);
+						
+						System.out.println("Sin oferta ni registrado");
+						GestorEntrada.compraEntrNoReg(nombreEvento, u,
+								numTarj, tipoTarjeta, numEntradas);
+
+					} else
+
+					// sinOferta = false;
+
+					if (sinRegNiOferta) {
+						System.out.println("Sin oferta");
+
+						GestorEntrada.compraEntr(nombreEvento, cliente,
+								numTarj, tipoTarjeta, numEntradas);
+					} else
+
+					if (conOferta) {
+						System.out.println("CON OFERTA");
+
+						GestorEntrada.compraEntrOferta(nombreEvento, cliente,
+								numTarj, tipoTarjeta, numEntradas,
+								descripcionOferta);
+					}System.out.println("PENE");
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				// } catch (Exception e) {
+				//
+				// JOptionPane
+				// .showMessageDialog(
+				// null,
+				// "Introduzca algun numero de tarjeta correcto (solo numeros)",
+				// "ERROR", JOptionPane.WARNING_MESSAGE);
+				//
+				// }
 			}
 		});
 		btnConfirmar.setForeground(Color.BLACK);

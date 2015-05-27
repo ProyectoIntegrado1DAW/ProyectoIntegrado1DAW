@@ -137,21 +137,24 @@ public class VentCompraTicket {
 		buttonTicket.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
 		buttonTicket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				String nombre = textNombre.getText();
 				String apellido = textApellido.getText();
 				String correo = textCorreo.getText();
 				String telefono = textTelefono.getText();
-				
-				int telefonoInt = Integer.parseInt(telefono);
-				
-				Cliente c = Cliente.getInstanceNoReg(nombre,apellido,correo,telefonoInt);
-				
-				VentConfPago User = new VentConfPago(nombreEvento, c, numEntradas );
+
+				String vector[] = new String[3];
+
+				vector[0] = nombre;
+				vector[1] = apellido;
+				vector[2] = correo;
+				vector[3] = telefono;
+
+				VentConfPago User = new VentConfPago(nombreEvento, vector,
+						numEntradas);
 				User.getFrame().setVisible(true);
 				frame.dispose();
-				
-				
+
 			}
 		});
 		buttonTicket.setBounds(92, 297, 200, 50);
