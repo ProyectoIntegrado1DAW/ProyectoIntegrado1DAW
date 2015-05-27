@@ -17,10 +17,11 @@ public class GestorUsuario {
 	 * String email, String cliente, String password, String DNI
 	 */
 
-	private static void getCliente(String user) throws SQLException {
+	private static Cliente getCliente(String user) throws SQLException {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet resultado;
+		Cliente c = null;
 		String nombre;
 		String apellido;
 		String direccion;
@@ -52,9 +53,11 @@ public class GestorUsuario {
 			password = resultado.getString("Password");
 			DNI = resultado.getString("DNI");
 
-			Cliente.getInstance(DNI, usuario, password, nombre, apellido,
+		 c = Cliente.getInstance(DNI, usuario, password, nombre, apellido,
 					direccion, poblacion, provincia, CP, pais, telefono, email);
 		}
+		
+		return c;
 
 	}
 

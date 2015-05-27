@@ -35,6 +35,8 @@ public class ConversorXML {
 		entrada = e;
 
 	}
+	
+	public ConversorXML(){}
 
 	public void crearDocumento() {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

@@ -16,8 +16,8 @@
         <td><xsl:value-of select="Entrada/entrada/descripcion"/></td>
       </tr>
     </table>
-    <td></td>
-    <table  border="3" >
+    
+    <table  border="3" cellpadding="10" align="center">
       <tr>
         <th>Informacion</th>
         <th>Tipo</th>
@@ -32,7 +32,7 @@
       </tr>
     </table>
     <br />
-    <table border="3" align="center">
+    <table border="3" align="center" cellpadding="10">
       <tr >
         <th>Total</th>
       </tr>
