@@ -105,6 +105,7 @@ public class GestorEntrada {
 	private static void generarHTML(Evento evento, Cliente cliente, int numEnt) {
 
 		ConversorXML p = new ConversorXML();
+		cliente = Cliente.getInstance();
 
 		int i = 0;
 
