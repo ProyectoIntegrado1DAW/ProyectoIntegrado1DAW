@@ -92,7 +92,12 @@ public class GestorEntrada {
 		}
 
 	}
-
+	
+	public static void generarHTML(Evento evento, Cliente cliente, int numEnt){
+		
+		
+		
+	}
 	public static void generarEntrada(Evento evento, Cliente cliente, int numEnt)
 			throws SQLException {
 
