@@ -1,6 +1,7 @@
 package gestores;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -31,6 +32,8 @@ public class GestorEntrada {
 			// registrar la compra
 			GestorCompra.registrarCompra(evento, cliente, numTar, forPago,
 					numEnt);
+			
+			generarHTML(evento, cliente, numEnt);
 		}
 
 	}
@@ -63,6 +66,8 @@ public class GestorEntrada {
 				// registrar la compra
 				GestorCompra.registrarCompra(evento, cliente, numTar, forPago,
 						numEnt);
+				
+				generarHTML(evento, cliente, numEnt);
 			} else {
 				JOptionPane
 						.showMessageDialog(
@@ -70,6 +75,8 @@ public class GestorEntrada {
 								"No hay puntos suficientes, se efectuara una compra sin la oferta.\n Gracias.",
 								"ERROR", JOptionPane.WARNING_MESSAGE);
 				compraEntr(nomEvento, cliente, numTar, forPago, numEnt);
+				
+				generarHTML(evento, cliente, numEnt);
 			}
 		}
 
@@ -88,16 +95,41 @@ public class GestorEntrada {
 
 			// Imprimir la entrada
 			generarEntradaNoReg(evento, cliente, numEnt);
+			
+			generarHTML(evento, cliente, numEnt);
 
 		}
 
 	}
-	
-	public static void generarHTML(Evento evento, Cliente cliente, int numEnt){
-		
-		
-		
+
+	private static void generarHTML(Evento evento, Cliente cliente, int numEnt) {
+
+		ConversorXML p = new ConversorXML();
+
+		int i = 0;
+
+		for (i = 1; i <= numEnt; i++) {
+			
+			try {
+				p.transform(evento.getNombre() + " - " + cliente.getNombre()
+						+ " - " + i + ".xml", "ticket.xsl", evento.getNombre()
+						+ " - " + cliente.getNombre() + " - " + i + ".html");
+			} catch (TransformerException ex) {
+				ex.printStackTrace();
+			}
+
+			try {
+				p.abrir(evento.getNombre() + " - " + cliente.getNombre()
+						+ " - " + i + ".html");
+			
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+			
+		}
+
 	}
+
 	public static void generarEntrada(Evento evento, Cliente cliente, int numEnt)
 			throws SQLException {
 
