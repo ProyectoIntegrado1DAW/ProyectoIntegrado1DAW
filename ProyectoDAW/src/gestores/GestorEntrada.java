@@ -134,6 +134,7 @@ public class GestorEntrada {
 			throws SQLException {
 
 		evento = GestorEvento.obtenerEvento(evento.getNombre());
+		cliente = Cliente.getInstance();
 		int ultimoID = evento.getEntrReservadas() - numEnt;
 
 		for (int i = 1; i <= numEnt; i++) {
