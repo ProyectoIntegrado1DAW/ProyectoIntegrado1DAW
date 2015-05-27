@@ -17,7 +17,7 @@ public class GestorUsuario {
 	 * String email, String cliente, String password, String DNI
 	 */
 
-	private static Cliente getCliente(String user) throws SQLException {
+	public static Cliente getCliente(String user) throws SQLException {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet resultado;
@@ -36,7 +36,7 @@ public class GestorUsuario {
 		String DNI;
 
 		resultado = conexion
-				.getQuery("SELECT * FROM clickntick.clientes WHERE DNI = '"
+				.getQuery("SELECT * FROM clickntick.clientes WHERE usuario = '"
 						+ user + "';");
 		while (resultado.next()) {
 
@@ -71,7 +71,7 @@ public class GestorUsuario {
 		String DNI;
 
 		resultado = conexion
-				.getQuery("SELECT * FROM clickntick.gestores WHERE DNI = '"
+				.getQuery("SELECT * FROM clickntick.gestores WHERE usuario = '"
 						+ user + "';");
 		while (resultado.next()) {
 

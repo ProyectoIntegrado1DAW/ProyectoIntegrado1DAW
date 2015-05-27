@@ -1,6 +1,7 @@
 package interfaz;
 
 import gestores.ConexionDB;
+import entidades.Cliente;
 import entidades.Evento;
 
 import java.awt.EventQueue;
@@ -61,6 +62,7 @@ public class VentEvent {
 	JFrame frame;
 	private JTextField textField;
 	private JTable table;
+	private Cliente c;
 
 	private ArrayList<Evento> eventos;
 
@@ -85,6 +87,14 @@ public class VentEvent {
 	 */
 	public VentEvent() {
 		initialize();
+	}
+
+	public VentEvent(Cliente c) {
+		// TODO Auto-generated constructor stub
+
+		this.c = c;
+		initialize();
+
 	}
 
 	/**
@@ -192,7 +202,7 @@ public class VentEvent {
 							table.getSelectedRow(), 1);
 					VentCompra User = null;
 					try {
-						User = new VentCompra(nombre, descripcion);
+						User = new VentCompra(nombre, descripcion, c);
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -237,26 +247,27 @@ public class VentEvent {
 				"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
 		label.setBounds(166, 9, 116, 28);
 		panel.add(label);
-		
+
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setBorder(null);
 		btnNewButton_1.setOpaque(false);
 		btnNewButton_1.setContentAreaFilled(false);
 		btnNewButton_1.setBorderPainted(false);
 		btnNewButton_1.setBackground(Color.YELLOW);
-		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\bus.png"));
+		btnNewButton_1
+				.setIcon(new ImageIcon(
+						"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\bus.png"));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				VentUsuario User = new VentUsuario();
 				User.getFrame().setVisible(true);
 				frame.dispose();
-				
+
 			}
 		});
 		btnNewButton_1.setBounds(370, 0, 55, 50);
 		panel.add(btnNewButton_1);
-		
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet rs = conexion

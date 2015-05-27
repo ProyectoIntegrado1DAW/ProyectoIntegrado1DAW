@@ -6,6 +6,8 @@ import java.awt.Window;
 import javax.swing.JFrame;
 
 import entidades.Cliente;
+import entidades.Usuario;
+import gestores.GestorEntrada;
 
 import javax.swing.JComboBox;
 
@@ -21,6 +23,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
 import java.awt.SystemColor;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -32,6 +35,7 @@ public class VentConfPago {
 	private String nombreEvento;
 	private Cliente cliente;
 	private int numEntradas;
+	private Cliente c;
 
 	private JFrame frame;
 	private JTextField textField;
@@ -69,14 +73,15 @@ public class VentConfPago {
 		initialize();
 	}
 
-	public VentConfPago(String nombreEvento, Cliente cliente, int numEntradasInt) {
+	// no se usa de momento
+	public VentConfPago(String nombreEvento, Cliente c, int numEntradas) {
 		// TODO Auto-generated constructor stub
-
+		
 		this.nombreEvento = nombreEvento;
-		this.cliente = cliente;
-		this.numEntradas = numEntradasInt;
+		this.numEntradas = numEntradas;
+		this.c = c;
 		initialize();
-
+		
 	}
 
 	/**
@@ -88,7 +93,7 @@ public class VentConfPago {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JComboBox comboBox = new JComboBox();
+		final JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(237, 45, 137, 20);
 		frame.getContentPane().add(comboBox);
 
@@ -107,21 +112,31 @@ public class VentConfPago {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				try {
+//				try {
 					int numTarjInt = 0;
 					String numTarj = textField.getText();
 
 					numTarjInt = Integer.parseInt(numTarj);
+					String tipoTarjeta = (String) comboBox.getSelectedItem();
+					
+					System.out.println(tipoTarjeta);
+					
+					try {
+						GestorEntrada.compraEntrNoReg(nombreEvento, cliente, numTarj, tipoTarjeta, numEntradas);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
-				} catch (Exception e) {
-
-					JOptionPane
-							.showMessageDialog(
-									null,
-									"Introduzca algun numero de tarjeta correcto (solo numeros)",
-									"ERROR", JOptionPane.WARNING_MESSAGE);
-
-				}
+//				} catch (Exception e) {
+//
+//					JOptionPane
+//							.showMessageDialog(
+//									null,
+//									"Introduzca algun numero de tarjeta correcto (solo numeros)",
+//									"ERROR", JOptionPane.WARNING_MESSAGE);
+//
+//				}
 			}
 		});
 		btnConfirmar.setForeground(Color.BLACK);

@@ -1,5 +1,6 @@
 package interfaz;
 
+import entidades.Cliente;
 import gestores.GestorUsuario;
 
 import java.awt.EventQueue;
@@ -119,8 +120,10 @@ public class VentLogin {
 											"ERROR",
 											JOptionPane.WARNING_MESSAGE);
 						} else {
-
-							VentEvent User = new VentEvent();
+							// construir un cliente
+							Cliente c = GestorUsuario.getCliente(usuario);
+							
+							VentEvent User = new VentEvent(c);
 							User.getFrame().setVisible(true);
 							frame.dispose();
 

@@ -74,7 +74,7 @@ public class GestorEntrada {
 	}
 
 	public static void compraEntrNoReg(String nomEvento, Cliente cliente,
-			int numEnt) throws SQLException {
+			String numTar, String forPago, int numEnt) throws SQLException {
 
 		Evento evento = GestorEvento.obtenerEvento(nomEvento);
 		// llamara a existePlazasDisponibles

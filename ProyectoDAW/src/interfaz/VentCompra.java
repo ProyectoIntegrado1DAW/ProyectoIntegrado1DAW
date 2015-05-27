@@ -54,6 +54,7 @@ public class VentCompra {
 	private JTextField textField;
 	private String nombreEvento;
 	private String descripcion;
+	private Cliente c;
 
 	/**
 	 * Launch the application.
@@ -91,6 +92,16 @@ public class VentCompra {
 		this.nombreEvento = nombreEvento;
 		this.descripcion = descripcion;
 		initialize();
+	}
+
+	public VentCompra(String nombreEvento, String descripcion, Cliente c) throws SQLException {
+		// TODO Auto-generated constructor stub
+		
+		this.nombreEvento = nombreEvento;
+		this.descripcion = descripcion;
+		this.c = c;
+		initialize();
+		
 	}
 
 	/**
@@ -292,17 +303,26 @@ public class VentCompra {
 				// table.getValueAt(table.getSelectedRow(), column);//poder
 				// seleccionar eventos
 
-				Cliente cliente = Cliente.getInstance();
+				//Cliente cliente = Cliente.getInstance();
 
 				String numEntradas = textField.getText();
 				int numEntradasInt = Integer.parseInt(numEntradas);
+				c = Cliente.getInstance();
+				
+				if (c == null) {
+					
+					VentCompraTicket User = new VentCompraTicket();
+					User.getFrame().setVisible(true);
+					frame.dispose();
+					
+				} else {
 
 				if (!chckbxComprarSinOferta.isSelected()) {
 
 					if (table.getSelectedRow() == -1) {
 
 						JOptionPane.showMessageDialog(null,
-								"Seleccione un evento", "ERROR",
+								"Seleccione una oferta", "ERROR",
 								JOptionPane.WARNING_MESSAGE);
 
 					} else {
@@ -310,16 +330,17 @@ public class VentCompra {
 						String descripcionOferta = (String) table.getValueAt(
 								table.getSelectedRow(), 0);
 						VentConfPago User = new VentConfPago(descripcionOferta,
-								nombreEvento, cliente, numEntradasInt);
+								nombreEvento, c, numEntradasInt);
 						User.getFrame().setVisible(true);
 						frame.dispose();
 
 					}
 				} else {
-					VentConfPago User = new VentConfPago(nombreEvento, cliente,
+					VentConfPago User = new VentConfPago(nombreEvento, c,
 							numEntradasInt);
 					User.getFrame().setVisible(true);
 					frame.dispose();
+				}
 				}
 
 			}

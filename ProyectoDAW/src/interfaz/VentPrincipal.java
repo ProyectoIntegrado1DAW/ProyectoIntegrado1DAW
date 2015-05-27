@@ -14,6 +14,9 @@ import java.sql.SQLException;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
+import entidades.Cliente;
+import gestores.GestorUsuario;
+
 
 public class VentPrincipal {
 
@@ -57,7 +60,9 @@ public class VentPrincipal {
 		button_entrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				VentEvent User = new VentEvent();
+				// construir un cliente
+				Cliente c = null;
+				VentEvent User = new VentEvent(c);
 				User.getFrame().setVisible(true);
 				frame.dispose();
 				

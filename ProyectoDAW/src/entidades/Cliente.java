@@ -19,11 +19,11 @@ public class Cliente extends Usuario {
 				provincia, CP, pais, telefono, email);
 		this.puntos = 0;
 	}
-	
-	private Cliente (String nombre, String apellido, String email, int telefono) {
-		
+
+	private Cliente(String nombre, String apellido, String email, int telefono) {
+
 		super(nombre, apellido, email, telefono);
-		
+
 	}
 
 	public static Cliente getInstance(String DNI, String usuario,
@@ -37,6 +37,18 @@ public class Cliente extends Usuario {
 		else
 			return instance;
 
+	}
+
+	public static Cliente getInstanceNoReg(String nombre, String apellido,
+			String email, int telefono) {
+
+		if (instance == null) {
+			return instance = new Cliente(nombre, apellido, email, telefono);
+		}
+
+		else {
+			return instance;
+		}
 	}
 
 	public static Cliente getInstance() {
