@@ -19,7 +19,7 @@ public class GestorEntrada {
 			String numTar, String forPago, int numEnt) throws SQLException {
 		Evento evento = GestorEvento.obtenerEvento(nomEvento);
 		// llamara a existePlazasDisponibles
-		if (existePlazasDisponibles(evento, numEnt)) {
+		if (existePlazasDisponibles(nomEvento, numEnt)) {
 
 			// si quedan entradas, hara la compra y actualizara la base de
 			// datos con las entradas reservadas y los puntos acumulados.
@@ -44,7 +44,7 @@ public class GestorEntrada {
 		
 		float descuento = oferta.getDescuento();
 		// llamara a existePlazasDisponibles
-		if (existePlazasDisponibles(evento, numEnt)) {
+		if (existePlazasDisponibles(nomEvento, numEnt)) {
 
 			
 			int puntOferta = oferta.getPuntos();
@@ -78,7 +78,7 @@ public class GestorEntrada {
 
 		Evento evento = GestorEvento.obtenerEvento(nomEvento);
 		// llamara a existePlazasDisponibles
-		if (existePlazasDisponibles(evento, numEnt)) {
+		if (existePlazasDisponibles(nomEvento, numEnt)) {
 
 			// si quedan entradas, hara la compra y actualizara la base de
 			// datos con las entradas reservadas.
@@ -155,9 +155,10 @@ public class GestorEntrada {
 
 	}
 
-	private static boolean existePlazasDisponibles(Evento ev, int numEnt)
+	private static boolean existePlazasDisponibles(String nomEvent, int numEnt)
 			throws SQLException {
 		// conectar base de datos para ver si existen plazas
+		Evento ev = GestorEvento.obtenerEvento(nomEvent);
 		boolean existen = false;
 
 		if ((ev.getNumEntradas() - ev.getEntrReservadas()) > numEnt) {

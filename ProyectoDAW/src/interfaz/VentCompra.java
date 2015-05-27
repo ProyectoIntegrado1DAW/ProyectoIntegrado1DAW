@@ -311,7 +311,7 @@ public class VentCompra {
 				
 				if (c == null) {
 					
-					VentCompraTicket User = new VentCompraTicket();
+					VentCompraTicket User = new VentCompraTicket(nombreEvento, numEntradasInt);
 					User.getFrame().setVisible(true);
 					frame.dispose();
 					
