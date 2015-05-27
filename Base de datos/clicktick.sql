@@ -79,4 +79,5 @@ CREATE TABLE compras (
 	FormaPago varchar(20) NOT NULL,
 	NumEntradas integer NOT NULL,
 	PRIMARY KEY (IDCompra)
+	CONSTRAINT compra_DNI_FK FOREIGN KEY (DNI) REFERENCES clientes (DNI)
 );
