@@ -28,9 +28,9 @@ public class Main {
 		String nombres;
 		Cliente cliente;
 		Cliente cliente2;
-		String datosXML = "ticket2.xml";
-		String entradaXSL = "ticket2.xsl";
-		String salidaHTML = "ticket2.html";
+		String datosXML = "ticket.xml";
+		String entradaXSL = "ticket.xsl";
+		String salidaHTML = "ticket.html";
 		
 		// resultado = conexion.getQuery("select * from clickntick.clientes");
 
@@ -38,9 +38,9 @@ public class Main {
 		 * while (resultado.next()) { nombres = resultado.getString("nombre");
 		 * System.out.println("nombre: " + nombres); }
 		 */
-		/*Evento evento = new Evento("MuerteMachin",
+		Evento evento = new Evento("MuerteMachin",
 				"Festival del mal", "Muchos", "Lepe", 666, 0, "Sangre", 20,
-				"2016-6-6", "Sabado", "6:06");*/
+				"2016-6-6", "Sabado", "6:06");
 
 		/*
 		Evento guay = GestorEvento.obtenerEvento("MuerteMachin");
@@ -55,14 +55,14 @@ public class Main {
 		//GestorUsuario.logIn("mmarin", "1234");
 		*/
 		
-		Entrada e = new Entrada(25,"20666665Y","Viñacipote","concerto","General", 1000.6f, "Miquel caracrater");
+		Entrada e = new Entrada(25,"20666665Y","TICKETS",evento.toStringEntrada(evento),"General", 1000.6f, "Miquel");
 
 		ConversorXML marshaller = new ConversorXML(e);
 
 		marshaller.crearDocumento();
 		marshaller.crearArbolDOM();
 
-		File file = new File("ticket2.xml");
+		File file = new File("ticket.xml");
 
 		try {
 			marshaller.escribirDocumentoAXml(file);
@@ -70,7 +70,7 @@ public class Main {
 
 		}
 		
-		
+
 		ConversorXML p = new ConversorXML(e);
 
 		try {

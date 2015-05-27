@@ -42,13 +42,9 @@ public class Evento {
 	public String toStringEntrada(Evento evento) {
 		String info = "";
 
-		info = info + " " + evento.getNombre() + " " + evento.getTipoEvento()
-				+ " " + evento.getFecha() +" "+ evento.getDiaSemana()
-				+" "+ evento.getOra() + " " + evento.getNumEntradas() + " "
-				+ evento.getEntrReservadas() + " " + evento.getDescripcion()
-				+ " " + evento.getLocales() + " " + evento.getCiudad() + " "
-				+ evento.getPrecio();
-
+		info = info + "Para el evento " + evento.getNombre() + " con fecha " + evento.getFecha() +"\n El día "+ evento.getDiaSemana()
+				+" a las "+ evento.getOra() + " horas. \n Disfruta de tu evento en " + evento.getLocales() + " en la ciudad " + evento.getCiudad()+".";
+		
 		return info;
 	}
 
