@@ -69,11 +69,11 @@ public class VentConfPago {
 	}
 
 	public VentConfPago(String descripcionOferta, String nombreEvento,
-			Cliente cliente, int numEntradas) {
+			Cliente c, int numEntradas) {
 
 		this.descripcionOferta = descripcionOferta;
 		this.nombreEvento = nombreEvento;
-		this.cliente = cliente;
+		this.c = c;
 		this.numEntradas = numEntradas;
 		VentConfPago.conOferta = true;
 		initialize();
@@ -148,9 +148,9 @@ public class VentConfPago {
 					
 					if (c == null) {
 						String nombre = vector[0];
-						String apellidos = vector[0];
-						String correo = vector[0];
-						String telefono = vector[0];
+						String apellidos = vector[1];
+						String correo = vector[2];
+						String telefono = vector[3];
 						
 						int telefonoInt = Integer.parseInt(telefono);
 						

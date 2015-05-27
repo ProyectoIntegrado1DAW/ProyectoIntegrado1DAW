@@ -142,14 +142,14 @@ public class VentCompraTicket {
 				String apellido = textApellido.getText();
 				String correo = textCorreo.getText();
 				String telefono = textTelefono.getText();
-
-				String vector[] = new String[3];
+				System.out.println(telefono);
+				String vector[] = new String[4];
 
 				vector[0] = nombre;
 				vector[1] = apellido;
 				vector[2] = correo;
 				vector[3] = telefono;
-
+								
 				VentConfPago User = new VentConfPago(nombreEvento, vector,
 						numEntradas);
 				User.getFrame().setVisible(true);
