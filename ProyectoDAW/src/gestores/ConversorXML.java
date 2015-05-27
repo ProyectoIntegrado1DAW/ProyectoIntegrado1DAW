@@ -1,6 +1,8 @@
 package gestores;
 
+import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -10,10 +12,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -107,6 +111,24 @@ public class ConversorXML {
 		DOMSource source = new DOMSource(dom);
 		trans.transform(source, result);
 
+	}
+	public void transform(String XML, String XSL, String HTML)
+			throws TransformerConfigurationException, TransformerException {
+
+		TransformerFactory factory = TransformerFactory.newInstance();
+		StreamSource xslStream = new StreamSource(XSL);
+		Transformer transformer = factory.newTransformer(xslStream);
+
+		StreamSource in = new StreamSource(XML);
+		StreamResult out = new StreamResult(HTML);
+		transformer.transform(in, out);
+
+		System.out.println("Se ha generado el fichero " + HTML);
+
+	}
+	public void abrir(String fichero) throws IOException{
+		File htmlFile = new File(fichero);
+		Desktop.getDesktop().browse(htmlFile.toURI());	
 	}
 
 }

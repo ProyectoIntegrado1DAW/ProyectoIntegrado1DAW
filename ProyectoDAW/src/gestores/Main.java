@@ -1,10 +1,17 @@
 package gestores;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+
 
 import entidades.Entrada;
 import gestores.ConversorXML;
@@ -21,6 +28,9 @@ public class Main {
 		String nombres;
 		Cliente cliente;
 		Cliente cliente2;
+		String datosXML = "ticket2.xml";
+		String entradaXSL = "ticket2.xsl";
+		String salidaHTML = "ticket2.html";
 		
 		// resultado = conexion.getQuery("select * from clickntick.clientes");
 
@@ -44,7 +54,7 @@ public class Main {
 		GestorUsuario.altaUsuario(cliente);
 		//GestorUsuario.logIn("mmarin", "1234");
 		*/
-		/*
+		
 		Entrada e = new Entrada(25,"20666665Y","Viñacipote","concerto","General", 1000.6f, "Miquel caracrater");
 
 		ConversorXML marshaller = new ConversorXML(e);
@@ -59,15 +69,30 @@ public class Main {
 		} catch (TransformerException ex) {
 
 		}
-		*/
+		
+		
+		ConversorXML p = new ConversorXML(e);
+
+		try {
+			p.transform(datosXML, entradaXSL, salidaHTML);
+		} catch (TransformerException ex) {
+			ex.printStackTrace();
+		}
+		
+		
+		try {
+			p.abrir(salidaHTML);
+		} catch (IOException ex) {			
+			ex.printStackTrace();
+		}
 		
 	
 	//cliente = Cliente.getInstance("11d", "mmarin", "1234", "Miquel", "Marin", "c/ valencia", "Suma", "Valencia", 23445, "Aspaña", 8457463, "Shurprim@gmail.com");
 		//GestorUsuario.altaUsuario(cliente);
 		
 		
-		cliente2 = Cliente.getInstance("122d", "hejuso", "1234", "hector", "Juan", "c/ alzira", "Alzira", "Valencia", 33445, "Aspaña", 8463, "prim@gmail.com");
-		 GestorUsuario.altaUsuario(cliente2);
+		/*cliente2 = Cliente.getInstance("122d", "hejuso", "1234", "hector", "Juan", "c/ alzira", "Alzira", "Valencia", 33445, "Aspaña", 8463, "prim@gmail.com");
+		 GestorUsuario.altaUsuario(cliente2);*/
 		
 //		Evento evento2 = new Evento("Unodostres",
 //				"Festival del mal", "Muchos", "Lepe", 666, 0, "Sangre", 20,
