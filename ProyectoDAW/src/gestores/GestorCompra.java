@@ -12,7 +12,7 @@ public class GestorCompra {
 			String numTar, String forPago, int numEnt) {
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
-		ResultSet resultado;
+		cliente = Cliente.getInstance();
 
 		conexion.setQuery("INSERT INTO clickntick.compras (nombreevento, dni, numtarjeta, formapago, numentradas) "
 				+ "VALUES ('"
