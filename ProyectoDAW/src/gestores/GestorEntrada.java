@@ -155,6 +155,7 @@ public class GestorEntrada {
 	public static void generarEntradaNoReg(Evento evento, Cliente cliente,
 			int numEnt) throws SQLException {
 
+		cliente = Cliente.getInstance();
 		evento = GestorEvento.obtenerEvento(evento.getNombre());
 		int ultimoID = evento.getEntrReservadas() - numEnt;
 
@@ -173,6 +174,7 @@ public class GestorEntrada {
 	public static void generarEntradaDesc(Evento evento, Cliente cliente,
 			int numEnt, float desc) throws SQLException {
 
+		cliente = Cliente.getInstance();
 		evento = GestorEvento.obtenerEvento(evento.getNombre());
 		int ultimoID = evento.getEntrReservadas() - numEnt;
 
@@ -197,6 +199,7 @@ public class GestorEntrada {
 			Evento evento, int num) {
 
 		ConversorXML marshaller = new ConversorXML(entrada);
+		cliente = Cliente.getInstance();
 
 		marshaller.crearDocumento();
 		marshaller.crearArbolDOM();
@@ -252,7 +255,8 @@ public class GestorEntrada {
 	// actualiza las entradas reservadas en la bbdd para compras no registradas.
 	private static void actualBBDDnoReg(Cliente cliente, Evento evento,
 			int numEnt) throws SQLException {
-
+		
+		cliente = Cliente.getInstance();
 		Evento ev = GestorEvento.obtenerEvento(evento.getNombre());
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		int i = ev.getEntrReservadas() + numEnt;
