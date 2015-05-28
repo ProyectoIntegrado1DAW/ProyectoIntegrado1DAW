@@ -180,4 +180,19 @@ public class GestorEvento {
 
 	}
 
+	public static void actualizarEvento(Evento evento) {
+
+		ConexionDB conexion = ConexionDB.getConexionDB();
+
+		conexion.setQuery("UPDATE clickntick.eventos SET nombreevento='"
+				+ evento.getNombre() + "', tipoevento='"
+				+ evento.getTipoEvento() + "',locales='" + evento.getLocales()
+				+ "',ciudad='" + evento.getCiudad() + "',numentradas='"
+				+ evento.getNumEntradas() + "',entradasreservadas='"
+				+ evento.getEntrReservadas() + "',descripcion='"
+				+ evento.getDescripcion() + "',precio='" + evento.getPrecio()
+				+ "',fecha='" + evento.getFecha() + "'");
+
+	}
+
 }

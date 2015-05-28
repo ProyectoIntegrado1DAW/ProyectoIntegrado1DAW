@@ -181,15 +181,15 @@ public class VentGestorAnyadir extends JFrame {
 		mes = new JComboBox();
 		mes.setBounds(175, 175, 91, 20);
 
-		mes.addItem("1");
-		mes.addItem("2");
-		mes.addItem("3");
-		mes.addItem("4");
-		mes.addItem("5");
-		mes.addItem("6");
-		mes.addItem("7");
-		mes.addItem("8");
-		mes.addItem("9");
+		mes.addItem("01");
+		mes.addItem("02");
+		mes.addItem("03");
+		mes.addItem("04");
+		mes.addItem("05");
+		mes.addItem("06");
+		mes.addItem("07");
+		mes.addItem("08");
+		mes.addItem("09");
 		mes.addItem("10");
 		mes.addItem("11");
 		mes.addItem("12");
