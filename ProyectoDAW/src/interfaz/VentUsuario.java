@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
@@ -38,6 +39,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.ListSelectionModel;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
+
 import java.awt.SystemColor;
 
 public class VentUsuario {
@@ -212,15 +214,23 @@ public class VentUsuario {
 		table.setModel(DbUtils.resultSetToTableModel(rs));
 		
 		JTextPane txtpnPuntosDisponibles = new JTextPane();
+		txtpnPuntosDisponibles.setEditable(false);
 		txtpnPuntosDisponibles.setBackground(new Color(192, 192, 192));
 		txtpnPuntosDisponibles.setText("Puntos disponibles:");
 		txtpnPuntosDisponibles.setBounds(10, 116, 141, 20);
 		frame.getContentPane().add(txtpnPuntosDisponibles);
 		
 		JTextPane textPane = new JTextPane();
+		textPane.setEditable(false);
 		textPane.setBackground(new Color(192, 192, 192));
 		textPane.setBounds(379, 116, 24, 20);
-		String puntos = ""+c.getPuntos();
+		String puntos = null;
+		try {
+			puntos = ""+c.getPuntosBBDD(c.getDNI());
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		textPane.setText(puntos);
 		frame.getContentPane().add(textPane);
 
