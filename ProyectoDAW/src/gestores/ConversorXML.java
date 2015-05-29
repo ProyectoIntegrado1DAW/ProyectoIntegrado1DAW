@@ -122,16 +122,14 @@ public class ConversorXML {
 		StreamSource xslStream = new StreamSource(XSL);
 		Transformer transformer = factory.newTransformer(xslStream);
 
-		StreamSource in = new StreamSource(XML);
-		
+		StreamSource in = new StreamSource(XML);		
+		StreamResult out = new StreamResult(HTML);
+		transformer.transform(in, out);
 		JOptionPane
 		.showMessageDialog(
 				null,
 				"Se ha generado su HTML con información de la entrada.\n Gracias.",
 				"Gracias", JOptionPane.INFORMATION_MESSAGE);
-		
-		StreamResult out = new StreamResult(HTML);
-		transformer.transform(in, out);
 
 	}
 	public void abrir(String fichero) throws IOException{

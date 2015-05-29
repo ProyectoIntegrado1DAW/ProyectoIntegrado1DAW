@@ -203,11 +203,11 @@ public class VentRegistro {
 
 					cpInt = Integer.parseInt(cp);
 
-					if (!telefono.equals("")) {
+				}
+				
+				if (!telefono.equals("")) {
 
-						tlfnInt = Integer.parseInt(telefono);
-
-					}
+					tlfnInt = Integer.parseInt(telefono);
 
 				}
 
@@ -215,7 +215,6 @@ public class VentRegistro {
 				Cliente c = Cliente.getInstance(dni, usuario, contrasenya,
 						nombre, apellidos, direccion, poblacion, provincia,
 						cpInt, pais, tlfnInt, correo);
-				Cliente.setInstanceOff();
 
 				try {
 
@@ -235,9 +234,10 @@ public class VentRegistro {
 						JOptionPane.showMessageDialog(null,
 								"Ha sido registrado con éxito.", "Enhorabuena",
 								JOptionPane.INFORMATION_MESSAGE);
-						VentUsuario User = new VentUsuario();
+						VentLogin User = new VentLogin();
 						User.getFrame().setVisible(true);
 						frame.dispose();
+						Cliente.setInstanceOff();
 
 					}
 
@@ -361,12 +361,13 @@ public class VentRegistro {
 		panel.add(button_1);
 		
 		JButton button_2 = new JButton("");
+		button_2.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
 		button_2.setOpaque(false);
 		button_2.setContentAreaFilled(false);
 		button_2.setBorderPainted(false);
 		button_2.setBorder(null);
 		button_2.setBackground(Color.YELLOW);
-		button_2.setBounds(10, 0, 70, 50);
+		button_2.setBounds(0, 0, 91, 77);
 		panel.add(button_2);
 		
 				JLabel lblLogoHere = new JLabel("");
@@ -374,6 +375,15 @@ public class VentRegistro {
 				panel.add(lblLogoHere);
 				lblLogoHere
 						.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoBig.png"));
+				
+				JButton button_3 = new JButton("");
+				button_3.setOpaque(false);
+				button_3.setContentAreaFilled(false);
+				button_3.setBorderPainted(false);
+				button_3.setBorder(null);
+				button_3.setBackground(Color.YELLOW);
+				button_3.setBounds(0, 0, 70, 50);
+				panel.add(button_3);
 	}
 	public JFrame getFrame(){//llamada para poder cambiar de pantalla
 		return frame;
