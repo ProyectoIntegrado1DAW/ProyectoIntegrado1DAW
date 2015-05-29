@@ -43,7 +43,7 @@ public class Evento {
 		String info = "";
 
 		info = info + "Para el evento " + evento.getNombre() + " con fecha " + evento.getFecha() +"\n El día "+ evento.getDiaSemana()
-				+" a las "+ evento.getOra() + " horas. \n Disfruta de tu evento en " + evento.getLocales() + " en la ciudad " + evento.getCiudad()+".";
+				+" a las "+ evento.getHora() + " horas. \n Disfruta de tu evento en " + evento.getLocales() + " en la ciudad " + evento.getCiudad()+".";
 		
 		return info;
 	}
@@ -128,14 +128,6 @@ public class Evento {
 
 	public void setDiaSemana(String diaSemana) {
 		DiaSemana = diaSemana;
-	}
-
-	public String getOra() {
-		return hora;
-	}
-
-	public void setOra(String ora) {
-		this.hora = ora;
 	}
 
 	public String getFecha() {

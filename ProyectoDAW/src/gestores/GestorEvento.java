@@ -191,7 +191,7 @@ public class GestorEvento {
 				+ evento.getNumEntradas() + "',entradasreservadas='"
 				+ evento.getEntrReservadas() + "',descripcion='"
 				+ evento.getDescripcion() + "',precio='" + evento.getPrecio()
-				+ "',fecha='" + evento.getFecha() + "'");
+				+ "',fecha='" + evento.getFecha() + "' where nombreevento= '"+evento.getNombre()+"'");
 
 	}
 

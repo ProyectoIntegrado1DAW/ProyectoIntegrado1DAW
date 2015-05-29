@@ -299,7 +299,7 @@ public class VentGestorV1 {
 		btnQuitar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String nombre = (String) table.getValueAt(
-						table.getSelectedRow(), 0);
+						table.getSelectedRow(), 1);
 				GestorEvento.bajaEvento(nombre);
 				ConexionDB conexion = ConexionDB.getConexionDB();
 				ResultSet rs = conexion
