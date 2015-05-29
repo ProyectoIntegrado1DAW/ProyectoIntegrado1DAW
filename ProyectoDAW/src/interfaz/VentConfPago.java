@@ -138,13 +138,7 @@ public class VentConfPago {
 				numTarjInt = Integer.parseInt(numTarj);
 				String tipoTarjeta = (String) comboBox.getSelectedItem();
 
-				System.out.println(tipoTarjeta);
-
 				try {
-					System.out.println(sinRegNiOferta);
-					System.out.println(conOferta);
-					System.out.println(sinOferta);
-					System.out.println(c);
 					
 					if (c == null) {
 						String nombre = vector[0];
@@ -156,28 +150,38 @@ public class VentConfPago {
 						
 						Cliente u = Cliente.getInstanceNoReg(nombre, apellidos, correo, telefonoInt);
 						
-						System.out.println("Sin oferta ni registrado");
 						GestorEntrada.compraEntrNoReg(nombreEvento, u,
 								numTarj, tipoTarjeta, numEntradas);
+						
+						VentEvent User = new VentEvent(c);
+						User.getFrame().setVisible(true);
+						frame.dispose();
 
 					} else
 
 					// sinOferta = false;
 
 					if (sinRegNiOferta) {
-						System.out.println("Sin oferta");
 
 						GestorEntrada.compraEntr(nombreEvento, cliente,
 								numTarj, tipoTarjeta, numEntradas);
+						
+						VentEvent User = new VentEvent(c);
+						User.getFrame().setVisible(true);
+						frame.dispose();
+						
 					} else
 
 					if (conOferta) {
-						System.out.println("CON OFERTA");
 
 						GestorEntrada.compraEntrOferta(nombreEvento, cliente,
 								numTarj, tipoTarjeta, numEntradas,
 								descripcionOferta);
-					}System.out.println("PENE");
+						
+						VentEvent User = new VentEvent(c);
+						User.getFrame().setVisible(true);
+						frame.dispose();
+					}
 
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block

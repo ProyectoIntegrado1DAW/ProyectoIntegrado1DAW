@@ -34,11 +34,14 @@ import net.proteanit.sql.DbUtils;
 import entidades.Cliente;
 import gestores.ConexionDB;
 
+import javax.swing.border.EtchedBorder;
+import javax.swing.ListSelectionModel;
+
 public class VentUsuario {
 
 	JFrame frame;
-	private JTable table_1;
 	private Cliente c;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -85,6 +88,31 @@ public class VentUsuario {
 		panel.setBackground(Color.YELLOW);
 		panel.setBounds(0, 0, 435, 50);
 		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\icons.jpg"));
+		lblNewLabel_3.setBounds(179, 0, 68, 50);
+		panel.add(lblNewLabel_3);
+		
+		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				VentEvent User = new VentEvent(c);
+				User.getFrame().setVisible(true);
+				frame.dispose();
+				
+			}
+		});
+		button.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
+		button.setOpaque(false);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setBorder(null);
+		button.setBackground(Color.YELLOW);
+		button.setBounds(10, 0, 70, 50);
+		panel.add(button);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel
@@ -98,18 +126,8 @@ public class VentUsuario {
 		lblNewLabel_1.setForeground(new Color(255, 255, 0));
 		lblNewLabel_1.setBackground(Color.GRAY);
 		lblNewLabel_1.setFont(new Font("Trebuchet MS", Font.BOLD, 25));
-		lblNewLabel_1.setBounds(161, 99, 151, 24);
+		lblNewLabel_1.setBounds(153, 72, 151, 24);
 		frame.getContentPane().add(lblNewLabel_1);
-
-		JTextArea textAreaUsuario = new JTextArea();
-		textAreaUsuario.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-		textAreaUsuario.setBounds(1, 169, 434, 62);
-		frame.getContentPane().add(textAreaUsuario);
-
-		JTextArea textAreaPuntos = new JTextArea();
-		textAreaPuntos.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
-		textAreaPuntos.setBounds(0, 239, 434, 62);
-		frame.getContentPane().add(textAreaPuntos);
 
 		JLabel lblNewLabel_2 = new JLabel("Configuracion");
 		lblNewLabel_2.setBounds(88, 430, 117, 21);
@@ -178,18 +196,25 @@ public class VentUsuario {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 414, 434, 162);
 		frame.getContentPane().add(panel_1);
-
+		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 307, 434, 103);
+		scrollPane.setViewportBorder(new EtchedBorder(EtchedBorder.LOWERED,
+						null, null));
+		scrollPane.setBounds(0, 111, 435, 308);
 		frame.getContentPane().add(scrollPane);
+		
+		table = new JTable();
 
-		table_1 = new JTable();
-		scrollPane.setRowHeaderView(table_1);
+		table.setShowVerticalLines(false);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane.setViewportView(table);
+		table.setFont(new Font("Trebuchet MS", Font.PLAIN, 11));
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet rs = conexion
-				.getQuery("select * from clickntick.compras where dni='"
+				.getQuery("select idcompra as \"ID\", nombreevento as \"Nombre del Evento\", numentradas as \"Num. de entradas\"  from clickntick.compras where dni='"
 						+ c.getDNI() + "'");
-		table_1.setModel(DbUtils.resultSetToTableModel(rs));
+		
+		table.setModel(DbUtils.resultSetToTableModel(rs));
 
 	}
 

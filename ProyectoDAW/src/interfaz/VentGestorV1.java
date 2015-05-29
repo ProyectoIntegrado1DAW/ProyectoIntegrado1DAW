@@ -238,6 +238,11 @@ public class VentGestorV1 {
 		button.setBackground(Color.YELLOW);
 		button.setBounds(10, 0, 70, 50);
 		panel.add(button);
+		
+		JLabel label = new JLabel("New label");
+		label.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\icons.jpg"));
+		label.setBounds(380, 0, 68, 50);
+		panel.add(label);
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet rs = conexion

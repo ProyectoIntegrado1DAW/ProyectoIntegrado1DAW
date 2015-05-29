@@ -94,14 +94,15 @@ public class VentCompra {
 		initialize();
 	}
 
-	public VentCompra(String nombreEvento, String descripcion, Cliente c) throws SQLException {
+	public VentCompra(String nombreEvento, String descripcion, Cliente c)
+			throws SQLException {
 		// TODO Auto-generated constructor stub
-		
+
 		this.nombreEvento = nombreEvento;
 		this.descripcion = descripcion;
 		this.c = c;
 		initialize();
-		
+
 	}
 
 	/**
@@ -206,10 +207,15 @@ public class VentCompra {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				VentUsuario User = new VentUsuario();
-				User.getFrame().setVisible(true);
-				frame.dispose();
-
+				if (c != null) {
+					VentUsuario User = new VentUsuario(c);
+					User.getFrame().setVisible(true);
+					frame.dispose();
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Debe crearse una cuenta para entrar aqui.",
+							"ERROR", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		btnNewButton_1.setBounds(370, 0, 55, 50);
@@ -303,45 +309,47 @@ public class VentCompra {
 				// table.getValueAt(table.getSelectedRow(), column);//poder
 				// seleccionar eventos
 
-				//Cliente cliente = Cliente.getInstance();
+				// Cliente cliente = Cliente.getInstance();
 
 				String numEntradas = textField.getText();
 				int numEntradasInt = Integer.parseInt(numEntradas);
 				c = Cliente.getInstance();
-				
+
 				if (c == null) {
-					
-					VentCompraTicket User = new VentCompraTicket(nombreEvento, numEntradasInt);
+
+					VentCompraTicket User = new VentCompraTicket(nombreEvento,
+							numEntradasInt);
 					User.getFrame().setVisible(true);
 					frame.dispose();
-					
+
 				} else {
 
-				if (!chckbxComprarSinOferta.isSelected()) {
+					if (!chckbxComprarSinOferta.isSelected()) {
 
-					if (table.getSelectedRow() == -1) {
+						if (table.getSelectedRow() == -1) {
 
-						JOptionPane.showMessageDialog(null,
-								"Seleccione una oferta", "ERROR",
-								JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null,
+									"Seleccione una oferta", "ERROR",
+									JOptionPane.WARNING_MESSAGE);
 
+						} else {
+
+							String descripcionOferta = (String) table
+									.getValueAt(table.getSelectedRow(), 0);
+							VentConfPago User = new VentConfPago(
+									descripcionOferta, nombreEvento, c,
+									numEntradasInt);
+							User.getFrame().setVisible(true);
+							frame.dispose();
+
+						}
 					} else {
-
-						String descripcionOferta = (String) table.getValueAt(
-								table.getSelectedRow(), 0);
-						VentConfPago User = new VentConfPago(descripcionOferta,
-								nombreEvento, c, numEntradasInt);
+						boolean ofertas = chckbxComprarSinOferta.isSelected();
+						VentConfPago User = new VentConfPago(nombreEvento, c,
+								numEntradasInt, ofertas);
 						User.getFrame().setVisible(true);
 						frame.dispose();
-
 					}
-				} else {
-					boolean ofertas = chckbxComprarSinOferta.isSelected();
-					VentConfPago User = new VentConfPago(nombreEvento, c,
-							numEntradasInt, ofertas);
-					User.getFrame().setVisible(true);
-					frame.dispose();
-				}
 				}
 
 			}

@@ -13,6 +13,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
@@ -162,12 +163,13 @@ public class VentCompraTicket {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.YELLOW);
-		panel.setBounds(0, 0, 437, 50);
+		panel.setBounds(0, 0, 385, 50);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(166, 11, 46, 14);
+		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\icons.jpg"));
+		lblNewLabel_2.setBounds(151, 0, 67, 50);
 		panel.add(lblNewLabel_2);
 
 		JButton buttonAtras = new JButton("");
@@ -194,6 +196,33 @@ public class VentCompraTicket {
 				.setIcon(new ImageIcon(
 						"C:\\Users\\Asus\\Desktop\\fotos proyecto\\nuevas fotos\\right.png"));
 		panel.add(buttonAtras);
+		
+		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				VentCompra window = null;
+				try {
+					window = new VentCompra() {
+					};
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				window.getFrame().setVisible(true);
+				frame.dispose();
+
+				
+			}
+		});
+		button.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
+		button.setOpaque(false);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setBorder(null);
+		button.setBackground(Color.YELLOW);
+		button.setBounds(10, 0, 70, 50);
+		panel.add(button);
 	}
 
 	public JFrame getFrame() {// llamada para poder cambiar de pantalla

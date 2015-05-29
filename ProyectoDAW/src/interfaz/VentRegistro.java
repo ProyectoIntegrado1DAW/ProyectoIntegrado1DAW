@@ -22,6 +22,7 @@ import gestores.GestorUsuario;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
 
 public class VentRegistro {
 
@@ -72,12 +73,6 @@ public class VentRegistro {
 		frame.setBounds(100, 100, 735, 577);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
-		JLabel lblLogoHere = new JLabel("");
-		lblLogoHere
-				.setIcon(new ImageIcon("C:\\Users\\hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
-		lblLogoHere.setBounds(292, 38, 111, 38);
-		frame.getContentPane().add(lblLogoHere);
 
 		JLabel label = new JLabel("Nombre");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -256,7 +251,7 @@ public class VentRegistro {
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("Trebuchet MS", Font.BOLD, 30));
 		button.setBackground(Color.BLACK);
-		button.setBounds(209, 463, 282, 52);
+		button.setBounds(238, 463, 282, 52);
 		frame.getContentPane().add(button);
 
 		textContrasenya = new JPasswordField();
@@ -349,6 +344,36 @@ public class VentRegistro {
 		lblPas.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		lblPas.setBounds(337, 206, 127, 38);
 		frame.getContentPane().add(lblPas);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBackground(Color.YELLOW);
+		panel.setBounds(0, 0, 719, 77);
+		frame.getContentPane().add(panel);
+		
+		JButton button_1 = new JButton("");
+		button_1.setOpaque(false);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		button_1.setBorder(null);
+		button_1.setBackground(Color.YELLOW);
+		button_1.setBounds(243, 11, 1, 1);
+		panel.add(button_1);
+		
+		JButton button_2 = new JButton("");
+		button_2.setOpaque(false);
+		button_2.setContentAreaFilled(false);
+		button_2.setBorderPainted(false);
+		button_2.setBorder(null);
+		button_2.setBackground(Color.YELLOW);
+		button_2.setBounds(10, 0, 70, 50);
+		panel.add(button_2);
+		
+				JLabel lblLogoHere = new JLabel("");
+				lblLogoHere.setBounds(278, 11, 211, 66);
+				panel.add(lblLogoHere);
+				lblLogoHere
+						.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoBig.png"));
 	}
 	public JFrame getFrame(){//llamada para poder cambiar de pantalla
 		return frame;

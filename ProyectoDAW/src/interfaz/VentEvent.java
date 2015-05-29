@@ -3,6 +3,7 @@ package interfaz;
 import gestores.ConexionDB;
 import entidades.Cliente;
 import entidades.Evento;
+import entidades.Gestor;
 
 import java.awt.EventQueue;
 import java.awt.Window;
@@ -242,12 +243,6 @@ public class VentEvent {
 		panel.setBounds(0, 0, 434, 50);
 		frame.getContentPane().add(panel);
 
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(
-				"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoSmall.png"));
-		label.setBounds(166, 9, 116, 28);
-		panel.add(label);
-
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setBorder(null);
 		btnNewButton_1.setOpaque(false);
@@ -272,6 +267,31 @@ public class VentEvent {
 		});
 		btnNewButton_1.setBounds(370, 0, 55, 50);
 		panel.add(btnNewButton_1);
+		
+		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				VentPrincipal window = new VentPrincipal();
+				window.getFrame().setVisible(true);
+				frame.dispose();
+				Gestor.setInstance();
+				
+			}
+		});
+		button.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
+		button.setOpaque(false);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setBorder(null);
+		button.setBackground(Color.YELLOW);
+		button.setBounds(0, 0, 70, 50);
+		panel.add(button);
+		
+		JLabel label = new JLabel("New label");
+		label.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\icons.jpg"));
+		label.setBounds(180, 0, 68, 50);
+		panel.add(label);
 
 		ConexionDB conexion = ConexionDB.getConexionDB();
 		ResultSet rs = conexion

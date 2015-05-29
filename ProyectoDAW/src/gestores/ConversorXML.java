@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -122,10 +123,15 @@ public class ConversorXML {
 		Transformer transformer = factory.newTransformer(xslStream);
 
 		StreamSource in = new StreamSource(XML);
+		
+		JOptionPane
+		.showMessageDialog(
+				null,
+				"Se ha generado su HTML con información de la entrada.\n Gracias.",
+				"Gracias", JOptionPane.INFORMATION_MESSAGE);
+		
 		StreamResult out = new StreamResult(HTML);
 		transformer.transform(in, out);
-
-		System.out.println("Se ha generado el fichero " + HTML);
 
 	}
 	public void abrir(String fichero) throws IOException{
