@@ -223,8 +223,7 @@ public class VentCompra {
 
 		JLabel lblImagenEvento = new JLabel();
 		lblImagenEvento
-				.setIcon(new ImageIcon(
-						"C:\\Users\\Linkerk\\Pictures\\d6621d28c5b48c162a68427ca5db4296.png"));
+				.setIcon(new ImageIcon("C:\\Users\\Linkerk\\Downloads\\ejemplo.gif"));
 		lblImagenEvento.setBackground(Color.GRAY);
 		lblImagenEvento.setForeground(Color.BLACK);
 		lblImagenEvento.setHorizontalAlignment(SwingConstants.CENTER);
