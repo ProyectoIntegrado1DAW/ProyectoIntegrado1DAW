@@ -260,10 +260,14 @@ public class VentEvent {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				VentUsuario User = new VentUsuario();
-				User.getFrame().setVisible(true);
-				frame.dispose();
-
+				if (c != null) {
+					VentUsuario User = new VentUsuario(c);
+					User.getFrame().setVisible(true);
+					frame.dispose();
+				}else{
+					JOptionPane.showMessageDialog(null, "Debe crearse una cuenta para entrar aqui.",
+							"ERROR", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		btnNewButton_1.setBounds(370, 0, 55, 50);
