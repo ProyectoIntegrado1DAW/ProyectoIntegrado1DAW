@@ -36,6 +36,9 @@ import gestores.ConexionDB;
 
 import javax.swing.border.EtchedBorder;
 import javax.swing.ListSelectionModel;
+import javax.swing.JTextPane;
+import javax.swing.UIManager;
+import java.awt.SystemColor;
 
 public class VentUsuario {
 
@@ -113,14 +116,6 @@ public class VentUsuario {
 		button.setBackground(Color.YELLOW);
 		button.setBounds(10, 0, 70, 50);
 		panel.add(button);
-
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel
-				.setIcon(new ImageIcon(
-						"C:\\Users\\Asus\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\profile.png"));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(50, 65, 101, 89);
-		frame.getContentPane().add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("MI CUENTA");
 		lblNewLabel_1.setForeground(new Color(255, 255, 0));
@@ -200,7 +195,7 @@ public class VentUsuario {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportBorder(new EtchedBorder(EtchedBorder.LOWERED,
 						null, null));
-		scrollPane.setBounds(0, 111, 435, 308);
+		scrollPane.setBounds(0, 147, 435, 272);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -215,6 +210,19 @@ public class VentUsuario {
 						+ c.getDNI() + "'");
 		
 		table.setModel(DbUtils.resultSetToTableModel(rs));
+		
+		JTextPane txtpnPuntosDisponibles = new JTextPane();
+		txtpnPuntosDisponibles.setBackground(new Color(192, 192, 192));
+		txtpnPuntosDisponibles.setText("Puntos disponibles:");
+		txtpnPuntosDisponibles.setBounds(10, 116, 141, 20);
+		frame.getContentPane().add(txtpnPuntosDisponibles);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setBackground(new Color(192, 192, 192));
+		textPane.setBounds(379, 116, 24, 20);
+		String puntos = ""+c.getPuntos();
+		textPane.setText(puntos);
+		frame.getContentPane().add(textPane);
 
 	}
 

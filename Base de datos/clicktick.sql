@@ -81,3 +81,8 @@ INSERT INTO clickntick.gestores VALUES ('36521452X', 'Paco', 'admin', 123);
 INSERT INTO clickntick.clientes VALUES ('23632143Z', 'hejuso', 123, 10, 'Hector', 'Juan Soria', 21, 'C/ Falsa 123', 'Alzira', 'Valencia', 46600, 'España', 66666666, 'hector151293@gmail.com');
 INSERT INTO clickntick.clientes VALUES ('32145235V', 'mmarin', 123, 0, 'Miquel', 'Marin', 20, 'C/ Falsa 124', 'Sumacarcer', 'Valencia', 46623, 'España', 66666665, 'mmarin@gmail.com');
 INSERT INTO clickntick.clientes VALUES ('12355333G', 'boribes', 123, 60, 'Borja', 'Ribes', 22, 'C/ Falsa 134', 'Carcaixent', 'Valencia', 46223, 'España', 63666665, 'boribes@gmail.com');
+
+--Añadiendo ofertas
+INSERT INTO clickntick.ofertas VALUES (1,20,'Gran descuento',10);
+INSERT INTO clickntick.ofertas VALUES (2,30,'Gran descuento 2',20);
+INSERT INTO clickntick.ofertas VALUES (3,40,'Gran descuento 3',50);
