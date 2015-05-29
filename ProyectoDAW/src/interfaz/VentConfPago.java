@@ -152,7 +152,11 @@ public class VentConfPago {
 						
 						GestorEntrada.compraEntrNoReg(nombreEvento, u,
 								numTarj, tipoTarjeta, numEntradas);
-						
+						JOptionPane
+						.showMessageDialog(
+								null,
+								"Se ha generado su HTML con información de la entrada.\n Gracias.",
+								"Gracias", JOptionPane.INFORMATION_MESSAGE);
 						VentEvent User = new VentEvent(c);
 						User.getFrame().setVisible(true);
 						frame.dispose();
@@ -166,6 +170,11 @@ public class VentConfPago {
 						GestorEntrada.compraEntr(nombreEvento, cliente,
 								numTarj, tipoTarjeta, numEntradas);
 						
+						JOptionPane
+						.showMessageDialog(
+								null,
+								"Se ha generado su HTML con información de la entrada.\n Gracias.",
+								"Gracias", JOptionPane.INFORMATION_MESSAGE);
 						VentEvent User = new VentEvent(c);
 						User.getFrame().setVisible(true);
 						frame.dispose();
@@ -178,6 +187,11 @@ public class VentConfPago {
 								numTarj, tipoTarjeta, numEntradas,
 								descripcionOferta);
 						
+						JOptionPane
+						.showMessageDialog(
+								null,
+								"Se ha generado su HTML con información de la entrada.\n Gracias.",
+								"Gracias", JOptionPane.INFORMATION_MESSAGE);
 						VentEvent User = new VentEvent(c);
 						User.getFrame().setVisible(true);
 						frame.dispose();

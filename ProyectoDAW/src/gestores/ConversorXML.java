@@ -125,11 +125,6 @@ public class ConversorXML {
 		StreamSource in = new StreamSource(XML);		
 		StreamResult out = new StreamResult(HTML);
 		transformer.transform(in, out);
-		JOptionPane
-		.showMessageDialog(
-				null,
-				"Se ha generado su HTML con información de la entrada.\n Gracias.",
-				"Gracias", JOptionPane.INFORMATION_MESSAGE);
 
 	}
 	public void abrir(String fichero) throws IOException{
