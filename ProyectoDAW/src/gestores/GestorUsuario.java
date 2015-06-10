@@ -115,6 +115,11 @@ public class GestorUsuario {
 						"Ha sido registrado con éxito.", "Enhorabuena",
 						JOptionPane.INFORMATION_MESSAGE);
 
+			}else{
+				
+				JOptionPane.showMessageDialog(null, "La cuenta ya existe",
+						"ERROR", JOptionPane.WARNING_MESSAGE);
+				
 			}
 			
 		} catch (SQLException e) {

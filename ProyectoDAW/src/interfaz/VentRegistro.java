@@ -213,7 +213,6 @@ public class VentRegistro {
 
 				}
 
-				Cliente.setInstanceOff();
 				Cliente c = Cliente.getInstance(dni, usuario, contrasenya,
 						nombre, apellidos, direccion, poblacion, provincia,
 						cpInt, pais, tlfnInt, correo);
@@ -370,7 +369,7 @@ public class VentRegistro {
 				
 			}
 		});
-		button_2.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
+		button_2.setIcon(new ImageIcon("C:\\Users\\Hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
 		button_2.setOpaque(false);
 		button_2.setContentAreaFilled(false);
 		button_2.setBorderPainted(false);
@@ -383,7 +382,7 @@ public class VentRegistro {
 				lblLogoHere.setBounds(278, 11, 211, 66);
 				panel.add(lblLogoHere);
 				lblLogoHere
-						.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoBig.png"));
+						.setIcon(new ImageIcon("C:\\Users\\Hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\LogoBig.png"));
 				
 				JButton button_3 = new JButton("");
 				button_3.setOpaque(false);

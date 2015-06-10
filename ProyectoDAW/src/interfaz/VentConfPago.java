@@ -206,6 +206,7 @@ public class VentConfPago {
 		frame.getContentPane().add(btnConfirmar);
 
 		JTextPane txtpnSeleccioneElTipo = new JTextPane();
+		txtpnSeleccioneElTipo.setEditable(false);
 		txtpnSeleccioneElTipo.setBackground(UIManager
 				.getColor("Button.background"));
 		txtpnSeleccioneElTipo.setText("Seleccione el tipo de tarjeta");
@@ -213,6 +214,7 @@ public class VentConfPago {
 		frame.getContentPane().add(txtpnSeleccioneElTipo);
 
 		JTextPane txtpnNumeroDeTarjeta = new JTextPane();
+		txtpnNumeroDeTarjeta.setEditable(false);
 		txtpnNumeroDeTarjeta.setText("Numero de tarjeta");
 		txtpnNumeroDeTarjeta.setBackground(SystemColor.menu);
 		txtpnNumeroDeTarjeta.setBounds(10, 14, 157, 20);

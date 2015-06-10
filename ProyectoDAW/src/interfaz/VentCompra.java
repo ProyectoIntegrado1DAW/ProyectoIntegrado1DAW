@@ -160,8 +160,7 @@ public class VentCompra {
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(177, 0, 70, 50);
 		lblNewLabel_2
-				.setIcon(new ImageIcon(
-						"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\icons.jpg"));
+				.setIcon(new ImageIcon("C:\\Users\\Hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\icons.jpg"));
 		panel.add(lblNewLabel_2);
 
 		buttonEvent.setBorder(null);
@@ -181,8 +180,7 @@ public class VentCompra {
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setBackground(Color.YELLOW);
 		btnNewButton
-				.setIcon(new ImageIcon(
-						"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
+				.setIcon(new ImageIcon("C:\\Users\\Hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -202,8 +200,7 @@ public class VentCompra {
 		btnNewButton_1.setBorderPainted(false);
 		btnNewButton_1.setBackground(Color.YELLOW);
 		btnNewButton_1
-				.setIcon(new ImageIcon(
-						"C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\bus.png"));
+				.setIcon(new ImageIcon("C:\\Users\\Hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\bus.png"));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -223,7 +220,7 @@ public class VentCompra {
 
 		JLabel lblImagenEvento = new JLabel();
 		lblImagenEvento
-				.setIcon(new ImageIcon("C:\\Users\\Linkerk\\Downloads\\ejemplo.gif"));
+				.setIcon(new ImageIcon("C:\\Users\\Hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\ejemplo.gif"));
 		lblImagenEvento.setBackground(Color.GRAY);
 		lblImagenEvento.setForeground(Color.BLACK);
 		lblImagenEvento.setHorizontalAlignment(SwingConstants.CENTER);
@@ -247,7 +244,7 @@ public class VentCompra {
 
 		JButton buttonFacebook = new JButton("");
 		buttonFacebook
-				.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\face.png"));
+				.setIcon(new ImageIcon("C:\\Users\\Hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\face.png"));
 		buttonFacebook.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
 		buttonFacebook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -375,7 +372,7 @@ public class VentCompra {
 			}
 		});
 		buttontwitter
-				.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\twit.png"));
+				.setIcon(new ImageIcon("C:\\Users\\Hejuso\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\twit.png"));
 		buttontwitter.setBounds(358, 320, 48, 43);
 		// desde aqui esto sirve para que los bordes de los botones no aparezcan
 		buttontwitter.setBorder(null);
