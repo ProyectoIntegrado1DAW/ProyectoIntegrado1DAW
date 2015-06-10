@@ -247,8 +247,7 @@ public class VentCompra {
 
 		JButton buttonFacebook = new JButton("");
 		buttonFacebook
-				.setIcon(new ImageIcon(
-						"C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\face.png"));
+				.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\face.png"));
 		buttonFacebook.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
 		buttonFacebook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -376,8 +375,7 @@ public class VentCompra {
 			}
 		});
 		buttontwitter
-				.setIcon(new ImageIcon(
-						"C:\\Users\\dai\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\twit.png"));
+				.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\twit.png"));
 		buttontwitter.setBounds(358, 320, 48, 43);
 		// desde aqui esto sirve para que los bordes de los botones no aparezcan
 		buttontwitter.setBorder(null);

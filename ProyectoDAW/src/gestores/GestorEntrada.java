@@ -32,8 +32,21 @@ public class GestorEntrada {
 			// registrar la compra
 			GestorCompra.registrarCompra(evento, cliente, numTar, forPago,
 					numEnt);
-			
+
 			generarHTML(evento, cliente, numEnt);
+			
+			JOptionPane
+			.showMessageDialog(
+					null,
+					"Se ha generado su HTML con información de la entrada.\n Gracias.",
+					"Gracias", JOptionPane.INFORMATION_MESSAGE);
+			
+		} else if (!existePlazasDisponibles(nomEvento, numEnt)) {
+
+			JOptionPane.showMessageDialog(null,
+					"No puede comprar mas entradas, se han agotado.", "ERROR",
+					JOptionPane.WARNING_MESSAGE);
+
 		}
 
 	}
@@ -66,8 +79,15 @@ public class GestorEntrada {
 				// registrar la compra
 				GestorCompra.registrarCompra(evento, cliente, numTar, forPago,
 						numEnt);
-				
+
 				generarHTML(evento, cliente, numEnt);
+				
+				JOptionPane
+				.showMessageDialog(
+						null,
+						"Se ha generado su HTML con información de la entrada.\n Gracias.",
+						"Gracias", JOptionPane.INFORMATION_MESSAGE);
+				
 			} else {
 				JOptionPane
 						.showMessageDialog(
@@ -75,9 +95,15 @@ public class GestorEntrada {
 								"No hay puntos suficientes, se efectuara una compra sin la oferta.\n Gracias.",
 								"ERROR", JOptionPane.WARNING_MESSAGE);
 				compraEntr(nomEvento, cliente, numTar, forPago, numEnt);
-				
+
 				generarHTML(evento, cliente, numEnt);
 			}
+		} else if (!existePlazasDisponibles(nomEvento, numEnt)) {
+
+			JOptionPane.showMessageDialog(null,
+					"No puede comprar mas entradas, se han agotado.", "ERROR",
+					JOptionPane.WARNING_MESSAGE);
+
 		}
 
 	}
@@ -95,8 +121,20 @@ public class GestorEntrada {
 
 			// Imprimir la entrada
 			generarEntradaNoReg(evento, cliente, numEnt);
-			
+
 			generarHTML(evento, cliente, numEnt);
+			
+			JOptionPane
+			.showMessageDialog(
+					null,
+					"Se ha generado su HTML con información de la entrada.\n Gracias.",
+					"Gracias", JOptionPane.INFORMATION_MESSAGE);			
+
+		} else if (!existePlazasDisponibles(nomEvento, numEnt)) {
+
+			JOptionPane.showMessageDialog(null,
+					"No puede comprar mas entradas, se han agotado.", "ERROR",
+					JOptionPane.WARNING_MESSAGE);
 
 		}
 
@@ -110,7 +148,7 @@ public class GestorEntrada {
 		int i = 0;
 
 		for (i = 1; i <= numEnt; i++) {
-			
+
 			try {
 				p.transform(evento.getNombre() + " - " + cliente.getNombre()
 						+ " - " + i + ".xml", "ticket.xsl", evento.getNombre()
@@ -122,11 +160,11 @@ public class GestorEntrada {
 			try {
 				p.abrir(evento.getNombre() + " - " + cliente.getNombre()
 						+ " - " + i + ".html");
-			
+
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
-			
+
 		}
 
 	}
@@ -255,7 +293,7 @@ public class GestorEntrada {
 	// actualiza las entradas reservadas en la bbdd para compras no registradas.
 	private static void actualBBDDnoReg(Cliente cliente, Evento evento,
 			int numEnt) throws SQLException {
-		
+
 		cliente = Cliente.getInstance();
 		Evento ev = GestorEvento.obtenerEvento(evento.getNombre());
 		ConexionDB conexion = ConexionDB.getConexionDB();
