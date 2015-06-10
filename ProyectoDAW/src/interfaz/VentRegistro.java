@@ -18,10 +18,12 @@ import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 
 import entidades.Cliente;
+import entidades.Gestor;
 import gestores.GestorUsuario;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JPanel;
 
 public class VentRegistro {
@@ -231,9 +233,6 @@ public class VentRegistro {
 					} else {
 
 						GestorUsuario.altaUsuario(c);
-						JOptionPane.showMessageDialog(null,
-								"Ha sido registrado con éxito.", "Enhorabuena",
-								JOptionPane.INFORMATION_MESSAGE);
 						VentLogin User = new VentLogin();
 						User.getFrame().setVisible(true);
 						frame.dispose();
@@ -361,6 +360,16 @@ public class VentRegistro {
 		panel.add(button_1);
 		
 		JButton button_2 = new JButton("");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				VentLogin window = new VentLogin();
+				window.getFrame().setVisible(true);
+				frame.dispose();
+				Gestor.setInstance();
+				
+			}
+		});
 		button_2.setIcon(new ImageIcon("C:\\Users\\Linkerk\\git\\ProyectoIntegrado1DAW\\ProyectoDAW\\nuevas fotos\\left.png"));
 		button_2.setOpaque(false);
 		button_2.setContentAreaFilled(false);
